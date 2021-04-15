@@ -14,7 +14,9 @@ import discord
 from discord import Intents
 from discord.ext import commands
 import requests
+from dotenv import load_dotenv
 
+load_dotenv()
 print(f'Discord Version : {discord.__version__}')
 
 TOKEN = os.environ.get('DISCORD_TOKEN')
@@ -81,8 +83,5 @@ async def roll(ctx, dice: str):
     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
     await ctx.send(result)
 
-@bot.event
-async def on_member_join(member):
-    await member.send('Private message')
 
 bot.run(TOKEN)
