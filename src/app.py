@@ -31,6 +31,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.event
 async def on_ready():
     """ Change Bot Presense """
+    await bot.change_presence(activity=discord.Game(name="Fornite"))
     print(f'{bot.user.name} is Online...')
 
 
