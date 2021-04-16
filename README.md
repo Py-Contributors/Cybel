@@ -10,7 +10,7 @@ Invite [Cybel](https://discord.com/api/oauth2/authorize?client_id=83213782330900
 ## Bot Commands
 
 | command name         |  Use Of commands                                  |  Example              |
-| ----------           |  :-------------:                                  |  ------:              |
+| ----------           |  :-------------:                                  |  :------:              |
 | **help**             |  Get the list of all commands                     |  !help                |
 | **add**              |  Add two number together                          |  !add 5 5             |
 | **fact**             |  function to send random fact                     |  !fact                |

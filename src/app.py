@@ -35,10 +35,27 @@ async def on_ready():
     print(f'{bot.user.name} is Online...')
 
 
-@bot.command()
-async def ping(ctx):
-    """ A Ping Pong function """
-    await ctx.send('Pong!')
+@bot.event
+async def on_message(message):
+    """ some on_message command """
+    if message.author.id == bot.user.id:
+        return
+    msg_content = message.content.lower()
+
+    if msg_content.startswith('!ping'):
+        await message.content.channel.send("Pong")
+    if msg_content.startswith('!pong'):
+        await message.channel.send("Ping")
+
+    greet_message = ["hi", 'hello', 'hey']
+    if any(word in msg_content for word in greet_message):
+        await message.channel.send(random.choice(greet_message))
+    
+    curse_words = ["fuck"]
+    if any(word in msg_content for word in curse_words):
+        await message.delete()
+        
+    await bot.process_commands(message)
 
 
 @bot.command()
@@ -94,6 +111,7 @@ async def roll(ctx, dice: str):
     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
     await ctx.send(result)
 
+
 @bot.command()
 async def weather(ctx, *args):
     """ Get Your City weather example:- !weather New Delhi"""
@@ -113,6 +131,20 @@ async def weather(ctx, *args):
                         
     except Exception:
         await ctx.send("I didn't find your City")
+
+
+""" Credits """
+bot_details = f'''BotName:- Cybel\n\
+Creator:- Deepak Raj\n\
+Contact Email:- Deepak008@live.com\n\
+Discord Server:- https://discord.gg/JfbK3bS\n\
+GitHub:- https://github.com/codeperfectplus'''
+
+@bot.command(name="info")
+async def bot_info(ctx):
+    """ Information about the Bot and credits """
+    await ctx.send(bot_details)
+    
 
 if __name__ == '__main__':
     bot.run(TOKEN)
