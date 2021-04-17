@@ -48,10 +48,6 @@ async def on_message(message):
         await message.channel.send("Pong")
     if msg_content.startswith('pong'):
         await message.channel.send("Ping")
-
-    greet_message = ["hi", 'hello', 'hey']
-    if any(word in msg_content for word in greet_message):
-        await message.channel.send(random.choice(greet_message))
     
     curse_words = ["fuck"]
     if any(word in msg_content for word in curse_words):
@@ -62,49 +58,29 @@ async def on_message(message):
 
 @bot.command(name="quote", help="get amazing random quote")
 async def quote(ctx):
-    """ function to send random quote """
-    try:
-        randomQuoteURL = 'https://zenquotes.io/api/random'
-        response = requests.get(randomQuoteURL)
-        randomQuote = f'{response.json()[0]["q"]} \
-                      - **{response.json()[0]["a"]}**'
-        await ctx.send(randomQuote)
-    except Exception as error:
-        await ctx.send(error)
+    """ Get amazing random quote """
+    randomQuote = utils._getRandomQuote()
+    await ctx.send(randomQuote)
 
 
 @bot.command(name="joke", help="get random jokes")
 async def joke(ctx):
-    """ function to send random joke """
-    try:
-        randomJokeURL = 'https://v2.jokeapi.dev/joke/Any?type=single'
-        randomJoke = requests.get(randomJokeURL)
-        await ctx.send(randomJoke.json()['joke'])
-    except Exception as error:
-        await ctx.send(error)
+    """ Get random jokes """
+    randomJoke = utils._getRanomJoke()
+    await ctx.send(randomJoke)
 
 
 @bot.command(name="fact", help="get amazing random fact")
 async def fact(ctx):
-    """ function to send random fact """
-    try:
-        randomFactURL = 'https://uselessfacts.jsph.pl//random.json?language=en'
-        randomFact = requests.get(randomFactURL)
-        await ctx.send(randomFact.json()['text'])
-    except Exception as error:
-        await ctx.send(error)
+    """ Get amazing random fact """
+    randomFact = utils._getRandomFact()
+    await ctx.send(randomFact)
 
 
 @bot.command(name="roll", help="roll a dice in NdN format. 5d5")
 async def roll(ctx, dice: str):
     """Rolls a dice in NdN format."""
-    try:
-        rolls, limit = map(int, dice.split('d'))
-    except Exception:
-        await ctx.send('Format has to be in NdN!')
-        return
-
-    result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
+    result = utils._rollTheDice(dice)
     await ctx.send(result)
 
 
@@ -117,13 +93,13 @@ async def weather(ctx, *args):
     try:
         weather_data = requests.get(openWeatherURL).json()
 
-        await ctx.send(f'{city_name.title()} - "Country": {weather_data["city"]["country"]}')
-        await ctx.send(f'"Temp": {round(weather_data["list"][0]["main"]["temp"] -273.0)}')
-        await ctx.send(f'"temp_min": {round(weather_data["list"][0]["main"]["temp_min"] -273.0)}')
-        await ctx.send(f'"temp_max": {round(weather_data["list"][0]["main"]["temp_max"] -273.0)}')
-        await ctx.send(f'"pressure": {weather_data["list"][0]["main"]["pressure"]}')
-        await ctx.send(f'"humidity": {weather_data["list"][0]["main"]["humidity"]}')
-        await ctx.send(f'"sea_level":{weather_data["list"][0]["main"]["sea_level"]}')
+        await ctx.send(f'{city_name.title()} - Country: {weather_data["city"]["country"]}')
+        await ctx.send(f'Temp: {round(weather_data["list"][0]["main"]["temp"] -273.0)}')
+        await ctx.send(f'temp_min: {round(weather_data["list"][0]["main"]["temp_min"] -273.0)}')
+        await ctx.send(f'temp_max: {round(weather_data["list"][0]["main"]["temp_max"] -273.0)}')
+        await ctx.send(f'pressure: {weather_data["list"][0]["main"]["pressure"]}')
+        await ctx.send(f'humidity: {weather_data["list"][0]["main"]["humidity"]}')
+        await ctx.send(f'sea_level:{weather_data["list"][0]["main"]["sea_level"]}')
                         
     except Exception:
         await ctx.send("I didn't find your City")
@@ -146,8 +122,8 @@ async def githubAPI(ctx, username: str):
 @bot.command(name="ifsc", help="Get Indian Bank Branch details by IFSC Code")
 async def getBankDataByIFSC(ctx, ifsc_code: str):
     """ Get Bank Details by IFSC CODE In INdia !ifsc <ifsc_code> """
-    bankData = utils._IfscDetails(ifsc_code)
-    await ctx.send(f'Branch: {bankData["BRANCH"]}\nBank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
+    bankData = utils._getIfscDetails(ifsc_code)
+    await ctx.send(f'Branch: {bankData["BRANCH"]}\n\Bank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
 
 
 @bot.command(name="dogs", help="Get Random Pictures of Dogs")
