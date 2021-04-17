@@ -123,7 +123,7 @@ async def githubAPI(ctx, username: str):
 async def getBankDataByIFSC(ctx, ifsc_code: str):
     """ Get Bank Details by IFSC CODE In INdia !ifsc <ifsc_code> """
     bankData = utils._getIfscDetails(ifsc_code)
-    await ctx.send(f'Branch: {bankData["BRANCH"]}\n\Bank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
+    await ctx.send(f'Branch: {bankData["BRANCH"]}\nBank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
 
 
 @bot.command(name="dogs", help="Get Random Pictures of Dogs")
