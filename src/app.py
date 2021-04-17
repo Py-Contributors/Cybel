@@ -60,7 +60,7 @@ async def on_message(message):
     await bot.process_commands(message)
 
 
-@bot.command()
+@bot.command(name="quote", help="get amazing random quote")
 async def quote(ctx):
     """ function to send random quote """
     try:
@@ -73,7 +73,7 @@ async def quote(ctx):
         await ctx.send(error)
 
 
-@bot.command()
+@bot.command(name="joke", help="get random jokes")
 async def joke(ctx):
     """ function to send random joke """
     try:
@@ -84,7 +84,7 @@ async def joke(ctx):
         await ctx.send(error)
 
 
-@bot.command()
+@bot.command(name="fact", help="get amazing random fact")
 async def fact(ctx):
     """ function to send random fact """
     try:
@@ -95,7 +95,7 @@ async def fact(ctx):
         await ctx.send(error)
 
 
-@bot.command()
+@bot.command(name="roll", help="roll a dice in NdN format. 5d5")
 async def roll(ctx, dice: str):
     """Rolls a dice in NdN format."""
     try:
