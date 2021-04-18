@@ -17,7 +17,6 @@ from discord.ext import commands
 import aiohttp
 import json
 
-from askme import askMe
 import utils
 
 intents = Intents.default()
