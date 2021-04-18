@@ -12,16 +12,18 @@ https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permission
 import re
 import random
 import discord
+import datetime
 from discord import Intents
 from discord.ext import commands
 import aiohttp
 import json
 
+from askme import askMe
 import utils
 
 intents = Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
-
+BOTNAME= "Cybel"
 
 @bot.event
 async def on_ready():
@@ -30,9 +32,8 @@ async def on_ready():
 	print(f'{bot.user.name} is Online...')
 
 
-@bot.event
+""" @bot.event
 async def on_message(message: str):
-	""" on_message command """
 	if message.author.id == bot.user.id:
 		return
 	msg_content = message.content.lower()
@@ -42,23 +43,65 @@ async def on_message(message: str):
 	if msg_content.startswith('pong'):
 		await message.channel.send("Ping")
 
-	await bot.process_commands(message)
+	await bot.process_commands(message) """
 
-import datetime
 
-@bot.command()
-async def info(ctx):
+@bot.command(name="server")
+async def serverInfo(ctx):
 	""" Get the server information """
 	embed = discord.Embed(title=f"{ctx.guild.name}", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
 	embed.add_field(name="Server created at", value=f"{ctx.guild.created_at}")
 	embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
 	embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
 	embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+	embed.add_field(name="Bot Presense", value=f"{len(bot.guilds)} Servers")
 	# embed.set_thumbnail(url=f"{ctx.guild.icon}")
 	embed.set_thumbnail(url="https://pluralsight.imgix.net/paths/python-7be70baaac.png")
-
 	await ctx.send(embed=embed)
 
+
+@bot.command(name="kick", help="Kick user")
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, user: discord.Member, *, reason=None):
+	""" command to kick user. check !help kick """
+	try:
+		await user.kick(reason=reason)
+		await ctx.message.delete()
+		kick = discord.Embed(title=f":boot: Kicked {user.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+		await ctx.channel.send(embed=kick)
+	except Exception:
+		await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to kick someone.")
+
+
+@bot.command(name="ban", help="command to ban user")
+@commands.has_permissions(ban_members=True)
+async def ban(ctx, member: discord.Member, *, reason=None):
+	""" command to ban user. Check !help ban """
+	try:
+		await member.ban(reason=reason)
+		ban = discord.Embed(title=f":boom: Banned {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+		await ctx.message.delete()
+		await ctx.channel.send(embed=ban)
+	except Exception:
+		await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to ban someone.")
+
+
+@bot.command(name="unban", help="command to unban user")
+@commands.has_permissions(administrator = True)
+async def unban(ctx, *, member_id:int):
+	""" command to unban user. check !help unban """
+	await ctx.guild.unban(discord.Object(id=member_id))
+	await ctx.send(f"Unban {member_id}")
+
+
+@bot.command(name="create_invite", help='create instant invite')
+async def create_invite(ctx):
+	""" Create instant invite for Channel """
+	link = await ctx.channel.create_invite(max_age = 0)
+	await ctx.send("Here is an instant invite to your server: " + str(link))
+
+
+""" Commands using API """
 
 @bot.command(name="joke", help="get random jokes")
 async def getRandomJoke(ctx):
@@ -103,7 +146,7 @@ async def rollTheDice(ctx, dice: str):
 
 
 @bot.command(name="coinflip", help="flip a coin")
-async def flipCoin(ctx):
+async def flipCoin(ctx, flip_number: int):
 	pass
 
 
@@ -118,7 +161,7 @@ async def getGihubUserData(ctx, username: str):
 					userData = await response.json()
 					await ctx.send(f'Name: {userData["name"]}\nPublic Repo: {userData["public_repos"]}\nFollowers: {userData["followers"]}\nLast Updated: {userData["updated_at"]}')
 				else:
-					await ctx.send(f"API is not available, Status Code {response.status}")
+					await ctx.send(f"{username} is not a github user.")
 
 
 @bot.command(name="ifsc", help="Get Indian Bank Branch details by IFSC Code")
@@ -132,7 +175,7 @@ async def getBankDataByIFSC(ctx, ifsc_code: str):
 					bankData = await response.json()
 					await ctx.send(f'Branch: {bankData["BRANCH"]}\nBank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
 				else:
-					await ctx.send(f"API is not available, Status Code {response.status}")
+					await ctx.send(f"{ifsc_code} is not a valid IFSC code.")
 
 
 @bot.command(name="weather", help="weather of world at your command")
@@ -154,7 +197,7 @@ async def getWeather(ctx, *args):
 									humidity: {weather_data["list"][0]["main"]["humidity"]}\n\
 									sea_level:{weather_data["list"][0]["main"]["sea_level"]}')
 				else:
-					await ctx.send(f"I can't find {city_name}")
+					await ctx.send(f"I can't find {city_name}.")
 
 
 @bot.command(name="dog", help="Get Random picture of dogs.")
