@@ -6,7 +6,7 @@ Copyright (c) 2021 Deepak Raj
 Bot-Name:- Cybel
 Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
-https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=268446835&scope=bot
+https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot
 
 """
 import re
@@ -15,7 +15,9 @@ import discord
 from discord import Intents
 from discord.ext import commands
 import aiohttp
+import json
 
+from askme import askMe
 import utils
 
 intents = Intents.default()
@@ -43,17 +45,20 @@ async def on_message(message: str):
 
 	await bot.process_commands(message)
 
+import datetime
 
-@bot.command(name="quote", help="get amazing random quote")
-async def getRandomQuote(ctx):
-	""" Get amazing random quote """
-	randomQuoteURL = 'https://zenquotes.io/api/random'
-	async with ctx.typing():
-		async with aiohttp.ClientSession() as session:
-			async with session.get(randomQuoteURL) as response:
-				result = await response.json()
-				randomQuote = f'{result[0]["q"]} -**{result[0]["a"]}**'
-				await ctx.send(randomQuote)
+@bot.command()
+async def info(ctx):
+	""" Get the server information """
+	embed = discord.Embed(title=f"{ctx.guild.name}", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
+	embed.add_field(name="Server created at", value=f"{ctx.guild.created_at}")
+	embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
+	embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
+	embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+	# embed.set_thumbnail(url=f"{ctx.guild.icon}")
+	embed.set_thumbnail(url="https://pluralsight.imgix.net/paths/python-7be70baaac.png")
+
+	await ctx.send(embed=embed)
 
 
 @bot.command(name="joke", help="get random jokes")
@@ -63,8 +68,12 @@ async def getRandomJoke(ctx):
 	async with ctx.typing():
 		async with aiohttp.ClientSession() as session:
 			async with session.get(randomJokeURL) as response:
-				randomJoke = await response.json()["joke"]
-				await ctx.send(randomJoke)
+				if response.status == 200:
+					result = await response.json()
+					randomJoke = result["joke"]
+					await ctx.send(randomJoke)
+				else:
+					await ctx.send(f"API is not available, Status Code {response.status}")
 
 
 @bot.command(name="fact", help="get amazing random fact")
@@ -74,26 +83,15 @@ async def getRandomFact(ctx):
 	async with ctx.typing():
 		async with aiohttp.ClientSession() as session:
 			async with session.get(randomFactURL) as response:
-				randomFact = await response.json()['text']
-				await ctx.send(randomFact)
+				if response.status == 200:
+					result = await response.json()
+					randomFact = result['text']
+					await ctx.send(randomFact)
+				else:
+					await ctx.send(f"API is not available, Status Code {response.status}")
 
 
-@bot.command(name="cats", help="Get Random Pictures of Cats")
-async def getRandomcCatPicture(ctx):
-	""" Get Random Cats Picture """
-	catAPIURL = "https://thatcopy.pw/catapi/rest/"
-	async with ctx.typing():
-		async with aiohttp.ClientSession() as session:
-			async with session.get(catAPIURL) as response:
-				result = await response.json()
-
-				catPictureURL = result["url"]
-				embed = discord.Embed(title="Meow")
-				embed.set_image(url=catPictureURL)
-				await ctx.send(embed=embed)
-
-
-@bot.command(name="roll", help="roll a dice in NdN format. 5d5")
+@bot.command(name="dice", help="roll a dice in NdN format. 5d5")
 async def rollTheDice(ctx, dice: str):
 	"""Rolls a dice in NdN format."""
 	try:
@@ -105,6 +103,11 @@ async def rollTheDice(ctx, dice: str):
 	await ctx.send(result)
 
 
+@bot.command(name="coinflip", help="flip a coin")
+async def flipCoin(ctx):
+	pass
+
+
 @bot.command(name="gh", help="get Github user data")
 async def getGihubUserData(ctx, username: str):
 	""" Get Github User Data Using !gh username """
@@ -112,8 +115,11 @@ async def getGihubUserData(ctx, username: str):
 		gitAPIURL = f'https://api.github.com/users/{username}'
 		async with aiohttp.ClientSession() as session:
 			async with session.get(gitAPIURL) as response:
-				userData = await response.json()
-				await ctx.send(f'Name: {userData["name"]}\nPublic Repo: {userData["public_repos"]}\nFollowers: {userData["followers"]}\nLast Updated: {userData["updated_at"]}')
+				if response.status == 200:
+					userData = await response.json()
+					await ctx.send(f'Name: {userData["name"]}\nPublic Repo: {userData["public_repos"]}\nFollowers: {userData["followers"]}\nLast Updated: {userData["updated_at"]}')
+				else:
+					await ctx.send(f"API is not available, Status Code {response.status}")
 
 
 @bot.command(name="ifsc", help="Get Indian Bank Branch details by IFSC Code")
@@ -123,8 +129,11 @@ async def getBankDataByIFSC(ctx, ifsc_code: str):
 	async with ctx.typing():
 		async with aiohttp.ClientSession() as session:
 			async with session.get(url) as response:
-				bankData = await response.json()
-				await ctx.send(f'Branch: {bankData["BRANCH"]}\nBank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
+				if response.status == 200:
+					bankData = await response.json()
+					await ctx.send(f'Branch: {bankData["BRANCH"]}\nBank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
+				else:
+					await ctx.send(f"API is not available, Status Code {response.status}")
 
 
 @bot.command(name="weather", help="weather of world at your command")
@@ -149,9 +158,62 @@ async def getWeather(ctx, *args):
 					await ctx.send(f"I can't find {city_name}")
 
 
-@bot.command(name="dogs", help="Get Random picture of dogs.")
-async def getRandomDogPicture():
-	pass
+@bot.command(name="dog", help="Get Random picture of dogs.")
+async def getRandomDogPicture(ctx):
+	dogAPIURL = "https://dog.ceo/api/breeds/image/random"
+	async with ctx.typing():
+		async with aiohttp.ClientSession() as session:
+			async with session.get(dogAPIURL) as response:
+				if response.status == 200:
+					result = await response.json()
+
+					dogPictureURL = result["message"]
+					embed = discord.Embed(title="bow! bow!")
+					embed.set_image(url=dogPictureURL)
+					embed.set_author(
+						name="Dog API", url='https://dog.ceo/dog-api/')
+					await ctx.send(embed=embed)
+				else:
+					await ctx.send(f"API is not available, Status Code {response.status}")
+
+
+@bot.command(name="fox", help="Get Random Picture of FOx")
+async def getRandomFoxPicture(ctx):
+	foxAPIURL = 'https://randomfox.ca/floof/'
+	async with ctx.typing():
+		async with aiohttp.ClientSession() as session:
+			async with session.get(foxAPIURL) as response:
+				if response.status == 200:
+					result = await response.json()
+
+					foxPictureURL = result["image"]
+					embed = discord.Embed(title="howls!")
+					embed.set_image(url=foxPictureURL)
+					embed.set_author(
+						name="foxAPI", url='https://randomfox.ca/')
+					await ctx.send(embed=embed)
+				else:
+					await ctx.send(f"API is not available, Status Code {response.status}")
+
+
+@bot.command(name="cat", help="Get Random Pictures of Cats")
+async def getRandomcCatPicture(ctx):
+	""" Get Random Cats Picture """
+	catAPIURL = "https://thatcopy.pw/catapi/rest/"
+	async with ctx.typing():
+		async with aiohttp.ClientSession() as session:
+			async with session.get(catAPIURL) as response:
+				if response.status == 200:
+					result = await response.json()
+
+					catPictureURL = result["url"]
+					embed = discord.Embed(title="Meow! Meow!")
+					embed.set_image(url=catPictureURL)
+					embed.set_author(
+						name='catAPI', url='https://thatcopy.pw/catapi/')
+					await ctx.send(embed=embed)
+				else:
+					await ctx.send(f"API is not available, Status Code {response.status}")
 
 
 if __name__ == '__main__':

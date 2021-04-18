@@ -10,7 +10,7 @@ Invite **Cybel** into your server
 - [Cybel Stable](https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot)
 - [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot)
 
-### **Cybel Beta** May have some bugs with some experimental features.
+##### **Cybel Beta** May have some bugs with some experimental features.
 
 ## Bot Commands
 
@@ -19,19 +19,16 @@ Invite **Cybel** into your server
 | command name          |               Use Of commands               | Example              |
 | --------------------- | :-----------------------------------------: | :------------------- |
 | **help**              |        Get the list of all commands         | !help                |
-| **add**               |           Add two number together           | !add 5 5             |
 | **fact**              |        function to send random fact         | !fact                |
 | **joke**              |        function to send random joke         | !joke                |
-| **quote**             |        function to send random quote        | !quote               |
 | **ping**              |  Ping-Pong function to test the bot status  | !ping                |
-| **roll**              |          Roll a dice in ndn format          | !roll 5d6            |
-| **weather**           |      Function to get your city weather      | !weather new delhi   |
-| **cats**              |         Get Random picture of Cats          | !cats                |
-| **dogs**              |        Get Random pictures of Dogs.         | !dogs                |
+| **cat**               |         Get Random picture of Cats          | !cat                 |
+| **dog**               |         Get Random picture of Dogs          | !dog                 |
+| **fox**               |          Get Random picture of Fox          | !fox                 |
+| **dice**              |          Roll a dice in ndn format          | !diceku 5d6          |
 | **gh**                |            get Github user data             | !gh <username>       |
 | **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
-| **surl**              |            Shorten your web url             | !surl <website_name> |
-| **info**              |    Information about the Bot and Credits    | !info                |
+| **weather**           |          Get Weather of your City           | !weather <city_name> |
 | **Upcoming Commands** |              Work in progress               | Stay Tuned           |
 
 ### Beta Version Commands(including above)
@@ -39,7 +36,6 @@ Invite **Cybel** into your server
 | command name |             Use Of commands              | Example                       |
 | ------------ | :--------------------------------------: | :---------------------------- |
 | **cybel**    | Ask me Question related to science, Math | !cyble What is thermodynamics |
-| **q**        |    Same as cybel do but short command    | !q What is thermodynamics     |
 
 for more detils check `!help <command_name>` in server.
 
@@ -49,7 +45,7 @@ for more detils check `!help <command_name>` in server.
 - Kick/Ban User
 - Curse word deletion
 - Role Upgrade
-- So One
+- more...
 
 - Add/Suggest a feature by making issues.
 
