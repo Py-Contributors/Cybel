@@ -90,7 +90,7 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 async def unban(ctx, *, member_id:int):
 	""" command to unban user. check !help unban """
 	await ctx.guild.unban(discord.Object(id=member_id))
-	await ctx.send(f"Unban {member_id}")
+	await ctx.send(f"Unban {bot.get_user(member_id)}")
 
 
 @bot.command(name="create_invite", help='create instant invite')
