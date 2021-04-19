@@ -3,6 +3,15 @@
   <h2 align="center">👉 General Discord Bot implemented in Python 👈</h2>
 </p>
 
+- [Invite in Your Discord Server](#invite-in-your-discord-server)
+- [Bot Commands](#bot-commands)
+  - [Stable Version Commands](#stable-version-commands)
+  - [Beta Version Commands](#beta-version-commands)
+- [Upcoming Feature](#upcoming-feature)
+- [Support Here](#support-here)
+- [Author](#author)
+
+  
 ## Invite in Your Discord Server
 
 Invite **Cybel** into your server 
@@ -10,51 +19,60 @@ Invite **Cybel** into your server
 - [Cybel Stable](https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot)
 - [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot)
 
-##### **Cybel Beta** May have some bugs with some experimental features.
-
 ## Bot Commands
 
 ### Stable Version Commands
+> Admin Level commands will require the admin permission. Assign a Admin role to the Bot.
 
-| command name          |               Use Of commands               | Example                    |
-| --------------------- | :-----------------------------------------: | :------------------------- |
-| **help**              |        Get the list of all commands         | !help                      |
-| **fact**              |        function to send random fact         | !fact                      |
-| **joke**              |        function to send random joke         | !joke                      |
-| **ping**              |  Ping-Pong function to test the bot status  | !ping                      |
-| **cat**               |         Get Random picture of Cats          | !cat                       |
-| **dog**               |         Get Random picture of Dogs          | !dog                       |
-| **fox**               |          Get Random picture of Fox          | !fox                       |
-| **dice**              |          Roll a dice in ndn format          | !diceku 5d6                |
-| **kick**              |        Kick user from Discord server        | !kick <user_name> <reason> |
-| **ban**               |        Ban user from Discord server         | !ban <user_name> <reason>  |
-| **unban**             |       Unban user from Discord server        | !unban <member_id>         |
-| **gh**                |            get Github user data             | !gh <username>             |
-| **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>          |
-| **weather**           |          Get Weather of your City           | !weather <city_name>       |
-| **server**            |     to get the information about server     | !server                    |
-| **Upcoming Commands** |              Work in progress               | Stay Tuned                 |
+| command name          |               Use Of commands               | Example                         |
+| --------------------- | :-----------------------------------------: | :------------------------------ |
+| **help**              |        Get the list of all commands         | !help                           |
+| **fact**              |        function to send random fact         | !fact                           |
+| **joke**              |        function to send random joke         | !joke                           |
+| **ping**              |  Ping-Pong function to test the bot status  | !ping                           |
+| **cat**               |         Get Random picture of Cats          | !cat                            |
+| **dog**               |         Get Random picture of Dogs          | !dog                            |
+| **fox**               |          Get Random picture of Fox          | !fox                            |
+| **dice**              |          Roll a dice in ndn format          | !diceku 5d6                     |
+| **create_invite**     |            Create instant invite            | !create_invite                  |
+| **kick**              |        Kick user from Discord server        | !kick <user_name> <reason>      |
+| **ban**               |        Ban user from Discord server         | !ban <user_name> <reason>       |
+| **unban**             |       Unban user from Discord server        | !unban <member_id>              |
+| **chnick**            |         Change Nicknames of Members         | !chnick <user_name> <Nick_name> |
+| **gh**                |            get Github user data             | !gh <username>                  |
+| **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>               |
+| **weather**           |          Get Weather of your City           | !weather <city_name>            |
+| **server**            |     to get the information about server     | !server                         |
+| **Upcoming Commands** |              Work in progress               | Stay Tuned                      |
 
-### Beta Version Commands(including above)
+![Conversation with Cybel](images/sample.png)
 
-| command name |             Use Of commands              | Example                       |
-| ------------ | :--------------------------------------: | :---------------------------- |
-| **cybel**    | Ask me Question related to science, Math | !cyble What is thermodynamics |
+### Beta Version Commands
+> Including above
 
-for more detils check `!help <command_name>` in server.
+| command name |  Use Of commands   | Example                       |
+| ------------ | :----------------: | :---------------------------- |
+| **cybel**    | AI Enabled ChatBot | !cyble What is thermodynamics |
+
+![Conversation with Cybel](images/sample2.png)
+
+**Note**:- Cybel Beta may have some bugs, broken features and experimental commands.
+
+for more details check `!help <command_name>` in server.
 
 ## Upcoming Feature
 
-- Create Instant Invite
-- Kick/Ban User
+- AI Enabled ChatBot(In Beta Version)
 - Curse word deletion
 - Role Upgrade
+- ~~Create Instant Invite~~
+- ~~Kick/Ban User~~
 - more...
 
-- Add/Suggest a feature by making issues.
 
 ## Support Here
 
 <a href="https://www.buymeacoffee.com/codeperfectplus"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a book&emoji=📖&slug=codeperfectplus&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+
 
 ## Author
