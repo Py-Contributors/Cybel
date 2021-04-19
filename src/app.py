@@ -288,7 +288,8 @@ async def _rollTheDice(ctx, dice: str):
 
 @bot.command(name="coinflip", help="flip a coin")
 async def _flipCoin(ctx, flip_number: int):
-    pass
+    flip = "Head" if random.randint(0, 1) == 0 else "Tail"
+    await ctx.send(flip)
 
 
 if __name__ == '__main__':
