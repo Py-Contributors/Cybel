@@ -20,7 +20,7 @@ from src.utils import utils
 
 
 class APIBaseUserCommands(commands.Cog, name="External API Based User Commands"):
-    """ User Commands """
+    """ Collection of External API Based Commands """
 
     def __init__(self, bot):
         self.bot = bot
@@ -187,5 +187,5 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User Commands")
                 await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
 
-def setup(bot: commands.Bot):
+def setup(bot: commands.Cog):
     bot.add_cog(APIBaseUserCommands(bot))
