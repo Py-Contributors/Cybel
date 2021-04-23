@@ -30,6 +30,9 @@
 - Log Everything with embed message
 - AutoMod - Delete offensive word automatically[optional]
 - Use the bot to its full potential without ever annoying anyone
+- Modern Pythonic API using async/await syntax
+- Easy to use with an object oriented design
+- Optimised for both speed and memory
 - More Features coming soon...
 
 Invite **Cybel** into your server
