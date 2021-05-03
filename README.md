@@ -22,16 +22,16 @@
 
 - Admin Commands for server management with powerful moderation
 - Stay connected every time with 99% uptime
-- Custom welcome message for each user when join
-- Separate DM message upon joining server
+- Custom welcome message for each user when joining
+- Separate DM message upon joining the server
 - Utility async APIs
 - Commands for user access
-- AI enabled chatbot(only in Beta Version)
+- AI-enabled chatbot(only in Beta Version)
 - Log Everything with embed message
 - AutoMod - Delete offensive word automatically[optional]
 - Use the bot to its full potential without ever annoying anyone
 - Modern Pythonic API using async/await syntax
-- Easy to use with an object oriented design
+- Easy to use with an object-oriented design
 - Optimised for both speed and memory
 - More Features coming soon...
 
@@ -44,7 +44,7 @@ Invite **Cybel** into your server
 
 ### Stable Version Commands
 
-> Admin Level commands will require the admin permission. Assign a Admin role to the Bot.
+> Admin Level commands will require admin permission. Assign an Admin role to the Bot.
 
 #### **Admin Commands**
 
@@ -71,23 +71,23 @@ check !help <command_name> for command description
 
 > User Level commands.
 
-| command name      |               Use Of commands               | Example              |
-| :---------------- | :-----------------------------------------: | :------------------- |
-| **help**          |        Get the list of all commands         | !help                |
-| **info**          |    Tells you some info about the member.    | !info <member_name>  |
-| **fact**          |        function to send random fact         | !fact                |
-| **joke**          |        function to send random joke         | !joke                |
-| **ping**          |  Ping-Pong function to test the bot status  | !ping                |
-| **cat**           |         Get Random picture of Cats          | !cat                 |
-| **dog**           |         Get Random picture of Dogs          | !dog                 |
-| **fox**           |          Get Random picture of Fox          | !fox                 |
-| **dice**          |          Roll a dice in ndn format          | !diceku 5d6          |
-| **flipcoin**      |           Flip the coin randomly            | !flipcoin            |
-| **create_invite** |            Create instant invite            | !create_invite       |
-| **gh**            |            get Github user data             | !gh <user_name>      |
-| **ifsc**          | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
-| **weather**       |          Get Weather of your City           | !weather <city_name> |
-| **server**        |     to get the information about server     | !server              |
+| command name      |               Use Of commands               | Example                |
+| :---------------- | :-----------------------------------------: | :--------------------- |
+| **help**          |        Get the list of all commands         | `!help`                |
+| **info**          |    Tells you some info about the member.    | `!info <member_name>`  |
+| **fact**          |        function to send random fact         | `!fact`                |
+| **joke**          |        function to send random joke         | `!joke`                |
+| **ping**          |  Ping-Pong function to test the bot status  | `!ping`                |
+| **cat**           |         Get Random picture of Cats          | `!cat`                 |
+| **dog**           |         Get Random picture of Dogs          | `!dog`                 |
+| **fox**           |          Get Random picture of Fox          | `!fox`                 |
+| **dice**          |          Roll a dice in ndn format          | `!diceku 5d6`          |
+| **flipcoin**      |           Flip the coin randomly            | `!flipcoin`            |
+| **create_invite** |            Create instant invite            | `!create_invite`       |
+| **gh**            |            get Github user data             | `!gh <user_name>`      |
+| **ifsc**          | Get Indian bank branch details by IFSC code | `!ifsc <ifsc_code>`    |
+| **weather**       |          Get Weather of your City           | `!weather <city_name>` |
+| **server**        |     to get the information about server     | `!server`              |
 
 ![Conversation with Cybel](images/sample.png)
 
@@ -102,16 +102,18 @@ check !help <command_name> for command description
 
 ![Conversation with Cybel](images/sample2.png)
 
-**Note**:- Cybel Beta may have some bugs, broken features and experimental commands.
+**Note**:- Cybel Beta may have some bugs, broken features, and experimental commands.
 
 for more details check `!help <command_name>` in server.
 
 ## Upcoming Feature
 
-- AI Enabled ChatBot(In Beta Version)
+- AI-Enabled ChatBot(In Beta Version)
 - Curse word deletion
 - Role Upgrade
 - Reactions Roles
+- member can report someone to admin: like for bullying, bad behavior
+- one command role assignment to all members
 - ~~Create Instant Invite~~
 - ~~Kick/Ban User~~
 - more...
