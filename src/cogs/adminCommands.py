@@ -36,7 +36,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 								 description=f"Reason: {reason}\nBy: {ctx.author.mention}")
 			await ctx.send(embed=kick)
 		except Exception as e:
-			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 	@commands.command()
 	@commands.has_permissions(kick_members=True)
@@ -52,10 +52,11 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		await ctx.message.delete()
 		try:
 			await member.edit(mute=True)
-			mute = discord.Embed(description=f'🔇 {member.mention} is muted by {ctx.author.mention}')
+			mute = discord.Embed(
+				description=f'🔇 {member.mention} is muted by {ctx.author.mention}')
 			await ctx.send(embed=mute)
 		except Exception as e:
-			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 	@commands.command()
 	@commands.has_permissions(kick_members=True)
@@ -70,10 +71,11 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		await ctx.message.delete()
 		try:
 			await member.edit(unmute=True)
-			unmute = discord.Embed(description=f'🔊 {member.mention} is unmuted by {ctx.author.mention}')
+			unmute = discord.Embed(
+				description=f'🔊 {member.mention} is unmuted by {ctx.author.mention}')
 			await ctx.send(embed=unmute)
 		except Exception as e:
-			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 	@commands.command()
 	@commands.has_permissions(ban_members=True)
@@ -90,7 +92,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 				title=f":boom: Banned {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
 			await ctx.send(embed=ban)
 		except Exception as e:
-			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 	@commands.command()
 	@commands.has_permissions(administrator=True)
@@ -105,7 +107,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.guild.unban(discord.Object(id=member_id))
 			await ctx.send(f"Unban {member_id}")
 		except Exception as e:
-			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 	@commands.command()
 	@commands.has_permissions(manage_nicknames=True)
@@ -118,21 +120,22 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		await ctx.message.delete()
 		try:
 			await member.edit(nick=nick)
-			nickname = discord.Embed(description=f'Nickname was changed for {member.mention} ')
+			nickname = discord.Embed(
+				description=f'Nickname was changed for {member.mention} ')
 			await ctx.send(embed=nickname)
 		except Exception as e:
-			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 	@commands.command()
 	@commands.has_permissions(administrator=True)
 	async def create_category(self, ctx, category: str):
-		""" Command for create category in Guild/Channel
+		""" Command for create category in Guild/Server.
 
 		it will not override the previous category.
 		"""
-		guild = ctx.guild
-		await guild.create_category(category)
-		category_embed = discord.Embed(description=f'{category} category got created by {ctx.author.mention}')
+		await ctx.guild.create_category(category)
+		category_embed = discord.Embed(
+			description=f'{category} category got created by {ctx.author.mention}')
 		await ctx.send(embed=category_embed)
 
 	@commands.command()
@@ -140,28 +143,28 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	async def delete_category(self, ctx, category: discord.CategoryChannel):
 		""" Command for delete category from server """
 		await category.delete()
-		category_embed = discord.Embed(description=f"{category} category got deleted from {ctx.guild} by {ctx.author.mention}.")
+		category_embed = discord.Embed(
+			description=f"{category} category got deleted from {ctx.guild} by {ctx.author.mention}.")
 		await ctx.send(embed=category_embed)
 
 	@commands.command()
 	@commands.has_permissions(administrator=True)
 	async def create_text_channel(self, ctx, channel: str, category: discord.CategoryChannel = None):
-		""" command for create text channel in Guild/Channel
+		""" command for create text channel in Guild/Server.
 
 		input: channel, category name
 
 		it will not override the previous channel
-		if category is not provided so It will make a channel without category.
+		Category name is optional.
 
-		create category to make channel under it using !create_category
+		for creating new category, please check !help create_category
 		"""
-		guild = ctx.guild
-
 		if category is None:
-			await guild.create_text_channel(channel)
+			await ctx.guild.create_text_channel(channel)
 		else:
-			await guild.create_text_channel(channel, category=category)
-		txt_channel = discord.Embed(description=f'{channel} got created by {ctx.author.mention}')
+			await ctx.guild.create_text_channel(channel, category=category)
+		txt_channel = discord.Embed(
+			description=f'{channel} got created by {ctx.author.mention}')
 		await ctx.send(embed=txt_channel)
 
 	@commands.command()
@@ -169,27 +172,27 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	async def delete_text_channel(self, ctx, channel: discord.TextChannel):
 		""" Command for delete text channel """
 		await channel.delete()
-		dlt_text_channel = discord.Embed(description=f"{channel} got deleted from {ctx.guild} by {ctx.author.name}.")
+		dlt_text_channel = discord.Embed(
+			description=f"{channel} got deleted from {ctx.guild} by {ctx.author.name}.")
 		await ctx.send(embed=dlt_text_channel)
 
 	@commands.command()
 	@commands.has_permissions(administrator=True)
 	async def create_voice_channel(self, ctx, channel: str, category: discord.CategoryChannel = None):
-		""" command for create voice channel in Guild/Channel
+		""" command for create voice channel in Guild/Server
 
 		input: channel, category name
 
 		it will not override the previous channel
-		if category is not provided so It will make a channel without category.
-
-		create category to make channel under it using !create_category
+		Category name is optional.
+		
+		for creating new category, please check !help create_category
 		"""
-		guild = ctx.guild
 		if category is None:
-			await guild.create_text_channel(channel)
+			await ctx.guild.create_text_channel(channel)
 		else:
-			await guild.create_voice_channel(channel, category=category)
-		voice_channel = f'{channel} got created by {ctx.author.mention}' 
+			await ctx.guild.create_voice_channel(channel, category=category)
+		voice_channel = f'{channel} got created by {ctx.author.mention}'
 		await ctx.send(embed=voice_channel)
 
 	@commands.command()
@@ -197,16 +200,17 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	async def delete_voice_channel(self, ctx, channel: discord.VoiceChannel):
 		""" Command for delete voice channel """
 		await channel.delete()
-		voice_channel = discord.Embed(description=f"{channel} got deleted from {ctx.guild} by {ctx.author.mention}.")
+		voice_channel = discord.Embed(
+			description=f"{channel} got deleted from {ctx.guild} by {ctx.author.mention}.")
 		await ctx.send(embed=voice_channel)
 
 	@commands.command(aliases=['make_role'])
 	@commands.has_permissions(manage_roles=True)
 	async def create_role(self, ctx, *, new_role_name):
 		""" Create New Roles in the Server """
-		guild = ctx.guild
-		await guild.create_role(name=new_role_name)
-		role = discord.Embed(description=f'Role `{new_role_name.mention}` has been created')
+		await ctx.guild.create_role(name=new_role_name)
+		role = discord.Embed(
+			description=f'Role `{new_role_name.mention}` has been created')
 		await ctx.send(embed=role)
 
 	@commands.command()
@@ -214,14 +218,22 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	async def give_role(self, ctx, member: discord.Member, role: discord.Role):
 		""" Give role to one member """
 		await member.add_roles(role)
-		role = discord.Embed(f"hey {ctx.author.name}, {member.name} has been giving a role called: {role.name}")
+		role = discord.Embed(
+			f"hey {ctx.author.name}, {member.name} has been giving a role called: {role.name}")
 		await ctx.send(embed=role)
 
+	# FIXME - : optimize code for instead making for loop and giving each one role
 	@commands.command(hidden=True)
 	@commands.has_permissions(manage_roles=True)
 	async def give_roll_to_all(self, ctx, role: discord.Role):
 		""" Give Roll to all members in once """
-		pass
+		try:
+			for member in ctx.guild.members:
+				await member.add_roles(role)
+				print(member)
+			await ctx.send(f"Giving {role} role to all members.")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
 def setup(bot: commands.Cog):

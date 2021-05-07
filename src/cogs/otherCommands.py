@@ -59,7 +59,7 @@ class OtherCommands(commands.Cog, name="User Useful Commands"):
 			return 'Format has to be in NdN!'
 
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-		await ctx.send(result)
+		await ctx.send(f'```{result}```')
 
 	@commands.command(name="flipcoin")
 	async def flip_the_coin(self, ctx):
@@ -69,7 +69,7 @@ class OtherCommands(commands.Cog, name="User Useful Commands"):
 		output: Head/Tail
 		"""
 		flip = "Head" if random.randint(0, 1) == 0 else "Tail"
-		await ctx.send(flip)
+		await ctx.send(f"```It's {flip}```")
 
 	@commands.command(name="server")
 	async def server_info(self, ctx):
@@ -87,15 +87,25 @@ class OtherCommands(commands.Cog, name="User Useful Commands"):
 			embed.add_field(name="Server Owner", value=ctx.guild.owner.name)
 			embed.add_field(name="Server Region", value=ctx.guild.region)
 			embed.add_field(name="Server ID", value=ctx.guild.id)
+			embed.add_field(name="Total Member", value=ctx.guild.member_count)
 			embed.add_field(name="Bot Presense",
 							value=f"{len(self.bot.guilds)} Servers")
 			embed.set_thumbnail(
 				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-
+	# TODO - write logic for report function
+	# user can report the other user behaviour to admin
+	@commands.command(hidden=True)
+	async def report(self, ctx, member:discord.Member, reason: str):
+		pass
+	
+	@commands.command()
+	async def member_count(self, ctx):
+		""" Count the Server/Guild members """
+		await ctx.send(f"```Members: {ctx.guild.member_count}```")
 
 def setup(bot: commands.Cog):
 	bot.add_cog(OtherCommands(bot))

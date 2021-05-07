@@ -20,9 +20,13 @@ load_dotenv()
 
 BOTNAME = "Cybel"
 
-logging.basicConfig(format='%(levelname)s: %(asctime)s %(message)s',
+logging.basicConfig(format="%(levelname)s - %(asctime)s - %(name)s - %(message)s",
 					datefmt='%d/%m/%Y %I:%M:%S %p',
-					level=logging.INFO)
+					level=logging.INFO,
+					handlers=[
+        				logging.FileHandler("debug.log"),
+        				logging.StreamHandler()]
+						)
 
 logging.info(f'Discord Version : {discord.__version__}')
 
