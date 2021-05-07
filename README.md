@@ -103,13 +103,13 @@ check !help <command_name> for command description
 
 ![Conversation with Cybel](images/sample2.png)
 
-**Note**:- Cybel Beta may have some bugs, broken features and experimental commands.
+**Note**:- Cybel Beta may have some bugs, broken features, and experimental commands.
 
 for more details check `!help <command_name>` in server.
 
 ## Upcoming Feature
 
-- AI Enabled ChatBot(In Beta Version)
+- AI-Enabled ChatBot(In Beta Version)
 - Curse word deletion
 - Role Upgrade
 - Reactions Roles
