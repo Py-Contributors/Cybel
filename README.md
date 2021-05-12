@@ -75,6 +75,8 @@ check !help <command_name> for command description
 | command name      |               Use Of commands               | Example                |
 | :---------------- | :-----------------------------------------: | :--------------------- |
 | **help**          |        Get the list of all commands         | `!help`                |
+| **member_count**  |   Count number of members in server/guild   | `!member_count`        |
+| **server**        |     to get the information about server     | `!server`              |
 | **info**          |    Tells you some info about the member.    | `!info <member_name>`  |
 | **fact**          |        function to send random fact         | `!fact`                |
 | **joke**          |        function to send random joke         | `!joke`                |
@@ -88,7 +90,6 @@ check !help <command_name> for command description
 | **gh**            |            get Github user data             | `!gh <user_name>`      |
 | **ifsc**          | Get Indian bank branch details by IFSC code | `!ifsc <ifsc_code>`    |
 | **weather**       |          Get Weather of your City           | `!weather <city_name>` |
-| **server**        |     to get the information about server     | `!server`              |
 
 ![Conversation with Cybel](images/sample.png)
 

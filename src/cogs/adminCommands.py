@@ -219,7 +219,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		""" Give role to one member """
 		await member.add_roles(role)
 		role = discord.Embed(
-			f"hey {ctx.author.name}, {member.name} has been giving a role called: {role.name}")
+			description=f"hey {ctx.author.name}, {member.name} has been giving a role called: {role.name}")
 		await ctx.send(embed=role)
 
 	# FIXME - : optimize code for instead making for loop and giving each one role

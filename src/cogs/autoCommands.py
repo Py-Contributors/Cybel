@@ -48,7 +48,7 @@ class AutoCommands(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
             await channel.send(embed=bye_msg)
 
-    # TODO - on command error 
+"""     # TODO - on command error 
     @commands.Cog.listener()
     async def on_command_error(self):
         pass
@@ -61,7 +61,7 @@ class AutoCommands(commands.Cog):
     # TODO - on Reaction remove
     @commands.command()
     async def on_raw_reaction_remove(self):
-        pass
+        pass """
 
 def setup(bot: commands.Cog):
     bot.add_cog(AutoCommands(bot))
