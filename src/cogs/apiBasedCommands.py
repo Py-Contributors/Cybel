@@ -19,7 +19,7 @@ from datetime import datetime
 from src.utils import _fetch
 from src.utils import weather_image_list, WEATHER_API_KEY
 
-class APIBaseUserCommands(commands.Cog, name="External API Based User Commands"):
+class APIBaseUserCommands(commands.Cog, name="External API Based User Commands Using aiohttp"):
     """ Collection of External API Based Commands """
 
     def __init__(self, bot):
@@ -60,7 +60,11 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User Commands")
     # not using the _fetch function because of content_type=None
     @commands.command(name="quote")
     async def get_random_quote(self, ctx):
-        """ Get Random Quote by zenquote """
+        """ Get Random Quote by zenquote
+
+        command: !quote
+        API: https://zenquotes.io
+        """
         url = 'https://zenquotes.io/api/random'
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as response:
@@ -143,22 +147,24 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User Commands")
         async with ctx.typing():
             try:
                 weather_data = await _fetch(weather_api)
+
+                feels_like = round(weather_data["list"][0]["main"]["temp"] - 273.0)
+                temp_min = round(weather_data["list"][0]["main"]["temp_min"] - 273.0)
+                temp_max = round(weather_data["list"][0]["main"]["temp_max"] - 273.0)
+                pressure = weather_data["list"][0]["main"]["pressure"]
+                humidity = weather_data["list"][0]["main"]["humidity"]
+                sea_level = weather_data["list"][0]["main"]["sea_level"]
+
                 weather_embed = discord.Embed(
                     title=f'{weather_data["city"]["name"]}- {weather_data["city"]["country"]}', color=discord.Color.blue())
                 weather_embed.add_field(
                     name="Weather", value=weather_data['list'][0]['weather'][0]['description'])
-                weather_embed.add_field(name='Temperature', value=round(
-                    weather_data["list"][0]["main"]["temp"] - 273.0))
-                weather_embed.add_field(name='Maximum Temperature', value=round(
-                    weather_data["list"][0]["main"]["temp_max"] - 273.0))
-                weather_embed.add_field(name='Minimum Temperature', value=round(
-                    weather_data["list"][0]["main"]["temp_min"] - 273.0))
-                weather_embed.add_field(
-                    name="Pressure", value=weather_data["list"][0]["main"]["pressure"])
-                weather_embed.add_field(
-                    name='Humidity', value=weather_data["list"][0]["main"]["humidity"])
-                weather_embed.add_field(
-                    name='Sea Level', value=weather_data["list"][0]["main"]["sea_level"])
+                weather_embed.add_field(name='Feels Like', value=feels_like)
+                weather_embed.add_field(name="Min | Max", value=f'{temp_min}  |  {temp_max}')
+                weather_embed.add_field(name="Pressure", value=pressure)
+                weather_embed.add_field(name='Humidity', value=humidity)
+                weather_embed.add_field(name='Sea Level', value=sea_level)
+
                 weather_embed.set_thumbnail(
                     url=f"http://openweathermap.org/img/w/{weather_data['list'][0]['weather'][0]['icon']}.png")
                 weather_embed.set_author(
@@ -166,7 +172,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User Commands")
                 weather_embed.set_image(
                     url=random.choice(weather_image_list))
                 await ctx.send(embed=weather_embed)
-            except Exception:
+            except Exception as e:
                 await ctx.send(f'```I am not able to find the {city_name}.```')
 
     @commands.command(name="dog")

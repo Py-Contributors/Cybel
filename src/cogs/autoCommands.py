@@ -24,7 +24,8 @@ class AutoCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        await self.bot.change_presence(activity=discord.Game(name="Fornite"))
+        activity = discord.Activity(type=discord.ActivityType.watching, name="Everyone")
+        await self.bot.change_presence(activity=activity)
         logging.info(f'{self.bot.user.name} is Online...')
 
     @commands.Cog.listener()

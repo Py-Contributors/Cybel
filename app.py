@@ -14,7 +14,7 @@ from discord import Intents
 from discord.ext import commands
 
 from src.utils import logging
-from src.utils import utils
+from src.utils import DISCORD_TOKEN
 
 intents = Intents.default()
 intents.members = True
@@ -31,7 +31,7 @@ cog_dict = {
 }
 
 def load_cogs(cog_dict: dict):
-    """ Function for loading cogs """
+    """ Function for loading cogs using dictionary """
     try:
         for key, value in cog_dict.items():
             logging.info(f'Loading... {key}')
@@ -42,4 +42,4 @@ def load_cogs(cog_dict: dict):
 
 if __name__ == '__main__':
     load_cogs(cog_dict)
-    bot.run(utils.DISCORD_TOKEN)
+    bot.run(DISCORD_TOKEN)
