@@ -1,3 +1,13 @@
+"""
+MIT License
+
+Copyright (c) 2021 Deepak Raj
+
+Bot-Name:- Cybel
+Github:- https://github.com/codePerfectPlus/Cybel
+Invite-Link:-
+https://top.gg/bot/832137823309004800/invite
+"""
 from discord.ext import commands
 import discord
 

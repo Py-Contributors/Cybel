@@ -6,7 +6,7 @@ Copyright (c) 2021 Deepak Raj
 Bot-Name:- Cybel
 Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
-https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot
+https://top.gg/bot/832137823309004800/invite
 """
 from discord.ext import commands
 import discord
@@ -101,13 +101,12 @@ class OtherCommands(commands.Cog, name="User Useful Commands"):
 	@commands.command(hidden=True)
 	async def report(self, ctx, member:discord.Member, reason: str):
 		pass
-	
+
 	@commands.command()
 	async def member_count(self, ctx):
 		""" Count the Server/Guild members """
 		await ctx.send(f"```Members: {ctx.guild.member_count}```")
-	
-	
+
+
 def setup(bot: commands.Cog):
 	bot.add_cog(OtherCommands(bot))
-
