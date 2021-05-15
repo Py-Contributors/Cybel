@@ -49,20 +49,26 @@ class AutoCommands(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
             await channel.send(embed=bye_msg)
 
-"""     # TODO - on command error 
     @commands.Cog.listener()
-    async def on_command_error(self):
-        pass
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.CommandNotFound):
+            await ctx.send("**Invalid command. Try using** `!help` **to figure out commands!**")
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send('**Please pass in all requirements.** check `!help <command>` for all requirements')
+        if isinstance(error, commands.MissingPermissions):
+            await ctx.send("**You dont have all the requirements or permissions for using this command :angry:**")
 
+"""
     # TODO - on reaction add
     @commands.Cog.listener()
     async def on_raw_reaction_add(self):
         pass
-    
+
     # TODO - on Reaction remove
     @commands.command()
     async def on_raw_reaction_remove(self):
-        pass """
+        pass
+"""
 
 def setup(bot: commands.Cog):
     bot.add_cog(AutoCommands(bot))
