@@ -113,6 +113,8 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 - Role Upgrade
 - Reactions Roles
+- Music bot feature
+- some new useful apis
 
 ## Added Features
 
@@ -124,7 +126,8 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - delete role : (added: v2.0.0)
 - Server(Id, Name, Owner, Icon) : (added: v2.0.0)
 - Get Member Avatar : (added: v2.0.0)
-
+- Bug fix: (added: v2.0.0)
+- optimize code for performance : (added: v2.0.0)
 - more...
 
 ## Under Review Features
