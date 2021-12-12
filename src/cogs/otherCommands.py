@@ -9,6 +9,7 @@ Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
 
+from ast import alias
 from discord.ext import commands
 import discord
 import random
@@ -21,7 +22,6 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 
 	Commands:
 
-		- ping - Pong!
 		- bot_version - Get the version of the bot
 		- server_invite - Create an invite link for the bot
 		- bot_invite - Get the invite link of the bot
@@ -43,28 +43,17 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 	def __init__(self, bot):
 		self.bot = bot
 
-	""" @commands.command()
-	async def take_picture(self, ctx, url=None):
-		if not url:
-			url = ctx.message.attachments[0].url
-
-		print(url)
-		await ctx.send(embed=discord.Embed().set_image(url=url)) """
-
+	'''
 	@commands.command()
-	async def ping_pong(self, ctx):
-		""" Ping Pong!
+    async def ping(self, ctx):
+        """ This command will return the latency of the bot."""
+        embed = discord.Embed(title="Checking Latency...")
+        embed.add_field(name="Latency", value=f"{round(self.bot.latency * 1000)}ms")
+        embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+	'''
 
-			**Usage**:
-			`ping`: Pong!
-			`pong`: Ping!
-		"""
-		if not ctx.message == "ping":
-			return await ctx.send("Pong!")
-		elif ctx.message == "ping":
-			return await ctx.send("Ping!")
-
-	@commands.command(name="bot_version")
+	@commands.command(name="bot_version", aliases=["version", "bot_ver"], help="Get the version of the bot")
 	async def version_bot(self, ctx):
 		""" Get the version of the bot
 
@@ -73,7 +62,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		"""
 		await ctx.send(embed=discord.Embed(title="Bot Version", description=bot_version))
 
-	@commands.command(name="server_invite")
+	@commands.command(name="server_invite", aliases=["server_link"], help="Create an invite link for the server")
 	async def server_invite(self, ctx):
 		""" Create instant invite for Channel
 
@@ -86,7 +75,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		link = await ctx.channel.create_invite(unique=False)
 		await ctx.send(embed=discord.Embed(title="Server Invite Link", description=link))
 
-	@commands.command(name="bot_invite")
+	@commands.command(name="bot_invite", aliases=["bot_link"], help="Get the invite link of the bot")
 	async def invite_bot(self, ctx):
 		""" Get invite link for bot
 
@@ -99,7 +88,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		link = "https://top.gg/bot/832137823309004800/invite"
 		await ctx.send(embed=discord.Embed(title="Bot Invite Link", description=link))
 
-	@commands.command(name="member_info")
+	@commands.command(name="member_info", help="Get information about the discord member")
 	async def member_info(self, ctx, *, member: discord.Member):
 		""" Tells you some info about the member 
 		
@@ -117,7 +106,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="server_info")
+	@commands.command(name="server_info", help="Get information about the discord server")
 	async def server_info(self, ctx):
 		""" Get the server information
 
@@ -144,7 +133,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command(name="bot_info")
+	@commands.command(name="bot_info", aliases=["bot_stats"], help="Get information about the bot")
 	async def info_bot(self, ctx):
 		""" Get information about the bot
 
@@ -163,7 +152,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="dice")
+	@commands.command(name="dice", help="Roll a dice")
 	async def roll_the_dice(self, ctx, dice: str):
 		"""Rolls a dice in NdN format.
 
@@ -188,7 +177,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="flipcoin")
+	@commands.command(name="flipcoin", aliases=["flip", "coinflip"], help="Flip a coin")
 	async def flip_the_coin(self, ctx):
 		""" Flip the coin randomly
 
@@ -201,7 +190,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		await ctx.send(f"```It's {flip}```")
 
 
-	@commands.command(name="report")
+	@commands.command(name="report", aliases=["report_user"], help="Report a user")
 	async def report(self, ctx, member:discord.Member, *reason: str):
 		""" Report a user
 
@@ -212,8 +201,8 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		"""
 		try:
 			reason = ' '.join(reason)
-			embed = discord.Embed(title="Reported User", color=discord.Color.red())
-			embed.add_field(name="Reported User", value=member.mention)
+			embed = discord.Embed(title="Report Status", color=discord.Color.red())
+			embed.add_field(name="Reported User", value=member.mention, inline=False)
 			embed.add_field(name="Reported By", value=ctx.author.mention)
 			embed.add_field(name="Reported to", value=ctx.guild.owner.mention)
 			embed.add_field(name="Reason", value=reason, inline=False)
@@ -222,10 +211,11 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command(name="member_count")
-	async def member_count(self, ctx): # FIXME: 
+    # REVIEW: add online/offline status
+	@commands.command(name="member_count", aliases=["member_count_server"], help="Get the member count of the server")
+	async def member_count(self, ctx):
 		""" Get the member count of the server """
-		embed = discord.Embed(title="Member Count", color=discord.Color.blue())
+		embed = discord.Embed(title="Server Status", color=discord.Color.blue())
 		embed.add_field(name="Member Count", value=ctx.guild.member_count, inline=False)
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)

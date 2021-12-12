@@ -87,6 +87,17 @@ class AutoCommands(commands.Cog):
             await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
 
     
-
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        """ This event triggers when a message is sent."""
+        if message.author.bot:
+            return
+        if message.author.id == self.bot.user.id:
+            return
+        if message.content.lower() in utils.curse_words:
+            await message.delete()
+            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
+    
+    
 def setup(bot: commands.Cog):
     bot.add_cog(AutoCommands(bot))

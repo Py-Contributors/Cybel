@@ -28,7 +28,7 @@ cog_dict = {
     'Admin Commands': 'src.cogs.adminCommands',
     'API Based Commands': 'src.cogs.apiBasedCommands',
     'Other Commands': 'src.cogs.otherCommands',
-    #'Music Commands': 'src.cogs.musicCommands', # FIXME: Music Commands are not working
+    'Music Commands': 'src.cogs.musicCommands', # FIXME: Music Commands are not working
 
 }
 
