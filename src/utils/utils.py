@@ -10,14 +10,14 @@ https://top.gg/bot/832137823309004800/invite
 """
 
 import os
-import sys
 import discord
 import aiohttp
 from dotenv import load_dotenv
 import logging
 
-load_dotenv()
+bot_version = '2.0.0'
 
+load_dotenv()
 logging.basicConfig(format="%(levelname)s - %(asctime)s - %(name)s - %(message)s",
 					datefmt='%d/%m/%Y %I:%M:%S %p',
 					level=logging.INFO,

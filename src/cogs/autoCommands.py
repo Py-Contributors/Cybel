@@ -17,40 +17,56 @@ from src.utils import logging
 
 
 class AutoCommands(commands.Cog):
-    """ These commands will fire automatically."""
+    """ These commands will fire automatically.
+    
+    Arguments:
+        bot {discord.Client} -- The bot client.
+    
+    Commands:
+        on_ready -- Fires when the bot is ready.
+        on_member_join -- Fires when a member joins the server.
+        on_member_remove -- Fires when a member leaves the server.
+        on_command_error -- Fires when a command fails.
+        on_message -- Fires when a message is sent.
+    """
 
     def __init__(self, bot):
+        """ Init function for AutoCommands."""
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
+        """ This will run when the bot is ready. """
         activity = discord.Activity(type=discord.ActivityType.watching, name="Everyone")
         await self.bot.change_presence(activity=activity)
         logging.info(f'{self.bot.user.name} is Online...')
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
+        """ This will fire when a new member joins the server."""
         channel = member.guild.system_channel
         if channel is not None:
-            welcome_msg = discord.Embed(title="Welcome",
+            embed = discord.Embed(title="Welcome",
                                         description=f"welcome {member.mention}, Introduce yourself to community.")
-            welcome_msg.set_thumbnail(
+            embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-            await channel.send(embed=welcome_msg)
-            await member.send("welcome to the Server!\nPlease introduce yourself in server.\nOfficial Server for Cybel https://discord.gg/JfbK3bS")
+            await channel.send(embed=embed)
+            await member.send("welcome to the Server!\nPlease introduce yourself in server.\nOfficial Server for Cybel help: https://discord.gg/JfbK3bS")
 
     @commands.Cog.listener()
     async def on_member_remove(self, member: discord.Member):
+        """ This event triggers when a member leaves the server."""
         channel = member.guild.system_channel
         if channel is not None:
-            bye_msg = discord.Embed(title="Good Bye",
+            embed = discord.Embed(title="Good Bye",
                                     description=f"{member} has left the server.")
-            bye_msg.set_thumbnail(
+            embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-            await channel.send(embed=bye_msg)
-
+            await channel.send(embed=embed)
+    
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
+        """ The event triggered when an error is raised while invoking a command."""
         if isinstance(error, commands.CommandNotFound):
             await ctx.send("**Invalid command. Try using** `!help` **to figure out commands!**")
         if isinstance(error, commands.MissingRequiredArgument):
@@ -58,17 +74,19 @@ class AutoCommands(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send("**You dont have all the requirements or permissions for using this command :angry:**")
 
-"""
-    # TODO - on reaction add
+    # REVIEW: It's still in review for future updates.
     @commands.Cog.listener()
-    async def on_raw_reaction_add(self):
-        pass
+    async def on_curse_words(self, message):
+        """ This event triggers when a message contains curse words."""
+        if message.author.bot:
+            return
+        if message.author.id == self.bot.user.id:
+            return
+        if message.content.lower() in utils.curse_words:
+            await message.delete()
+            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
 
-    # TODO - on Reaction remove
-    @commands.command()
-    async def on_raw_reaction_remove(self):
-        pass
-"""
+    
 
 def setup(bot: commands.Cog):
     bot.add_cog(AutoCommands(bot))

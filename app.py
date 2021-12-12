@@ -7,7 +7,7 @@ Copyright (c) 2021 Deepak Raj
 Bot-Name:- Cybel
 Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
-https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot
+https://top.gg/bot/832137823309004800/invite
 '''
 
 from discord import Intents
@@ -27,7 +27,9 @@ cog_dict = {
     'Auto Commands': 'src.cogs.autoCommands',
     'Admin Commands': 'src.cogs.adminCommands',
     'API Based Commands': 'src.cogs.apiBasedCommands',
-    'Other Commands': 'src.cogs.otherCommands'
+    'Other Commands': 'src.cogs.otherCommands',
+    #'Music Commands': 'src.cogs.musicCommands', # FIXME: Music Commands are not working
+
 }
 
 def load_cogs(cog_dict: dict):

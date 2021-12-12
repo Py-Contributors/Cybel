@@ -130,5 +130,5 @@ dmypy.json
 test.py
 .vscode
 stableenv
-betaenv
 betaenv/
+cybel_env/

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://py-contributors.github.io/awesomeScripts/"><img src="https://capsule-render.vercel.app/api?type=rect&color=ffdd00&height=100&section=header&text=Cybel&fontSize=80%&fontColor=ffffff" alt="website title image"></a>
+  <a href="https://py-contributors.github.io/awesomeScripts/"><img src="https://capsule-render.vercel.app/api?type=rect&color=ffdd00&height=100&section=header&text=Cybel%202.O&fontSize=80%&fontColor=ffffff" alt="website title image"></a>
 
   <h2 align="center">👉 Discord Bot implemented in Python 👈</h2>
 </p>
@@ -26,24 +26,25 @@
 - Separate DM message upon joining the server
 - Utility async APIs
 - Commands for user access
-- AI-enabled chatbot(only in Beta Version)
 - Log Everything with embed message
-- AutoMod - Delete offensive word automatically[optional]
+- AutoMod - Delete offensive word automatically
 - Use the bot to its full potential without ever annoying anyone
 - Modern Pythonic API using async/await syntax
 - Easy to use with an object-oriented design
-- Optimised for both speed and memory
-- Published and approved on Top.gg website. check [here](https://top.gg/bot/832137823309004800/invite)
+- Optimized for both speed and memory
+- Published and approved on Top.gg website. check [here]
+(https://top.gg/bot/832137823309004800/invite)
+- AI-enabled chatbot(only in Beta Version) # deprecated/removed
 - More Features coming soon...
 
 Invite **Cybel** into your server
 
 - [Cybel Stable](https://top.gg/bot/832137823309004800/invite)
-- [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot)
+- [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot) # deprecated/removed
 
 ## Bot Commands
 
-### Stable Version Commands
+### Cybel Commands Example
 
 > Admin Level commands will require admin permission. Assign an Admin role to the Bot.
 
@@ -58,6 +59,7 @@ Invite **Cybel** into your server
 | **unmute**               |      Unmute the user in your discord server       | `!unmute <user_name>`                                      |
 | **chnick**               |            Change Nicknames of Members            | `!chnick <user_name> <Nick_name>`                          |
 | **create_role**          |            Create New Roles in server             | `!create_role <new_role>`                                  |
+| **delete_role**          |              Delete Roles in server               | `!delete_role <role_name>`                                 |
 | **give_role**            |               Give role to members                | `!give_role <user_name> <role_name>`                       |
 | **create_category**      |   Command for create category in Guild/Channel    | `!create_category <category_name>`                         |
 | **create_text_channel**  | command for create text channel in Guild/Channel  | `!create_text_channel <Channel_name> <category_name[Opt]`  |
@@ -66,18 +68,28 @@ Invite **Cybel** into your server
 | **delete_text_channel**  |          Command for delete text channel          | `!delete_text_channel <channel_name>`                      |
 | **delete_voice_channel** |          Command for delete voice channe          | `!delete_voice_channel <channel_name>`                     |
 
-check !help <command_name> for command description
+check `!help` for all command list in Stable Version
+
+check `!help <command_name>` for command details
 
 #### **User Commands**
 
-> User Level commands.
+> User Level commands example:
 
 | command name      |               Use Of commands               | Example                |
 | :---------------- | :-----------------------------------------: | :--------------------- |
 | **help**          |        Get the list of all commands         | `!help`                |
 | **member_count**  |   Count number of members in server/guild   | `!member_count`        |
+| **report**        |           Report a user to admins           | `!report <user_name>`  |
+| **bot_info**      |    Get information about the bot itself     | `!info_bot`            |
+| **server_info**   |   Get information about the server itself   | `!info_server`         |
+| **member_info**   |   Get information about the member itself   | `!info_member`         |
 | **server**        |     to get the information about server     | `!server`              |
-| **info**          |    Tells you some info about the member.    | `!info <member_name>`  |
+| **server_id**     |   to get the information about server id    | `!server_id`           |
+| **server_name**   |   to get the information about server name  | `!server_name`         |
+| **server_owner**  |  to get the information about server owner  | `!server_owner`        |
+| **server_icon**   |  to get the information about server icon   | `!server_icon`         |
+| **get_avatar**    |  to get the information about user avatar   | `!get_avatar`          |
 | **fact**          |        function to send random fact         | `!fact`                |
 | **joke**          |        function to send random joke         | `!joke`                |
 | **ping**          |  Ping-Pong function to test the bot status  | `!ping`                |
@@ -93,50 +105,36 @@ check !help <command_name> for command description
 
 ![Conversation with Cybel](images/sample.png)
 
-### Beta Version Commands
+### Beta Version
 
-> Including above
-
-| command name |  Use Of commands   | Example                       |
-| ------------ | :----------------: | :---------------------------- |
-| **cybel**    | AI Enabled ChatBot | !cyble What is thermodynamics |
-| **c**        | aliases of !cybel  | !c What is thermodynamics     |
-
-![Conversation with Cybel](images/sample2.png)
-
-**Note**:- Cybel Beta may have some bugs, broken features, and experimental commands.
-
-for more details check `!help <command_name>` in server.
+beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 ## Upcoming Feature
 
-- AI-Enabled ChatBot(In Beta Version)
-- Curse word deletion
 - Role Upgrade
 - Reactions Roles
-- member can report someone to admin: like for bullying, bad behaviour
-- one command role assignment to all members
-- ~~Create Instant Invite~~
-- ~~Kick/Ban User~~
+
+## Added Features
+
+- member can report someone to admin: like for bullying, bad behaviour : (added: v2.0.0)
+- Create server Instant Invite : (added: v2.0.0)
+- create bot invite : (added: v2.0.0)
+- Kick/Ban User: (added: v2.0.0)
+- Get user avatar : (added: v2.0.0)
+- delete role : (added: v2.0.0)
+- Server(Id, Name, Owner, Icon) : (added: v2.0.0)
+- Get Member Avatar : (added: v2.0.0)
+
 - more...
+
+## Under Review Features
+
+- `AutoMod`:Curse word deletion (added: v2.0.0, under review)
+- one command role assignment to all members: (added: v2.0.0, under review)
 
 ## Support Here
 
 <a href="https://www.buymeacoffee.com/codeperfectplus"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a book&emoji=📖&slug=codeperfectplus&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
-
-## License
-
-```txt
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-check more at [MIT License](/LICENSE)
 
 ## Author
 
