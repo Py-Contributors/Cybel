@@ -220,7 +220,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="get_avatar")
+	@commands.command(name="get_avatar", aliases=["get_avatar_user"], help="get the avatar of the user")
 	async def get_avatar(self, ctx, member: discord.Member = None):
 		""" Get the avatar of the user
 
@@ -241,7 +241,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command(name="server_icon")
+	@commands.command(name="server_icon", help="get the server icon")
 	async def server_icon(self, ctx):
 		""" Get the server icon
 
@@ -259,7 +259,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 	
-	@commands.command(name="server_name")
+	@commands.command(name="server_name", help="get the server name")
 	async def server_name(self, ctx):
 		""" Get the server name
 
@@ -276,7 +276,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 		
-	@commands.command(name="server_owner")
+	@commands.command(name="server_owner", help="get the server owner")
 	async def server_owner(self, ctx):
 		""" Get the server owner
 
@@ -293,7 +293,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command(name="server_id")
+	@commands.command(name="server_id", help="get the server id")
 	async def server_id(self, ctx):
 		""" Get the server id
 

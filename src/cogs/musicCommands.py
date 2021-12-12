@@ -8,6 +8,7 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
+from click import command
 from discord.ext import commands
 import discord
 
@@ -37,31 +38,12 @@ class MusicCommands(commands.Cog, name="Commands for music activity."):
         play_repeat_one (discord.ext.commands.command): Plays a repeated song.
         play_shuffle_one (discord.ext.commands.command): Plays a shuffled song.
         play_shuffle_all (discord.ext.commands.command): Plays a shuffled song.
-    
-    Usage:
-        play <song name>
-        pause
-        resume
-        skip
-        queue
-        clear
-        volume <volume>
-        leave
-        join
-        play_next
-        play_prev
-        play_random
-        play_loop
-        play_shuffle
-        play_repeat
-        play_repeat_one
-        play_shuffle_one
-        play_shuffle_all
+        
     '''
     def __init__(self, bot):
         ''' Initializing the cog and passing the bot instance. '''
         self.bot = bot
 
-    
+        
 def setup(bot: commands.Cog):
     bot.add_cog(MusicCommands(bot))

@@ -75,28 +75,18 @@ class AutoCommands(commands.Cog):
             await ctx.send("**You dont have all the requirements or permissions for using this command :angry:**")
 
     # REVIEW: It's still in review for future updates.
-    @commands.Cog.listener()
+    """ @commands.Cog.listener()
     async def on_curse_words(self, message):
-        """ This event triggers when a message contains curse words."""
+        ''' This event triggers when a message contains curse words.'''
         if message.author.bot:
             return
         if message.author.id == self.bot.user.id:
             return
         if message.content.lower() in utils.curse_words:
             await message.delete()
-            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
+            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**") """
 
-    
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        """ This event triggers when a message is sent."""
-        if message.author.bot:
-            return
-        if message.author.id == self.bot.user.id:
-            return
-        if message.content.lower() in utils.curse_words:
-            await message.delete()
-            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
+
     
     
 def setup(bot: commands.Cog):
