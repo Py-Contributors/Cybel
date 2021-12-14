@@ -113,11 +113,17 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 - Role Upgrade
 - Reactions Roles
-- Music bot feature
-- some new useful apis
+- Music bot feature(play music in voice channel from youtube)
+- Add database to keep record of server's activity
+- Admin can access server's activity
+- Some new useful apis
+- More features coming soon...
 
 ## Added Features
 
+### v2.0.0
+
+- `AutoMod`: Curse word deletion (added: v2.0.1)
 - member can report someone to admin: like for bullying, bad behaviour : (added: v2.0.0)
 - Create server Instant Invite : (added: v2.0.0)
 - create bot invite : (added: v2.0.0)
@@ -128,12 +134,22 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - Get Member Avatar : (added: v2.0.0)
 - Bug fix: (added: v2.0.0)
 - optimize code for performance : (added: v2.0.0)
+
+### V2.0.1
+
+- `AutoMod`: Curse word deletion improved (added: v2.0.1)
+- get bot latency : (added: v2.0.1)
+- slot machine : (added: v2.0.1)
+- change username of self(admin) : (added: v2.0.1)
+- source code command : (added: v2.0.1)
+- Message server member in DM using BOT: (added: v2.0.1)
+
 - more...
 
 ## Under Review Features
 
-- `AutoMod`:Curse word deletion (added: v2.0.0, under review)
-- one command role assignment to all members: (added: v2.0.0, under review)
+- one command role assignment to all members: (under review)
+- send dm message to all member in server: (under review)
 
 ## Support Here
 

@@ -33,7 +33,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		create_role - Create a role.
 		delete_role - Delete a role.
 		give_role - Give a role to a user.
-		give_role_to_all - Give a role to all users. # REVIEW: NEED TO OPTIMIZE
+		give_role_to_all - Give a role to all users.
+		dm - Direct message a user.
+		change_username - Change the username of self(admin)
 
 	"""
 
@@ -404,6 +406,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
+
 	# REVIEW - : optimize code for instead making for loop and giving each one role
 	@commands.command(hidden=True)
 	@commands.has_permissions(manage_roles=True)
@@ -420,6 +423,41 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			for member in ctx.guild.members:
 				await member.add_roles(role)
 			await ctx.send(f"Giving {role} role to all members.")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+	
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def dm(self, ctx, member: discord.Member, *, message: str):
+		""" Command for DM members in server 
+		
+		command: !dm <member_name> <message>
+
+		**Usage**:
+			send message to member in server.
+			Cybel Need administrator access for send message.
+		"""
+		try:
+			await member.send(message)
+			await ctx.send(f"DM sent to {member.mention}")
+		except Exception as e:
+			await ctx.send(f"{member.mention} have DMs disabled")
+
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def change_username(self, ctx, *, new_username: str):
+		""" Change username 
+
+		command: !username <new_username>
+
+		**Usage**:
+			change username of server.
+			Cybel Need administrator permission for change username.
+		"""
+		try:
+			await ctx.bot.user.edit(username=new_username)
+			await ctx.send(f"Username changed to {new_username}")
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 

@@ -8,9 +8,7 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
-from click import command
 from discord.ext import commands
-import discord
 
 
 class MusicCommands(commands.Cog, name="Commands for music activity."):

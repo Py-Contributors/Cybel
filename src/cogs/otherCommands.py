@@ -9,11 +9,12 @@ Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
 
-from ast import alias
+import random
 from discord.ext import commands
 import discord
 import random
 import datetime
+
 from src.utils.utils import bot_version
 
 class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Commands"):
@@ -37,27 +38,35 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		- server_id - Get the server id
 		- server_name - Get the server name
 		- server_owner - Get the server owner
-
+		- reverse - Reverse the text
+		- slot - Play the slot machine
+		- source - Get the source code of the bot
 
 	"""
 	def __init__(self, bot):
 		self.bot = bot
 
-	'''
-	@commands.command()
-    async def ping(self, ctx):
-        """ This command will return the latency of the bot."""
-        embed = discord.Embed(title="Checking Latency...")
-        embed.add_field(name="Latency", value=f"{round(self.bot.latency * 1000)}ms")
-        embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
-        await ctx.send(embed=embed)
-	'''
+	# TODO: add in future updates
+	@commands.command(name="ping", help="Get the ping of the bot")
+	async def ping(self, ctx):
+		"""
+			Get the ping of the bot
+
+		command: !ping
+
+		**Usage**
+			get the latency of the bot
+		"""
+		embed = discord.Embed(title="Pong 🏓", description=f"{round(self.bot.latency * 1000)}ms")
+		await ctx.send(embed=embed)
 
 	@commands.command(name="bot_version", aliases=["version", "bot_ver"], help="Get the version of the bot")
 	async def version_bot(self, ctx):
 		""" Get the version of the bot
+		
+		command: !bot_version
 
-			**Usage**:
+		**Usage**:
 			`bot_version`: Get the version of the bot
 		"""
 		await ctx.send(embed=discord.Embed(title="Bot Version", description=bot_version))
@@ -186,9 +195,8 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		**Usage**:
 			`flipcoin`: Flip the coin randomly
 		"""
-		flip = "Head" if random.randint(0, 1) == 0 else "Tail"
-		await ctx.send(f"```It's {flip}```")
-
+		coinsides = ["Heads", "Tails"]
+		await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
 
 	@commands.command(name="report", aliases=["report_user"], help="Report a user")
 	async def report(self, ctx, member:discord.Member, *reason: str):
@@ -310,6 +318,59 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 	
+	# TODO: add to future update
+	@commands.command(name="reverse")
+	async def reverse(self, ctx, *, text: str):
+		""" Reverse the text
+
+		command: !reverse <text>
+		
+		**Usage**:
+			`reverse`: Reverse the text
+		"""
+		try:
+			await ctx.send(text[::-1])
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+	
+	# TODO: add to future update
+	@commands.command(aliases=["slots", "bet"], help="play slots")
+	@commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
+	async def slot(self, ctx):
+		""" Play a slot machine
+
+		command: !slot
+		
+		**Usage**:
+			`slot`: Play a slot machine
+		"""
+		emojis = "🍎🍊🍐🍋🍉🍇🍓🍒"
+		a = random.choice(emojis)
+		b = random.choice(emojis)
+		c = random.choice(emojis)
+
+		embed = discord.Embed(title="Slot Machine", color=discord.Color.blue())
+		embed.add_field(name="**Result**", value=f"{a} {b} {c}", inline=False)
+		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+		await ctx.send(embed=embed)
+
+
+	# TODO: add to future update
+	@commands.command(aliases=["github", "source_code"], help="get the source code")
+	async def source(self, ctx):
+		""" get the bot source code 
+		
+		command: !source
+		
+		**Usage**:
+			`source`: Get the bot source code
+		"""
+		try:
+			source_url = "https://github.com/codePerfectPlus/cybel"
+			await ctx.send(f"The bot is powered by **Cybel**\n\n**Source Code**: {source_url}\n\nDon't forget to star the repo if you like it!")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+		
 
 def setup(bot: commands.Cog):
 	bot.add_cog(OtherCommands(bot))

@@ -181,7 +181,9 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'```I am not able to find the {city_name}.```')
 
     @commands.command(name="dog")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_dog_picture(self, ctx):
+        
         """ Get Random Pictures Of Dogs
 
         command: !dog
@@ -203,6 +205,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'```{type(e).__name__} - {e}```')
 
     @commands.command(name="fox")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_fox_picture(self, ctx):
         """ Get Random Picture of Foxes
 
@@ -225,6 +228,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'```{type(e).__name__} - {e}```')
 
     @commands.command(name="cat")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_cat_picture(self, ctx):
         """ Get Random Pictures of cats
 

@@ -15,7 +15,7 @@ import aiohttp
 from dotenv import load_dotenv
 import logging
 
-bot_version = '2.0.0'
+bot_version = '2.0.1'
 
 load_dotenv()
 logging.basicConfig(format="%(levelname)s - %(asctime)s - %(name)s - %(message)s",

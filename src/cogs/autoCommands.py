@@ -11,8 +11,8 @@ https://top.gg/bot/832137823309004800/invite
 """
 import discord
 from discord.ext import commands
-import aiohttp
-from src.utils import utils
+from better_profanity import profanity
+
 from src.utils import logging
 
 
@@ -51,7 +51,7 @@ class AutoCommands(commands.Cog):
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
             await channel.send(embed=embed)
-            await member.send("welcome to the Server!\nPlease introduce yourself in server.\nOfficial Server for Cybel help: https://discord.gg/JfbK3bS")
+            await member.send("welcome to the Server! introduce yourself in server.\nOfficial Server for Cybel help: https://discord.gg/JfbK3bS")
 
     @commands.Cog.listener()
     async def on_member_remove(self, member: discord.Member):
@@ -69,25 +69,35 @@ class AutoCommands(commands.Cog):
         """ The event triggered when an error is raised while invoking a command."""
         if isinstance(error, commands.CommandNotFound):
             await ctx.send("**Invalid command. Try using** `!help` **to figure out commands!**")
-        if isinstance(error, commands.MissingRequiredArgument):
+        elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('**Please pass in all requirements.** check `!help <command>` for all requirements')
-        if isinstance(error, commands.MissingPermissions):
+        elif isinstance(error, commands.MissingPermissions):
             await ctx.send("**You dont have all the requirements or permissions for using this command :angry:**")
+        elif isinstance(error, commands.CommandOnCooldown):
+            await ctx.send(f"This command is on cooldown... try again in {error.retry_after:.2f} seconds.")
+        elif isinstance(error, commands.CheckFailure):
+            await ctx.send("**You dont have all the requirements or permissions for using this command :angry:**")
+        elif isinstance(error, commands.CommandInvokeError):
+            await ctx.send("**An error occured while executing this command.**")
 
-    # REVIEW: It's still in review for future updates.
-    """ @commands.Cog.listener()
-    async def on_curse_words(self, message):
-        ''' This event triggers when a message contains curse words.'''
+    @commands.Cog.listener()
+    async def on_message(self, message: discord.Message):
+        ''' 
+        on_message event will fire when a message is sent.
+
+        Arguments:
+            message {discord.Message} -- The message object.
+
+        '''
+
         if message.author.bot:
             return
         if message.author.id == self.bot.user.id:
             return
-        if message.content.lower() in utils.curse_words:
+        if profanity.contains_profanity(message.content): # delete the message if it contains profanity
             await message.delete()
-            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**") """
+            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
+        
 
-
-    
-    
 def setup(bot: commands.Cog):
     bot.add_cog(AutoCommands(bot))
