@@ -129,7 +129,7 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - change username of self(admin) : (added: v2.0.1)
 - source code command : (added: v2.0.1)
 - Message server member in DM using BOT: (added: v2.0.1)
-- Optimize code for performance : (added: v2.0.0)
+- Optimize code for performance : (added: v2.0.1)
 - Bug fixes
 - more...
 
