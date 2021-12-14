@@ -32,6 +32,8 @@
 - Modern Pythonic API using async/await syntax
 - Easy to use with an object-oriented design
 - Optimized for both speed and memory
+- `AutoMod` is a feature that will automatically delete any message that contains profanity or other offensive words.
+- Member can report misconduct, malicious behavior, or inappropriate content.
 - Published and approved on Top.gg website. check [here]
 (https://top.gg/bot/832137823309004800/invite)
 - AI-enabled chatbot(only in Beta Version) # deprecated/removed
@@ -100,7 +102,6 @@ check `!help <command_name>` for command details
 | **flipcoin**      |           Flip the coin randomly            | `!flipcoin`            |
 | **create_invite** |            Create instant invite            | `!create_invite`       |
 | **gh**            |            get Github user data             | `!gh <user_name>`      |
-| **ifsc**          | Get Indian bank branch details by IFSC code | `!ifsc <ifsc_code>`    |
 | **weather**       |          Get Weather of your City           | `!weather <city_name>` |
 
 ![Conversation with Cybel](images/sample.png)
@@ -118,22 +119,32 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - Admin can access server's activity
 - Some new useful apis
 - More features coming soon...
+- please use discussion to suggest new features
 
 ## Added Features
 
-### V2.0.1
+## v2.0.2 Release
+
+- More control over bot's behavior(change bot's avatar, name, nickname, status, etc): (added in v2.0.2)
+- Bot notifications if user edit or delete the message in the server: (added in v2.0.2)
+- Bot can change the nickname of the user in the server: (added in v2.0.2)
+
+
+
+
+### V2.0.1 Release (14/12/2021)
 
 - `AutoMod`: Curse word deletion improved (added: v2.0.1)
 - get bot latency : (added: v2.0.1)
 - slot machine : (added: v2.0.1)
 - change username of self(admin) : (added: v2.0.1)
 - source code command : (added: v2.0.1)
-- Message server member in DM using BOT: (added: v2.0.1)
+- Bot can send message to user in DM: (added: v2.0.1)
 - Optimize code for performance : (added: v2.0.1)
 - Bug fixes
 - more...
 
-### v2.0.0
+### v2.0.0 Release (12/12/2021)
 
 - member can report someone to admin: like for bullying, bad behaviour : (added: v2.0.0)
 - Create server Instant Invite : (added: v2.0.0)

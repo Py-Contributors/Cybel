@@ -20,7 +20,7 @@ class AutoCommands(commands.Cog):
     """ These commands will fire automatically.
     
     Arguments:
-        bot {discord.Client} -- The bot client.
+        bot {discord.Cog} -- The bot object.
     
     Commands:
         on_ready -- Fires when the bot is ready.
@@ -34,12 +34,14 @@ class AutoCommands(commands.Cog):
         """ Init function for AutoCommands."""
         self.bot = bot
 
+
     @commands.Cog.listener()
     async def on_ready(self):
         """ This will run when the bot is ready. """
         activity = discord.Activity(type=discord.ActivityType.watching, name="Everyone")
         await self.bot.change_presence(activity=activity)
         logging.info(f'{self.bot.user.name} is Online...')
+
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
@@ -53,6 +55,7 @@ class AutoCommands(commands.Cog):
             await channel.send(embed=embed)
             await member.send("welcome to the Server! introduce yourself in server.\nOfficial Server for Cybel help: https://discord.gg/JfbK3bS")
 
+
     @commands.Cog.listener()
     async def on_member_remove(self, member: discord.Member):
         """ This event triggers when a member leaves the server."""
@@ -64,6 +67,7 @@ class AutoCommands(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
             await channel.send(embed=embed)
     
+
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         """ The event triggered when an error is raised while invoking a command."""
@@ -78,7 +82,8 @@ class AutoCommands(commands.Cog):
         elif isinstance(error, commands.CheckFailure):
             await ctx.send("**You dont have all the requirements or permissions for using this command :angry:**")
         elif isinstance(error, commands.CommandInvokeError):
-            await ctx.send("**An error occured while executing this command.**")
+            await ctx.send("**An error occurred while executing this command.**")
+
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
@@ -92,12 +97,47 @@ class AutoCommands(commands.Cog):
 
         if message.author.bot:
             return
-        if message.author.id == self.bot.user.id:
+        elif message.author.id == self.bot.user.id:
             return
-        if profanity.contains_profanity(message.content): # delete the message if it contains profanity
+        elif profanity.contains_profanity(message.content): # delete the message if it contains profanity
             await message.delete()
             await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
-        
+    
 
+    @commands.Cog.listener()
+    async def on_message_delete(self, message: discord.Message):
+        '''
+        on_message_delete event will fire when a message is deleted.
+
+        Arguments:
+            message {discord.Message} -- The message object.
+
+        '''
+        if message.author.bot:
+            return
+        elif message.author.id == self.bot.user.id:
+            return
+        else:
+            await message.channel.send(f"**{message.author.mention}**, **Your message has been deleted!**")
+
+    
+    @commands.Cog.listener()
+    async def on_message_edit(self, before: discord.Message, after: discord.Message):
+        '''
+        on_message_edit event will fire when a message is edited.
+
+        Arguments:
+            before {discord.Message} -- The message object before editing.
+            after {discord.Message} -- The message object after editing.
+
+        '''
+        if before.author.bot:
+            return
+        elif before.author.id == self.bot.user.id:
+            return
+        else:
+            await after.channel.send(f"**{before.author.mention}**, **Your message has been edited!**")
+        
+    
 def setup(bot: commands.Cog):
     bot.add_cog(AutoCommands(bot))

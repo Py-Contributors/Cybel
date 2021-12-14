@@ -23,7 +23,6 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		unmute - Unmute a user.
 		ban - Ban a user from the server.
 		unban - Unban a user from the server.
-		chnick - Change the nickname of a user.
 		create_category - Create a category.
 		delete_category - Delete a category.
 		create_text_channel - Create a text channel.
@@ -35,7 +34,12 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		give_role - Give a role to a user.
 		give_role_to_all - Give a role to all users.
 		dm - Direct message a user.
-		change_username - Change the username of self(admin)
+		change_username - Change the username of bot
+		change_avatar - Change the avatar of bot
+		change_status - Change the status of bot
+		change_game - Change the game of bot
+		change_status_and_game - Change the status and game of bot
+		change_nickname - Change the nickname of a user.
 
 	"""
 
@@ -48,10 +52,10 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		""" command to kick user
 
 		command: !kick @member <reason_to_kick>
-		
+
 		**Usage**:
 		   kick @member for spamming, flooding, suspected hacking etc.
-	
+
 		"""
 		await ctx.message.delete()
 		try:
@@ -108,7 +112,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		""" Unmute the user for voice activity
 
 		command: !unmute @member
-		
+
 		**Usage**:
 			It will unmute the voice channel connected member.
 			Cybel Need administrator access for mute command.
@@ -134,7 +138,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		""" command to ban user
 
 		command: !ban @member <reason>
-		
+
 		**Usage**:
 		   ban @member for spamming, flooding, suspected hacking etc.
 			Cybel Need ban_members access for ban command.
@@ -164,7 +168,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		command: !unban <member_id>
 
 		**Usage**:
-		   unban @member/ @member_id 
+		   unban @member/ @member_id
 			Cybel Need administrator access for Unban command.
 		"""
 		await ctx.message.delete()
@@ -174,31 +178,6 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command()
-	@commands.has_permissions(manage_nicknames=True)
-	async def chnick(self, ctx, member: discord.Member, nick):
-		""" Change nicknames of the servers'members
-
-		command: !chnick <member> <new_nickname>
-
-		**Usage**:
-		   	chnick @member <new_nickname>	
-			Cybel Need administrator access for change Nicknames.
-		"""
-		await ctx.message.delete()
-		try:
-			await member.edit(nick=nick)
-			embed = discord.Embed(title="Nickname Changed", color=discord.Color.blue())
-			embed.add_field(
-				name="Member", value=member.mention)
-			embed.add_field(
-				name="Nickname Changed by", value=ctx.author.mention)
-			embed.set_thumbnail(
-            	url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
-			await ctx.send(embed=embed)
-		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 	@commands.command()
 	@commands.has_permissions(administrator=True)
@@ -225,8 +204,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	@commands.command()
 	@commands.has_permissions(administrator=True)
 	async def delete_category(self, ctx, category: discord.CategoryChannel):
-		""" Command for delete category from server 
-		
+		""" Command for delete category from server
+
 		command: !delete_category <category_name>
 
 		**Usage**:
@@ -272,8 +251,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	@commands.command()
 	@commands.has_permissions(administrator=True)
 	async def delete_text_channel(self, ctx, channel: discord.TextChannel):
-		""" Command for delete text channel 
-		
+		""" Command for delete text channel
+
 		command: !delete_text_channel <channel_name>
 
 		**Usage**:
@@ -317,8 +296,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	@commands.command()
 	@commands.has_permissions(administrator=True)
 	async def delete_voice_channel(self, ctx, channel: discord.VoiceChannel):
-		""" Command for delete voice channel 
-		
+		""" Command for delete voice channel
+
 		command: !delete_voice_channel <channel_name>
 
 		**Usage**:
@@ -362,8 +341,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	@commands.command()
 	@commands.has_permissions(manage_roles=True)
 	async def delete_role(self, ctx, role: discord.Role):
-		""" Command for delete role 
-		
+		""" Command for delete role
+
 		command: !delete_role <role_name>
 
 		**Usage**:
@@ -411,8 +390,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	@commands.command(hidden=True)
 	@commands.has_permissions(manage_roles=True)
 	async def give_roll_to_all(self, ctx, role: discord.Role):
-		""" Give Roll to all members in once 
-		
+		""" Give Roll to all members in once
+
 		command: !give_roll_to_all <role_name>
 
 		**Usage**:
@@ -425,12 +404,12 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.send(f"Giving {role} role to all members.")
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
-	
+
 	@commands.command()
 	@commands.has_permissions(administrator=True)
 	async def dm(self, ctx, member: discord.Member, *, message: str):
-		""" Command for DM members in server 
-		
+		""" Command for DM members in server
+
 		command: !dm <member_name> <message>
 
 		**Usage**:
@@ -446,8 +425,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 
 	@commands.command()
 	@commands.has_permissions(administrator=True)
-	async def change_username(self, ctx, *, new_username: str):
-		""" Change username 
+	async def change_bot_username(self, ctx, *, new_username: str):
+		""" Change username
 
 		command: !username <new_username>
 
@@ -458,6 +437,95 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		try:
 			await ctx.bot.user.edit(username=new_username)
 			await ctx.send(f"Username changed to {new_username}")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def change_bot_avatar(self, ctx, *, new_avatar: str):
+		""" Change avatar of bot
+
+		command: !avatar <new_avatar>
+
+		**Usage**:
+			change avatar of server.
+			Cybel Need administrator permission for change avatar.
+		"""
+		try:
+			await ctx.bot.user.edit(avatar=new_avatar)
+			await ctx.send(f"Avatar changed to {new_avatar}")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def change_bot_status(self, ctx, *, new_status: str):
+		""" Change status
+
+		command: !status <new_status>
+
+		**Usage**:
+			change status of server.
+			Cybel Need administrator permission for change status.
+		"""
+		try:
+			await ctx.bot.change_presence(activity=discord.Game(name=new_status))
+			await ctx.send(f"Status changed to {new_status}")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def change_bot_game(self, ctx, *, new_game: str):
+		""" Change game
+
+		command: !game <new_game>
+
+		**Usage**:
+			change game of server.
+			Cybel Need administrator permission for change game.
+		"""
+		try:
+			await ctx.bot.change_presence(activity=discord.Game(name=new_game))
+			await ctx.send(f"Game changed to {new_game}")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def change_bot_status_and_game(self, ctx, *, new_status_and_game: str):
+		""" Change status and game
+
+		command: !status_and_game <new_status_and_game>
+
+		**Usage**:
+			change status and game of server.
+			Cybel Need administrator permission for change status and game.
+		"""
+		try:
+			await ctx.bot.change_presence(activity=discord.Game(name=new_status_and_game))
+			await ctx.send(f"Status and game changed to {new_status_and_game}")
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def change_nickname(self, ctx, member: discord.Member, *, new_nickname: str):
+		""" Change nickname
+
+		command: !nickname <member_name> <new_nickname>
+
+		**Usage**:
+			change nickname of member.
+			Cybel Need administrator permission for change nickname.
+		"""
+		try:
+			await member.edit(nick=new_nickname)
+			await ctx.send(f"Nickname changed to {new_nickname}")
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 

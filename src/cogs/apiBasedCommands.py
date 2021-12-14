@@ -19,12 +19,27 @@ from src.utils import _fetch
 from src.utils import weather_image_list, WEATHER_API_KEY
 
 class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands Using aiohttp"):
-    """ Collection of External API Based Commands """
+    """ Collection of External API Based Commands 
+    
+    Commands:
+        - get_random_joke - Get a random joke from the API
+        - get_random_fact - Get a random fact from the API
+        - get_random_quote - Get a random quote from the API
+        - get_github_userdata - Get the user data from the API
+        - get_weather - Get the weather data from the API
+        - get_random_dog_picture - Get a random dog picture from the API
+        - get_random_cat_picture - Get a random cat picture from the API
+        - get_random_fox_picture - Get a random fox picture from the API
+        
+    """
+
 
     def __init__(self, bot):
         self.bot = bot
 
+
     @commands.command(name="joke")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_joke(self, ctx):
         """ Get random jokes
 
@@ -42,7 +57,9 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             except Exception as e:
                 await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
+
     @commands.command(name="fact")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_fact(self, ctx):
         """ Get amazing random fact
 
@@ -59,8 +76,10 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             except Exception as e:
                 await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
+
     # not using the _fetch function because of content_type=None
     @commands.command(name="quote")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_quote(self, ctx):
         """ Get Random Quote by zenquote
 
@@ -81,7 +100,9 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 except Exception as e:
                     await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
+
     @commands.command(name="gh")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_github_userdata(self, ctx, username: str):
         """ Get Github User Data Using
 
@@ -114,32 +135,9 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             except Exception:
                 await ctx.send(f'```{username} is not a GitHub user.```')
 
-    @commands.command(name="ifsc")
-    async def get_bankdata(self, ctx, ifsc_code: str):
-        """ Get Indian Bank Details by IFSC Code
-
-        command: !ifsc <ifsc_code>
-        API: https://ifsc.razorpay.com
-        """
-        razorpay_api = f"https://ifsc.razorpay.com/{ifsc_code}"
-        async with ctx.typing():
-            try:
-                bank_data = await _fetch(razorpay_api)
-                embed = discord.Embed(
-                    title=bank_data["BANK"], description=bank_data["ADDRESS"])
-                embed.add_field(name="District", value=bank_data["DISTRICT"])
-                embed.add_field(name="State", value=bank_data["STATE"])
-                embed.add_field(name="UPI Available", value=bank_data["UPI"])
-                embed.add_field(name="Contact Number",
-                                value=bank_data["CONTACT"])
-                embed.set_thumbnail(
-                    url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-                embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
-                await ctx.send(embed=embed)
-            except Exception:
-                await ctx.send(f'```{ifsc_code} is not a valid Ifsc Code.```')
 
     @commands.command(name="weather")
+    @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_weather(self, ctx, *args):
         """ Get Your City weather
 
@@ -180,6 +178,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             except Exception as e:
                 await ctx.send(f'```I am not able to find the {city_name}.```')
 
+
     @commands.command(name="dog")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_dog_picture(self, ctx):
@@ -204,6 +203,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             except Exception as e:
                 await ctx.send(f'```{type(e).__name__} - {e}```')
 
+
     @commands.command(name="fox")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_fox_picture(self, ctx):
@@ -226,6 +226,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send(f'```{type(e).__name__} - {e}```')
+
 
     @commands.command(name="cat")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)

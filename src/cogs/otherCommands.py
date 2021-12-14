@@ -46,7 +46,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 	def __init__(self, bot):
 		self.bot = bot
 
-	# TODO: add in future updates
+
 	@commands.command(name="ping", help="Get the ping of the bot")
 	async def ping(self, ctx):
 		"""
@@ -60,6 +60,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed = discord.Embed(title="Pong 🏓", description=f"{round(self.bot.latency * 1000)}ms")
 		await ctx.send(embed=embed)
 
+
 	@commands.command(name="bot_version", aliases=["version", "bot_ver"], help="Get the version of the bot")
 	async def version_bot(self, ctx):
 		""" Get the version of the bot
@@ -70,6 +71,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			`bot_version`: Get the version of the bot
 		"""
 		await ctx.send(embed=discord.Embed(title="Bot Version", description=bot_version))
+
 
 	@commands.command(name="server_invite", aliases=["server_link"], help="Create an invite link for the server")
 	async def server_invite(self, ctx):
@@ -84,6 +86,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		link = await ctx.channel.create_invite(unique=False)
 		await ctx.send(embed=discord.Embed(title="Server Invite Link", description=link))
 
+
 	@commands.command(name="bot_invite", aliases=["bot_link"], help="Get the invite link of the bot")
 	async def invite_bot(self, ctx):
 		""" Get invite link for bot
@@ -96,6 +99,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		# FIXME: generate bot invite dynamically
 		link = "https://top.gg/bot/832137823309004800/invite"
 		await ctx.send(embed=discord.Embed(title="Bot Invite Link", description=link))
+
 
 	@commands.command(name="member_info", help="Get information about the discord member")
 	async def member_info(self, ctx, *, member: discord.Member):
@@ -115,6 +119,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
+
 	@commands.command(name="server_info", help="Get information about the discord server")
 	async def server_info(self, ctx):
 		""" Get the server information
@@ -132,15 +137,15 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 							value=ctx.guild.created_at, inline=False)
 			embed.add_field(name="Server Owner", value=ctx.guild.owner.name, inline=False)
 			embed.add_field(name="Server ID", value=ctx.guild.id, inline=False)
-			embed.add_field(name="Total Member", value=ctx.guild.member_count, inline=False)
-			embed.add_field(name="Bot Presense",
-							value=f"{len(self.bot.guilds)} Servers", inline=False)
+			embed.add_field(name="Total Member", value=f"{ctx.guild.member_count} members")
+			embed.add_field(name="Bot Presense", value=f"{len(self.bot.guilds)} Servers")
 			embed.set_thumbnail(
 				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
 			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
+
 
 	@commands.command(name="bot_info", aliases=["bot_stats"], help="Get information about the bot")
 	async def info_bot(self, ctx):
@@ -160,6 +165,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed.add_field(name="Bot Source Code", value="https://github.com/codePerfectPlus/cybel", inline=False)
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
+
 
 	@commands.command(name="dice", help="Roll a dice")
 	async def roll_the_dice(self, ctx, dice: str):
@@ -181,12 +187,13 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			return 'Format has to be in NdN!'
 
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-		embed = discord.Embed(title="Dice Roll", description=f"{ctx.author.mention} rolled dice(1 -{limit}) {rolls} times", color=0x00ff00)
+		embed = discord.Embed(title="Dice Rolled", description=f"{ctx.author.mention} rolled dice(1 -{limit}) {rolls} times", color=0x00ff00)
 		embed.add_field(name="Result", value=result, inline=False)
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="flipcoin", aliases=["flip", "coinflip"], help="Flip a coin")
+
+	@commands.command(aliases=["flip", "flipcoin", "coinflip"], help="Flip a coin")
 	async def flip_the_coin(self, ctx):
 		""" Flip the coin randomly
 
@@ -198,8 +205,9 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		coinsides = ["Heads", "Tails"]
 		await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
 
-	@commands.command(name="report", aliases=["report_user"], help="Report a user")
-	async def report(self, ctx, member:discord.Member, *reason: str):
+
+	@commands.command(aliases=["report_user"], help="Report a user")
+	async def report(self, ctx, member:discord.Member, reason: discord.Message):
 		""" Report a user
 
 		command: !report @user reason
@@ -228,6 +236,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
+
 	@commands.command(name="get_avatar", aliases=["get_avatar_user"], help="get the avatar of the user")
 	async def get_avatar(self, ctx, member: discord.Member = None):
 		""" Get the avatar of the user
@@ -249,6 +258,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
+
 	@commands.command(name="server_icon", help="get the server icon")
 	async def server_icon(self, ctx):
 		""" Get the server icon
@@ -267,6 +277,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 	
+
 	@commands.command(name="server_name", help="get the server name")
 	async def server_name(self, ctx):
 		""" Get the server name
@@ -284,6 +295,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 		
+
 	@commands.command(name="server_owner", help="get the server owner")
 	async def server_owner(self, ctx):
 		""" Get the server owner
@@ -300,6 +312,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
+
 
 	@commands.command(name="server_id", help="get the server id")
 	async def server_id(self, ctx):
@@ -318,9 +331,9 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 	
-	# TODO: add to future update
+
 	@commands.command(name="reverse")
-	async def reverse(self, ctx, *, text: str):
+	async def reverse(self, ctx, *, text: discord.Message):
 		""" Reverse the text
 
 		command: !reverse <text>
@@ -333,7 +346,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 	
-	# TODO: add to future update
+
 	@commands.command(aliases=["slots", "bet"], help="play slots")
 	@commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
 	async def slot(self, ctx):
@@ -355,7 +368,6 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		await ctx.send(embed=embed)
 
 
-	# TODO: add to future update
 	@commands.command(aliases=["github", "source_code"], help="get the source code")
 	async def source(self, ctx):
 		""" get the bot source code 
