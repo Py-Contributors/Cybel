@@ -28,6 +28,8 @@ class AutoCommands(commands.Cog):
         on_member_remove -- Fires when a member leaves the server.
         on_command_error -- Fires when a command fails.
         on_message -- Fires when a message is sent.
+        on_message_delete -- Fires when a message is deleted.
+        on_message_edit -- Fires when a message is edited.
     """
 
     def __init__(self, bot):

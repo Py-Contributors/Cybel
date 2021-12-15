@@ -47,7 +47,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		self.bot = bot
 
 
-	@commands.command(name="ping", help="Get the ping of the bot")
+	@commands.command(aliases=["test", "hi", "hello", "pong"], help="Get the ping of the bot")
 	async def ping(self, ctx):
 		"""
 			Get the ping of the bot
@@ -61,7 +61,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		await ctx.send(embed=embed)
 
 
-	@commands.command(name="bot_version", aliases=["version", "bot_ver"], help="Get the version of the bot")
+	@commands.command(aliases=['bot_version', "version", "bot_ver"], help="Get the version of the bot")
 	async def version_bot(self, ctx):
 		""" Get the version of the bot
 		
@@ -73,7 +73,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		await ctx.send(embed=discord.Embed(title="Bot Version", description=bot_version))
 
 
-	@commands.command(name="server_invite", aliases=["server_link"], help="Create an invite link for the server")
+	@commands.command(aliases=["server_link"], help="Create an invite link for the server")
 	async def server_invite(self, ctx):
 		""" Create instant invite for Channel
 
@@ -87,7 +87,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		await ctx.send(embed=discord.Embed(title="Server Invite Link", description=link))
 
 
-	@commands.command(name="bot_invite", aliases=["bot_link"], help="Get the invite link of the bot")
+	@commands.command(aliases=["bot_invite", "bot_link"], help="Get the invite link of the bot")
 	async def invite_bot(self, ctx):
 		""" Get invite link for bot
 
@@ -147,7 +147,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command(name="bot_info", aliases=["bot_stats"], help="Get information about the bot")
+	@commands.command(aliases=["bot_info", "bot_stats"], help="Get information about the bot")
 	async def info_bot(self, ctx):
 		""" Get information about the bot
 
@@ -167,7 +167,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		await ctx.send(embed=embed)
 
 
-	@commands.command(name="dice", help="Roll a dice")
+	@commands.command(aliases=["dice", "roll"], help="Roll a dice")
 	async def roll_the_dice(self, ctx, dice: str):
 		"""Rolls a dice in NdN format.
 
@@ -228,7 +228,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
     # REVIEW: add online/offline status
-	@commands.command(name="member_count", aliases=["member_count_server"], help="Get the member count of the server")
+	@commands.command(aliases=["member_count_server"], help="Get the member count of the server")
 	async def member_count(self, ctx):
 		""" Get the member count of the server """
 		embed = discord.Embed(title="Server Status", color=discord.Color.blue())
@@ -237,7 +237,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		await ctx.send(embed=embed)
 
 
-	@commands.command(name="get_avatar", aliases=["get_avatar_user"], help="get the avatar of the user")
+	@commands.command(aliases=["get_avatar_user"], help="get the avatar of the user")
 	async def get_avatar(self, ctx, member: discord.Member = None):
 		""" Get the avatar of the user
 
@@ -259,7 +259,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command(name="server_icon", help="get the server icon")
+	@commands.command(aliases=["icon"], help="get the server icon")
 	async def server_icon(self, ctx):
 		""" Get the server icon
 
@@ -278,7 +278,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 	
 
-	@commands.command(name="server_name", help="get the server name")
+	@commands.command(help="get the server name")
 	async def server_name(self, ctx):
 		""" Get the server name
 
@@ -296,7 +296,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 		
 
-	@commands.command(name="server_owner", help="get the server owner")
+	@commands.command(help="get the server owner")
 	async def server_owner(self, ctx):
 		""" Get the server owner
 
@@ -314,7 +314,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command(name="server_id", help="get the server id")
+	@commands.command(help="get the server id")
 	async def server_id(self, ctx):
 		""" Get the server id
 
@@ -332,7 +332,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 	
 
-	@commands.command(name="reverse")
+	@commands.command(help="reverse the text")
 	async def reverse(self, ctx, *, text: discord.Message):
 		""" Reverse the text
 

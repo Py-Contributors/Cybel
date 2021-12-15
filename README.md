@@ -32,7 +32,6 @@
 - Modern Pythonic API using async/await syntax
 - Easy to use with an object-oriented design
 - Optimized for both speed and memory
-- `AutoMod` is a feature that will automatically delete any message that contains profanity or other offensive words.
 - Member can report misconduct, malicious behavior, or inappropriate content.
 - Published and approved on Top.gg website. check [here]
 (https://top.gg/bot/832137823309004800/invite)
@@ -118,12 +117,13 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - Add database to keep record of server's activity
 - Admin can access server's activity
 - Some new useful apis
+- `remindme`  the bot remind you about something in future
 - More features coming soon...
-- please use discussion to suggest new features
+- please use [discussion](https://github.com/codePerfectPlus/cybel/discussions) to suggest new features
 
 ## Added Features
 
-## v2.0.2 Release
+### v2.0.2 Release
 
 - More control over bot's behavior(change bot's avatar, name, nickname, status, etc): (added in v2.0.2)
 - Bot notifications if user edit or delete the message in the server: (added in v2.0.2)

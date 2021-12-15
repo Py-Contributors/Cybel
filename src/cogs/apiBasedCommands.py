@@ -14,7 +14,6 @@ import discord
 from discord.ext import commands
 import aiohttp
 
-# lcoal imports
 from src.utils import _fetch
 from src.utils import weather_image_list, WEATHER_API_KEY
 
@@ -38,7 +37,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
         self.bot = bot
 
 
-    @commands.command(name="joke")
+    @commands.command(aliases=['joke', 'jokes'], help="Get a random joke")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_joke(self, ctx):
         """ Get random jokes
@@ -58,7 +57,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
 
-    @commands.command(name="fact")
+    @commands.command(aliases=['fact', 'facts'], help="Get a random fact")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_fact(self, ctx):
         """ Get amazing random fact
@@ -78,7 +77,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
 
 
     # not using the _fetch function because of content_type=None
-    @commands.command(name="quote")
+    @commands.command(aliases=['quote', 'quotes'], help="Get a random quote")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_quote(self, ctx):
         """ Get Random Quote by zenquote
@@ -101,7 +100,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                     await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
 
-    @commands.command(name="gh")
+    @commands.command(aliases=['github_user'], help="Get the github user data from the API")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_github_userdata(self, ctx, username: str):
         """ Get Github User Data Using
@@ -136,7 +135,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'```{username} is not a GitHub user.```')
 
 
-    @commands.command(name="weather")
+    @commands.command(aliases=['weather', 'w'], help="Get the weather data from the API")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_weather(self, ctx, *args):
         """ Get Your City weather
@@ -179,7 +178,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'```I am not able to find the {city_name}.```')
 
 
-    @commands.command(name="dog")
+    @commands.command(aliases=['dog', 'dogs'], help="Get a random dog image")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_dog_picture(self, ctx):
         
@@ -204,7 +203,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-    @commands.command(name="fox")
+    @commands.command(aliases=['fox', 'foxes'], help="Get a random fox image")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_fox_picture(self, ctx):
         """ Get Random Picture of Foxes
@@ -228,7 +227,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-    @commands.command(name="cat")
+    @commands.command(aliases=['cat', 'cats'], help="Get a random cat image")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_cat_picture(self, ctx):
         """ Get Random Pictures of cats

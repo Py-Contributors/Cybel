@@ -34,11 +34,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		give_role - Give a role to a user.
 		give_role_to_all - Give a role to all users.
 		dm - Direct message a user.
-		change_username - Change the username of bot
-		change_avatar - Change the avatar of bot
-		change_status - Change the status of bot
-		change_game - Change the game of bot
-		change_status_and_game - Change the status and game of bot
+		change_bot_username - Change the username of bot
+		change_bot_avatar - Change the avatar of bot
+		change_bot_game - Change the game of bot
 		change_nickname - Change the nickname of a user.
 
 	"""
@@ -46,7 +44,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	def __init__(self, bot):
 		self.bot = bot
 
-	@commands.command()
+	@commands.command(aliases=["kick_member"], help="Kick a user from the server.")
 	@commands.has_permissions(kick_members=True)
 	async def kick(self, ctx, member: discord.Member, *, reason=None):
 		""" command to kick user
@@ -74,7 +72,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command()
+	@commands.command(aliases=["mute_member"], help="Mute a user from voice channel")
 	@commands.has_permissions(kick_members=True)
 	async def mute(self, ctx, member: discord.Member):
 		""" Mute the user for voice activity
@@ -106,7 +104,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command()
+	@commands.command(aliases=["unmute_member"], help="Unmute a user from voice channel")
 	@commands.has_permissions(kick_members=True)
 	async def unmute(self, ctx, member: discord.Member):
 		""" Unmute the user for voice activity
@@ -132,7 +130,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command()
+
+	@commands.command(aliases=["ban_member"], help="Ban a user from the server.")
 	@commands.has_permissions(ban_members=True)
 	async def ban(self, ctx, member: discord.Member, *, reason=None):
 		""" command to ban user
@@ -160,7 +159,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command()
+	@commands.command(aliases=["unban_member"], help="Unban a user from the server.")
 	@commands.has_permissions(administrator=True)
 	async def unban(self, ctx, *, member_id: int):
 		""" command to unban user.
@@ -179,7 +178,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command()
+	@commands.command(help="create category in server")
 	@commands.has_permissions(administrator=True)
 	async def create_category(self, ctx, category: str):
 		""" Command for create category in Guild/Server.
@@ -201,7 +200,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command()
+	@commands.command(help="delete category in server")
 	@commands.has_permissions(administrator=True)
 	async def delete_category(self, ctx, category: discord.CategoryChannel):
 		""" Command for delete category from server
@@ -223,7 +222,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command()
+	@commands.command(help="create text channel in server")
 	@commands.has_permissions(administrator=True)
 	async def create_text_channel(self, ctx, channel: str, category: discord.CategoryChannel = None):
 		""" command for create text channel in Guild/Server.
@@ -248,7 +247,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command()
+	@commands.command(help="delete text channel in server")
 	@commands.has_permissions(administrator=True)
 	async def delete_text_channel(self, ctx, channel: discord.TextChannel):
 		""" Command for delete text channel
@@ -270,7 +269,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command()
+	@commands.command(help="create voice channel in server")
 	@commands.has_permissions(administrator=True)
 	async def create_voice_channel(self, ctx, channel: str, category: discord.CategoryChannel = None):
 		""" command for create voice channel in Guild/Server
@@ -293,7 +292,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		voice_channel = f'{channel} got created by {ctx.author.mention}'
 		await ctx.send(voice_channel)
 
-	@commands.command()
+	@commands.command(help="delete voice channel in server")
 	@commands.has_permissions(administrator=True)
 	async def delete_voice_channel(self, ctx, channel: discord.VoiceChannel):
 		""" Command for delete voice channel
@@ -315,7 +314,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command()
+	@commands.command(help="create a role in server")
 	@commands.has_permissions(manage_roles=True)
 	async def create_role(self, ctx, *, new_role_name):
 		""" Create New Roles in the Server
@@ -338,7 +337,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command()
+	@commands.command(help="delete a role in server")
 	@commands.has_permissions(manage_roles=True)
 	async def delete_role(self, ctx, role: discord.Role):
 		""" Command for delete role
@@ -360,7 +359,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 		await ctx.send(embed=embed)
 
-	@commands.command()
+	@commands.command(aliases=["assign_role"], help="assign role to user")
 	@commands.has_permissions(manage_roles=True)
 	async def give_role(self, ctx, member: discord.Member, role: discord.Role):
 		""" Give role to Server's members
@@ -405,7 +404,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command()
+	@commands.command(help="send message to user dm")
 	@commands.has_permissions(administrator=True)
 	async def dm(self, ctx, member: discord.Member, *, message: str):
 		""" Command for DM members in server
@@ -423,7 +422,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.send(f"{member.mention} have DMs disabled")
 
 
-	@commands.command()
+	@commands.command(help="change the username of bot")
 	@commands.has_permissions(administrator=True)
 	async def change_bot_username(self, ctx, *, new_username: str):
 		""" Change username
@@ -441,7 +440,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command()
+	@commands.command(help="change the avatar of bot")
 	@commands.has_permissions(administrator=True)
 	async def change_bot_avatar(self, ctx, *, new_avatar: str):
 		""" Change avatar of bot
@@ -459,25 +458,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command()
-	@commands.has_permissions(administrator=True)
-	async def change_bot_status(self, ctx, *, new_status: str):
-		""" Change status
-
-		command: !status <new_status>
-
-		**Usage**:
-			change status of server.
-			Cybel Need administrator permission for change status.
-		"""
-		try:
-			await ctx.bot.change_presence(activity=discord.Game(name=new_status))
-			await ctx.send(f"Status changed to {new_status}")
-		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
-
-
-	@commands.command()
+	@commands.command(help="change the bot status")
 	@commands.has_permissions(administrator=True)
 	async def change_bot_game(self, ctx, *, new_game: str):
 		""" Change game
@@ -494,25 +475,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	@commands.command()
-	@commands.has_permissions(administrator=True)
-	async def change_bot_status_and_game(self, ctx, *, new_status_and_game: str):
-		""" Change status and game
 
-		command: !status_and_game <new_status_and_game>
-
-		**Usage**:
-			change status and game of server.
-			Cybel Need administrator permission for change status and game.
-		"""
-		try:
-			await ctx.bot.change_presence(activity=discord.Game(name=new_status_and_game))
-			await ctx.send(f"Status and game changed to {new_status_and_game}")
-		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
-
-
-	@commands.command()
+	@commands.command(aliases=["chnick"], help="change the user's nickname")
 	@commands.has_permissions(administrator=True)
 	async def change_nickname(self, ctx, member: discord.Member, *, new_nickname: str):
 		""" Change nickname
