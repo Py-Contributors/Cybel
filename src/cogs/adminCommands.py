@@ -8,11 +8,10 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
-from unittest import result
 import discord
 from discord.ext import commands
 
-from src.utils.help import get_report_csv, get_report
+from src.utils.help import DBHelper
 
 class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Commands"):
 	""" Admin Level Commands
@@ -45,6 +44,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 
 	def __init__(self, bot):
 		self.bot = bot
+		self.db = DBHelper()
 
 	@commands.command(aliases=["kick_member"], help="Kick a user from the server.")
 	@commands.has_permissions(kick_members=True)
@@ -508,7 +508,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need administrator permission for get report.
 		"""
 		try:
-			df = get_report_csv('*', "reported_user='{}'".format(member.id))
+			df = self.db.get_report_csv('*', "reported_user='{}'".format(member.id))
 			df.to_csv("temp.csv")
 			await ctx.send(file=discord.File("temp.csv"))
 		except Exception as e:

@@ -130,7 +130,7 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - Bot can change the nickname of the user in the server: (added in v2.0.2)
 - postgresql database support: (added in v2.0.2)
 - Admin can access the misconduct/spam behaviour report status of the member from db: (added in v2.0.2)
-
+- Bot can have record of the user's report status in db: (added in v2.0.2)
 
 ### V2.0.1 Release (14/12/2021)
 

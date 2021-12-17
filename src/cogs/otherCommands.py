@@ -16,7 +16,7 @@ import random
 import datetime
 
 from src.utils.utils import bot_version
-from src.utils.help import create_report
+from src.utils.help import DBHelper
 
 class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Commands"):
 	"""
@@ -46,7 +46,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 	"""
 	def __init__(self, bot):
 		self.bot = bot
-
+		self.db = DBHelper()
 
 	@commands.command(aliases=["test", "hi", "hello", "pong"], help="Get the ping of the bot")
 	async def ping(self, ctx):
@@ -225,7 +225,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 			embed.add_field(name="Reason", value=reason, inline=False)
 			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 
-			create_report(datetime.datetime.utcnow().timestamp(),
+			self.db.create_report(datetime.datetime.utcnow().timestamp(),
 				ctx.guild.id, reported_member.id, ctx.author.id, ctx.guild.owner.id, reason)
 			await ctx.send(embed=embed)
 		except Exception as e:
