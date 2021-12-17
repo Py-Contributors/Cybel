@@ -36,7 +36,7 @@ class OtherCommands(commands.Cog, name="Other Commands for Users : Other Command
 		**Usage**
 			get the latency of the bot
 		"""
-		embed = discord.Embed(title="Pong 🏓", description=f"{round(self.bot.latency * 1000)}ms")
+		embed = discord.Embed(title="Pong 🏓", description="{} ms".format(round(self.bot.latency * 1000)), color=discord.Color.green())
 		await ctx.send(embed=embed)
 
 
@@ -51,9 +51,9 @@ class OtherCommands(commands.Cog, name="Other Commands for Users : Other Command
 		"""
 		try:
 			source_url = "https://github.com/codePerfectPlus/cybel"
-			await ctx.send(f"The bot is powered by **Cybel**\n\n**Source Code**: {source_url}\n\nDon't forget to star the repo if you like it!")
+			await ctx.send("The bot is powered by **Cybel**\n\n**Source Code**: {}\n\nDon't forget to star the repo if you like it!".format(source_url))
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('```{} - {}```'.format(type(e).__name__, e))
 
 
 def setup(bot: commands.Cog):

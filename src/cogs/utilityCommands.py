@@ -82,7 +82,7 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
 	@commands.command(help="get the server name")
@@ -100,7 +100,7 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
 	@commands.command(help="get the server owner")
@@ -118,7 +118,7 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
 	@commands.command(help="get the server id")
@@ -136,7 +136,7 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 	
 	@commands.command(name="server_info", help="Get information about the discord server")
 	async def server_info(self, ctx):
@@ -162,7 +162,7 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 	
 
 	@commands.command(name="member_info", help="Get information about the discord member")
@@ -232,7 +232,7 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			await ctx.send(embed=embed)
 
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
 	@commands.command(aliases=['bot_version', "version", "bot_ver"], help="Get the version of the bot")

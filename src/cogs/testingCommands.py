@@ -10,8 +10,6 @@ https://top.gg/bot/832137823309004800/invite
 """
 
 from discord.ext import commands
-import discord
-
 
 class TestingCommands(commands.Cog, name="testing command for server: Testing Commands"):
     """ Testing commands """

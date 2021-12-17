@@ -32,19 +32,20 @@ cog_dict = {
     'Testing Commands': 'src.cogs.testingCommands',
     'NSFW Commands': 'src.cogs.nsfwCommands',
     'Fun Commands': 'src.cogs.funCommands',
-    #'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
-    #'Utility Commands': 'src.cogs.utilityCommands',
-    #'NSFW Commands': 'src.cogs.nsfwCommands',
+    'Utility Commands': 'src.cogs.utilityCommands',
+    'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
+    
+
     }
 
 def load_cogs(cog_dict: dict):
     """ Function for loading cogs using dictionary """
     try:
         for key, value in cog_dict.items():
-            logging.info(f'Loading... {key}')
+            logging.info('Loading... {}'.format(key))
             bot.load_extension(value)
     except Exception as e:
-        logging.error(f'{type(e).__name__} - {e}')
+        logging.error('{} - {}'.format(type(e).__name__, e))
 
 
 if __name__ == '__main__':

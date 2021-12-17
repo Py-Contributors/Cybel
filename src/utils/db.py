@@ -27,6 +27,7 @@ class DataBase:
         self.connection = connection
         self.cursor = cursor
     
+
     def create_table(self, table_name, table_columns):
         """
         Create a table in the database
@@ -39,6 +40,7 @@ class DataBase:
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
     
+
     def insert_data(self, table_name, *args):
         """
         Insert data into the database
@@ -66,6 +68,7 @@ class DataBase:
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
     
+
     def update_data(self, table_name, data, condition):
         """
         Update data in the database
@@ -81,6 +84,7 @@ class DataBase:
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
     
+
     def delete_data(self, table_name, condition):
         """
         Delete data from the database
@@ -94,6 +98,7 @@ class DataBase:
             print("Data deleted successfully")
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
+    
     
     def drop_table(self, table_name):
         """

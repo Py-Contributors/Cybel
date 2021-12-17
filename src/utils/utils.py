@@ -39,10 +39,10 @@ def get_environment_variable(key: str):
 	value = os.environ.get(key)
 	try:
 		if value is not None:
-			logging.info(f'Loading... {key}')
+			logging.info('Loading... {}'.format(key))
 			return value
 	except Exception:
-		logging.critical(f'{key} is not found in environment variable.')
+		logging.critical('{} is not found in environment variable.'.format(key))
 
 DISCORD_TOKEN = get_environment_variable('DISCORD_TOKEN')
 WEATHER_API_KEY = get_environment_variable('WEATHER_API_KEY')

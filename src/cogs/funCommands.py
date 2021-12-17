@@ -60,7 +60,7 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 		try:
 			await ctx.send(text[::-1])
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 	@commands.command(aliases=["flip", "flipcoin", "coinflip"], help="Flip a coin")
 	async def flip_the_coin(self, ctx):

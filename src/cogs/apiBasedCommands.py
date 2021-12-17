@@ -54,7 +54,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed = discord.Embed(title="Random Joke", description=random_joke, color=discord.Color.dark_gold())
                 await ctx.send(embed=embed)
             except Exception as e:
-                await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+                await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
     @commands.command(aliases=['fact', 'facts'], help="Get a random fact")
@@ -73,7 +73,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed = discord.Embed(title="Random Fact", description=radnom_fact, color=discord.Color.dark_gold())
                 await ctx.send(embed=embed) 
             except Exception as e:
-                await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+                await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
     # not using the _fetch function because of content_type=None
@@ -97,7 +97,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                     embed.add_field(name="Author", value=author, inline=False)
                     await ctx.send(embed=embed)
                 except Exception as e:
-                    await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+                    await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
     @commands.command(aliases=['github_user'], help="Get the github user data from the API")
@@ -132,7 +132,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
             except Exception:
-                await ctx.send(f'```{username} is not a GitHub user.```')
+                await ctx.send('```{} is not a GitHub user.```'.format(username))
 
 
     @commands.command(aliases=['weather', 'w'], help="Get the weather data from the API")
@@ -175,7 +175,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
             except Exception as e:
-                await ctx.send(f'```I am not able to find the {city_name}.```')
+                await ctx.send('```I am not able to find the {}.```'.format(city_name))
 
 
     @commands.command(aliases=['dog', 'dogs'], help="Get a random dog image")
@@ -200,7 +200,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
             except Exception as e:
-                await ctx.send(f'```{type(e).__name__} - {e}```')
+                await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
     @commands.command(aliases=['fox', 'foxes'], help="Get a random fox image")
@@ -224,7 +224,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
             except Exception as e:
-                await ctx.send(f'```{type(e).__name__} - {e}```')
+                await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
     @commands.command(aliases=['cat', 'cats'], help="Get a random cat image")
@@ -248,7 +248,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
                 await ctx.send(embed=embed)
             except Exception as e:
-                await ctx.send(f'```{type(e).__name__} - {e}```')
+                await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
 def setup(bot: commands.Cog):

@@ -29,6 +29,7 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 	def __init__(self, bot):
 		self.bot = bot
 	
+
 	@commands.command(aliases=["kick_member"], help="Kick a user from the server.")
 	@commands.has_permissions(kick_members=True)
 	async def kick(self, ctx, member: discord.Member, *, reason=None):
@@ -55,7 +56,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
+
 
 	@commands.command(aliases=["mute_member"], help="Mute a user from voice channel")
 	@commands.has_permissions(kick_members=True)
@@ -87,7 +89,7 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 	@commands.command(aliases=["unmute_member"], help="Unmute a user from voice channel")
 	@commands.has_permissions(kick_members=True)
@@ -113,7 +115,7 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
 	@commands.command(aliases=["ban_member"], help="Ban a user from the server.")
@@ -142,7 +144,7 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
 			await ctx.send(embed=embed)
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 	@commands.command(aliases=["unban_member"], help="Unban a user from the server.")
 	@commands.has_permissions(administrator=True)
@@ -160,7 +162,7 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			await ctx.guild.unban(discord.Object(id=member_id))
 			await ctx.send(f"Unban {member_id}")
 		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
+			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
 def setup(bot: commands.Bot):
