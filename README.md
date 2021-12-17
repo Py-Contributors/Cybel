@@ -7,14 +7,14 @@
 <img style="border-radius: 20%" align="right" src="images/cybel_icon.jpg" height="200" width="200" alt="pycontributors logo">
 
 - [Features](#features)
-- [Bot Commands](#bot-commands)
-  - [Stable Version Commands](#stable-version-commands)
-    - [**Admin Commands**](#admin-commands)
-    - [**User Commands**](#user-commands)
-  - [Beta Version Commands](#beta-version-commands)
+  - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
+- [Added Features](#added-features)
+  - [v2.0.2 Release](#v202-release)
+  - [V2.0.1 Release (14/12/2021)](#v201-release-14122021)
+  - [v2.0.0 Release (12/12/2021)](#v200-release-12122021)
+- [Under Review Features](#under-review-features)
 - [Support Here](#support-here)
-- [License](#license)
 - [Author](#author)
 - [Suggestion/Feedbacks](#suggestionfeedbacks)
 
@@ -23,9 +23,9 @@
 - Admin Commands for server management with powerful moderation
 - Stay connected every time with 99% uptime
 - Custom welcome message for each user when joining
-- Separate DM message upon joining the server
+- Separate DM message upon joining the server\
+- Postgres Database for storing data
 - Utility async APIs
-- Commands for user access
 - Log Everything with embed message
 - AutoMod - Delete offensive word automatically
 - Use the bot to its full potential without ever annoying anyone
@@ -35,75 +35,13 @@
 - Member can report misconduct, malicious behavior, or inappropriate content.
 - Published and approved on Top.gg website. check [here]
 (https://top.gg/bot/832137823309004800/invite)
-- AI-enabled chatbot(only in Beta Version) # deprecated/removed
-- More Features coming soon...
+- [More Features]((#upcoming-feature)) coming soon...
 
 Invite **Cybel** into your server
 
 - [Cybel Stable](https://top.gg/bot/832137823309004800/invite)
 - [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot) # deprecated/removed
 
-## Bot Commands
-
-### Cybel Commands Example
-
-> Admin Level commands will require admin permission. Assign an Admin role to the Bot.
-
-#### **Admin Commands**
-
-| command name             |                  Use Of commands                  | Example                                                    |
-| ------------------------ | :-----------------------------------------------: | :--------------------------------------------------------- |
-| **kick**                 |           Kick user from Discord server           | `!kick <user_name> <reason>`                               |
-| **ban**                  |           Ban user from Discord server            | `!ban <user_name> <reason>`                                |
-| **unban**                |          Unban user from Discord server           | `!unban <member_id>`                                       |
-| **mute**                 |       mute the user in your discord server        | `!mute <user_name>`                                        |
-| **unmute**               |      Unmute the user in your discord server       | `!unmute <user_name>`                                      |
-| **chnick**               |            Change Nicknames of Members            | `!chnick <user_name> <Nick_name>`                          |
-| **create_role**          |            Create New Roles in server             | `!create_role <new_role>`                                  |
-| **delete_role**          |              Delete Roles in server               | `!delete_role <role_name>`                                 |
-| **give_role**            |               Give role to members                | `!give_role <user_name> <role_name>`                       |
-| **create_category**      |   Command for create category in Guild/Channel    | `!create_category <category_name>`                         |
-| **create_text_channel**  | command for create text channel in Guild/Channel  | `!create_text_channel <Channel_name> <category_name[Opt]`  |
-| **create_voice_channel** | command for create voice channel in Guild/Channel | `!create_voice_channel <channel_name> <category_name[Opt]` |
-| **delete_category**      |      Command for delete category from server      | `!delete_category <category_name>`                         |
-| **delete_text_channel**  |          Command for delete text channel          | `!delete_text_channel <channel_name>`                      |
-| **delete_voice_channel** |          Command for delete voice channe          | `!delete_voice_channel <channel_name>`                     |
-
-check `!help` for all command list in Stable Version
-
-check `!help <command_name>` for command details
-
-#### **User Commands**
-
-> User Level commands example:
-
-| command name      |               Use Of commands               | Example                |
-| :---------------- | :-----------------------------------------: | :--------------------- |
-| **help**          |        Get the list of all commands         | `!help`                |
-| **member_count**  |   Count number of members in server/guild   | `!member_count`        |
-| **report**        |           Report a user to admins           | `!report <user_name>`  |
-| **bot_info**      |    Get information about the bot itself     | `!info_bot`            |
-| **server_info**   |   Get information about the server itself   | `!info_server`         |
-| **member_info**   |   Get information about the member itself   | `!info_member`         |
-| **server**        |     to get the information about server     | `!server`              |
-| **server_id**     |   to get the information about server id    | `!server_id`           |
-| **server_name**   |   to get the information about server name  | `!server_name`         |
-| **server_owner**  |  to get the information about server owner  | `!server_owner`        |
-| **server_icon**   |  to get the information about server icon   | `!server_icon`         |
-| **get_avatar**    |  to get the information about user avatar   | `!get_avatar`          |
-| **fact**          |        function to send random fact         | `!fact`                |
-| **joke**          |        function to send random joke         | `!joke`                |
-| **ping**          |  Ping-Pong function to test the bot status  | `!ping`                |
-| **cat**           |         Get Random picture of Cats          | `!cat`                 |
-| **dog**           |         Get Random picture of Dogs          | `!dog`                 |
-| **fox**           |          Get Random picture of Fox          | `!fox`                 |
-| **dice**          |          Roll a dice in ndn format          | `!dice 5d6`            |
-| **flipcoin**      |           Flip the coin randomly            | `!flipcoin`            |
-| **create_invite** |            Create instant invite            | `!create_invite`       |
-| **gh**            |            get Github user data             | `!gh <user_name>`      |
-| **weather**       |          Get Weather of your City           | `!weather <city_name>` |
-
-![Conversation with Cybel](images/sample.png)
 
 ### Beta Version
 
@@ -131,6 +69,8 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - postgresql database support: (added in v2.0.2)
 - Admin can access the misconduct/spam behaviour report status of the member from db: (added in v2.0.2)
 - Bot can have record of the user's report status in db: (added in v2.0.2)
+- Optimize code for performance & bug fix: (added in v2.0.2)
+- more...
 
 ### V2.0.1 Release (14/12/2021)
 

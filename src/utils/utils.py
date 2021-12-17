@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 import logging
 from pathlib import Path
 
-bot_version = '2.0.1'
+bot_version = '2.0.2'
 root_dir = Path(__file__).parent.parent.parent
 
 load_dotenv()
