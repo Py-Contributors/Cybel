@@ -28,9 +28,14 @@ cog_dict = {
     'Admin Commands': 'src.cogs.adminCommands',
     'API Based Commands': 'src.cogs.apiBasedCommands',
     'Other Commands': 'src.cogs.otherCommands',
+    'Moderation Commands': 'src.cogs.moderationCommands',
+    'Testing Commands': 'src.cogs.testingCommands',
+    'NSFW Commands': 'src.cogs.nsfwCommands',
+    'Fun Commands': 'src.cogs.funCommands',
     #'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
-
-}
+    #'Utility Commands': 'src.cogs.utilityCommands',
+    #'NSFW Commands': 'src.cogs.nsfwCommands',
+    }
 
 def load_cogs(cog_dict: dict):
     """ Function for loading cogs using dictionary """

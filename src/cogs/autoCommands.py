@@ -11,12 +11,11 @@ https://top.gg/bot/832137823309004800/invite
 """
 import discord
 from discord.ext import commands
-from better_profanity import profanity
 
 from src.utils import logging
 
 
-class AutoCommands(commands.Cog):
+class AutoCommands(commands.Cog, name="Auto Commands"):
     """ These commands will fire automatically.
     
     Arguments:
@@ -27,7 +26,6 @@ class AutoCommands(commands.Cog):
         on_member_join -- Fires when a member joins the server.
         on_member_remove -- Fires when a member leaves the server.
         on_command_error -- Fires when a command fails.
-        on_message -- Fires when a message is sent.
         on_message_delete -- Fires when a message is deleted.
         on_message_edit -- Fires when a message is edited.
     """
@@ -86,25 +84,6 @@ class AutoCommands(commands.Cog):
         elif isinstance(error, commands.CommandInvokeError):
             await ctx.send("**An error occurred while executing this command.**")
 
-
-    @commands.Cog.listener()
-    async def on_message(self, message: discord.Message):
-        ''' 
-        on_message event will fire when a message is sent.
-
-        Arguments:
-            message {discord.Message} -- The message object.
-
-        '''
-
-        if message.author.bot:
-            return
-        elif message.author.id == self.bot.user.id:
-            return
-        elif profanity.contains_profanity(message.content): # delete the message if it contains profanity
-            await message.delete()
-            await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
-    
 
     @commands.Cog.listener()
     async def on_message_delete(self, message: discord.Message):
