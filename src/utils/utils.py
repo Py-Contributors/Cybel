@@ -14,8 +14,10 @@ import discord
 import aiohttp
 from dotenv import load_dotenv
 import logging
+from pathlib import Path
 
 bot_version = '2.0.1'
+root_dir = Path(__file__).parent.parent.parent
 
 load_dotenv()
 logging.basicConfig(format="%(levelname)s - %(asctime)s - %(name)s - %(message)s",
@@ -44,6 +46,7 @@ def get_environment_variable(key: str):
 
 DISCORD_TOKEN = get_environment_variable('DISCORD_TOKEN')
 WEATHER_API_KEY = get_environment_variable('WEATHER_API_KEY')
+DATABASE_URL = get_environment_variable('DATABASE_URL')
 
 async def _fetch(url: str):
 	""" function to fetch data from api in asynchronous way """

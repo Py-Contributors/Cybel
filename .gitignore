@@ -132,3 +132,4 @@ test.py
 stableenv
 betaenv/
 cybel_env/
+*.json

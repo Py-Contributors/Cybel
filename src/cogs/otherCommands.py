@@ -16,6 +16,7 @@ import random
 import datetime
 
 from src.utils.utils import bot_version
+from src.utils.help import create_report
 
 class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Commands"):
 	"""
@@ -207,7 +208,7 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 
 
 	@commands.command(aliases=["report_user"], help="Report a user")
-	async def report(self, ctx, member:discord.Member, reason: discord.Message):
+	async def report(self, ctx, reported_member:discord.Member, *reason):
 		""" Report a user
 
 		command: !report @user reason
@@ -218,11 +219,14 @@ class OtherCommands(commands.Cog, name="Useful Commands for Users : Other Comman
 		try:
 			reason = ' '.join(reason)
 			embed = discord.Embed(title="Report Status", color=discord.Color.red())
-			embed.add_field(name="Reported User", value=member.mention, inline=False)
+			embed.add_field(name="Reported User", value=reported_member.mention, inline=False)
 			embed.add_field(name="Reported By", value=ctx.author.mention)
 			embed.add_field(name="Reported to", value=ctx.guild.owner.mention)
 			embed.add_field(name="Reason", value=reason, inline=False)
 			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+
+			create_report(datetime.datetime.utcnow().timestamp(),
+				ctx.guild.id, reported_member.id, ctx.author.id, ctx.guild.owner.id, reason)
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
