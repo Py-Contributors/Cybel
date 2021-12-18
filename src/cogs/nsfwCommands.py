@@ -45,16 +45,19 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 
 
 			embed = discord.Embed(title="Report Status", color=discord.Color.red())
-			embed.add_field(name="Reported User", value=reported_member, inline=False)
+			embed.add_field(name="Reported User", value=reported_member.mention, inline=False)
 			embed.add_field(name="Reported By", value=reported_by.mention)
 			embed.add_field(name="Reported to", value=reported_to.mention)
 			embed.add_field(name="Reason", value=reason, inline=False)
 			embed.set_author(name=reported_by, icon_url=reported_by.avatar_url)
 			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 
+			reported_by = str(self.bot.get_user(reported_by.id))
+			reported_to = str(self.bot.get_user(reported_to.id))
+			reported_member = str(self.bot.get_user(reported_member.id))
 
 			self.db.create_report(datetime.datetime.utcnow().timestamp(),
-				ctx.guild.id, reported_member.id, reported_by.id, reported_to.id, reason)
+				ctx.guild.id, reported_member, reported_by, reported_to, reason)
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')

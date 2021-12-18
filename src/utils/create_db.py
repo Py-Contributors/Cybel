@@ -10,9 +10,11 @@ connection, cursor = create_connection(DATABASE_URL)
 db = DataBase(connection, cursor)
 
 # report_status table
-db.create_table("report_status", """channel_id int NOT NULL,
-                                reported_user varchar(255) NOT NULL,
-                                reported_by varchar(255) NOT NULL,
-                                reported_to varchar(255) NOT NULL,
+db.create_table("report_status", """
+                                datetime numeric NOT NULL,
+                                channel_id numeric NOT NULL,
+                                reported_user varchar(100) NOT NULL,
+                                reported_by varchar(100) NOT NULL,
+                                reported_to varchar(100) NOT NULL,
                                 reason varchar(255) NOT NULL""")
 

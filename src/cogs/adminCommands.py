@@ -380,7 +380,10 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need administrator permission for get report.
 		"""
 		try:
-			df = self.db.get_report_csv('*', "reported_user='{}'".format(member.id))
+		
+			member = str(self.bot.get_user(member.id))
+			
+			df = self.db.get_report_csv('*', "reported_user='{}'".format(member))
 			df.to_csv("temp.csv")
 			await ctx.send(file=discord.File("temp.csv"))
 		except Exception as e:
