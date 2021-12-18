@@ -37,7 +37,10 @@ class OtherCommands(commands.Cog, name="Other Commands for Users : Other Command
 		**Usage**
 			get the latency of the bot
 		"""
-		embed = discord.Embed(title="Pong 🏓", description="{} ms".format(round(self.bot.latency * 1000)), color=discord.Color.green())
+		embed = discord.Embed(title="Pong", description="🏓", color=discord.Color.green())
+		embed.add_field(name="Ping", value="{} ms".format(round(self.bot.latency * 1000)))
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
