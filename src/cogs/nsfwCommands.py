@@ -38,7 +38,6 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 			`report`: Report user for misbehavior, abuse, suspicious behaviour etc.
 		"""
 		try:
-			reported_member = reported_member
 			reported_by = ctx.author
 			reported_to = ctx.guild.owner
 			reason = ' '.join(reason)
@@ -56,11 +55,13 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 			reported_to = str(self.bot.get_user(reported_to.id))
 			reported_member = str(self.bot.get_user(reported_member.id))
 
-			self.db.create_report(datetime.datetime.utcnow().timestamp(),
+			self.db.create_report(datetime.datetime.utcnow().timestamp(),  # db function to create report
 				ctx.guild.id, reported_member, reported_by, reported_to, reason)
+
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
+
 
 	@commands.Cog.listener()
 	async def on_message(self, message: discord.Message):

@@ -32,16 +32,26 @@ class DBHelper:
         db.insert_data("report_status", *args)
 
 
-    def get_report_csv(self, columns, condition):
+    def get_report_csv(self, condition):
         """ Get a user report from the database 
         
         Arguments:
             columns {list} -- list of columns to be selected
             condition {str} -- condition to be applied
         """
-        results = db.select_data("report_status", columns, condition)
+        results = db.select_data("report_status", condition)
+
         df = pd.DataFrame(results, columns=['timestamp_UTC', 'channel_id', 'reported_user', 'reported_by', 'reported_to', 'reason'])
         df["timestamp_UTC"] = df["timestamp_UTC"].apply(lambda x: datetime.datetime.fromtimestamp(x))
-        return_df = df[['timestamp_UTC', 'reported_user', 'reported_by', 'reported_to', 'reason']]
+        return_df = df[['timestamp_UTC', 'reported_user', 'reported_by', 'reason']]
         return return_df
 
+    
+    def get_report_count(self, condition):
+        """ Get the number of reports in the database 
+        
+        Arguments:
+            condition {str} -- condition to be applied
+        """
+        counts = db.count_data("report_status", condition)
+        return counts[0][0]

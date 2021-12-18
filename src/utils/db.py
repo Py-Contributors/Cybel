@@ -62,14 +62,13 @@ class DataBase:
             print(error)
     
     
-    def select_data(self, table_name, columns, condition):
+    def select_data(self, table_name, condition):
         """
         Select data from the database
         """
         try:
             self.cursor.execute(
-                "SELECT {} FROM {} WHERE {}".format(
-                    columns,
+                "SELECT * FROM {} WHERE {}".format(
                     table_name,
                     condition))
             return self.cursor.fetchall()
@@ -108,7 +107,7 @@ class DataBase:
             print(error)
     
     
-    def drop_table(self, table_name):
+    '''def drop_table(self, table_name):
         """
         Drop a table from the database
         """
@@ -118,5 +117,18 @@ class DataBase:
                     table_name))
             self.connection.commit()
             print("Table {} dropped successfully".format(table_name))
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)'''
+
+    def count_data(self, table_name, condition):
+        """
+        Count data from the database
+        """
+        try:
+            self.cursor.execute(
+                "SELECT COUNT(*) FROM {} WHERE {}".format(
+                    table_name,
+                    condition))
+            return self.cursor.fetchall()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)

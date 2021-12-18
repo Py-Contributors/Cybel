@@ -8,11 +8,12 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
+import os
 import discord
 from discord.ext import commands
 
 from src.utils.dbhelper import DBHelper
-from src.utils.utils import sponsors
+from src.utils.utils import sponsors, root_dir
 
 
 class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Commands"):
@@ -383,11 +384,37 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		
 			member = str(self.bot.get_user(member.id))
 			
-			df = self.db.get_report_csv('*', "reported_user='{}'".format(member))
-			df.to_csv("temp.csv")
-			await ctx.send(file=discord.File("temp.csv"))
+			df = self.db.get_report_csv("reported_user='{}'".format(member)) # db function to get report
+			temp_file = os.path.join(root_dir, "logs", "temp.csv")  # temp file to save report
+			df.to_csv(temp_file)
+			await ctx.send(file=discord.File(temp_file))
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
+
+	@commands.command(help="count the user's report")
+	@commands.has_permissions(administrator=True)
+	async def count_report(self, ctx, member: discord.Member):
+		""" count number of report on user
+		
+		command: !count_report <member_name>
+
+		**Usage**:
+			count number of report on user
+			Cybel Need administrator permission for count report.
+		"""
+		try:
+			member = str(self.bot.get_user(member.id))
+			count = self.db.get_report_count("reported_user='{}'".format(member))
+
+			embed = discord.Embed(title="Report count", description="{} has {} reports".format(member, count), color=0x00ff00)
+			embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			
+			await ctx.send(embed=embed)
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+	
 def setup(bot: commands.Cog):
 	bot.add_cog(AdminCommands(bot))

@@ -133,3 +133,4 @@ stableenv
 betaenv/
 cybel_env/
 *.json
+*.csv

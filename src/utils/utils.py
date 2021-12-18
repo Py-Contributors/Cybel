@@ -24,7 +24,7 @@ logging.basicConfig(format="%(levelname)s - %(asctime)s - %(name)s - %(message)s
 					datefmt='%d/%m/%Y %I:%M:%S %p',
 					level=logging.INFO,
 					handlers=[
-        				logging.FileHandler("debug.log"),
+        				logging.FileHandler(os.path.join(root_dir, 'logs', 'bot.log')),
         				logging.StreamHandler()]
 						)
 
