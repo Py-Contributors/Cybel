@@ -46,7 +46,7 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 
 		embed = discord.Embed(title="Slot Machine", color=discord.Color.blue())
 		embed.add_field(name="**Result**", value=f"{a} {b} {c}", inline=False)
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -100,7 +100,7 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
 		embed = discord.Embed(title="Dice Rolled", description=f"{ctx.author.mention} rolled dice(1 -{limit}) {rolls} times", color=0x00ff00)
 		embed.add_field(name="Result", value=result, inline=False)
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 

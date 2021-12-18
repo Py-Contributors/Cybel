@@ -7,6 +7,7 @@
 <img style="border-radius: 20%" align="right" src="images/cybel_icon.jpg" height="200" width="200" alt="pycontributors logo">
 
 - [Features](#features)
+  - [Report a Bug](#report-a-bug)
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
 - [Added Features](#added-features)
@@ -41,6 +42,12 @@ Invite **Cybel** into your server
 
 - [Cybel Stable](https://top.gg/bot/832137823309004800/invite)
 - [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot) # deprecated/removed
+
+
+### Report a Bug
+
+
+- [Report a Bug](https://github.com/codePerfectPlus/cybel/discussions)
 
 
 ### Beta Version

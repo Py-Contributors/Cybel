@@ -12,7 +12,6 @@ import os
 import discord
 from discord.ext import commands
 
-from src.utils.dbhelper import DBHelper
 from src.utils.utils import sponsors, root_dir
 
 
@@ -42,7 +41,6 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 
 	def __init__(self, bot):
 		self.bot = bot
-		self.db = DBHelper()
 
 	
 	@commands.command(help="create category in server")
@@ -64,7 +62,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Created by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -87,7 +85,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -113,7 +111,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.guild.create_text_channel(channel, category=category)
 		embed = discord.Embed(
 			description=f'{channel} got created by {ctx.author.mention}', color=discord.Color.blue())
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -136,7 +134,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted By", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -182,7 +180,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted By", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -206,7 +204,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Approved by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -229,7 +227,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted by", value=ctx.author.mention)
 		embed.set_thumbnail(
 			url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -255,7 +253,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Assigned by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
@@ -365,53 +363,6 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		try:
 			await member.edit(nick=new_nickname)
 			await ctx.send(f"Nickname changed to {new_nickname}")
-		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
-
-
-	@commands.command(help="get the user's report csv")
-	@commands.has_permissions(administrator=True)
-	async def get_report(self, ctx, member: discord.Member):
-		""" Get report of member
-
-		command: !get_report <member_name>
-
-		**Usage**:
-			get report of member in csv
-			Cybel Need administrator permission for get report.
-		"""
-		try:
-		
-			member = str(self.bot.get_user(member.id))
-			
-			df = self.db.get_report_csv("reported_user='{}'".format(member)) # db function to get report
-			temp_file = os.path.join(root_dir, "logs", "temp.csv")  # temp file to save report
-			df.to_csv(temp_file)
-			await ctx.send(file=discord.File(temp_file))
-		except Exception as e:
-			await ctx.send(f'```{type(e).__name__} - {e}```')
-
-
-	@commands.command(help="count the user's report")
-	@commands.has_permissions(administrator=True)
-	async def count_report(self, ctx, member: discord.Member):
-		""" count number of report on user
-		
-		command: !count_report <member_name>
-
-		**Usage**:
-			count number of report on user
-			Cybel Need administrator permission for count report.
-		"""
-		try:
-			member = str(self.bot.get_user(member.id))
-			count = self.db.get_report_count("reported_user='{}'".format(member))
-
-			embed = discord.Embed(title="Report count", description="{} has {} reports".format(member, count), color=0x00ff00)
-			embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
-			
-			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 

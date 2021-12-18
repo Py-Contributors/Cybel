@@ -3,16 +3,23 @@ python class for database CRUD operations
 
     
 """
+import sqlite3
 import psycopg2
 
 def create_connection(DATABASE_URL):
     """
     Create a connection to the database
+
+    args:
+        DATABASE_URL: database url
+    
+    returns:
+        connection: connection to the database
+        cursor: cursor to the database
     """
     connection = None
     cursor = None
-    try: # get the database connection from postgres url
-        #connection = psycopg2.connect("postgresql://{}:{}@{}:{}/{}".format(config['user'], config['password'], config['host'], config['port'], config['database']))
+    try: # get the database connection from postgres ur
         connection = psycopg2.connect(DATABASE_URL)
         cursor = connection.cursor()
         return connection, cursor
@@ -67,10 +74,8 @@ class DataBase:
         Select data from the database
         """
         try:
-            self.cursor.execute(
-                "SELECT * FROM {} WHERE {}".format(
-                    table_name,
-                    condition))
+            sql_query = "SELECT * FROM {} WHERE {}".format(table_name, condition)
+            self.cursor.execute(sql_query)
             return self.cursor.fetchall()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
@@ -81,11 +86,8 @@ class DataBase:
         Update data in the database
         """
         try:
-            self.cursor.execute(
-                "UPDATE {} SET {} WHERE {}".format(
-                    table_name,
-                    data,
-                    condition))
+            sql_query = "UPDATE {} SET {} WHERE {}".format(table_name, data, condition)
+            self.cursor.execute(sql_query)
             self.connection.commit()
             print("Data updated successfully")
         except (Exception, psycopg2.DatabaseError) as error:
@@ -97,38 +99,21 @@ class DataBase:
         Delete data from the database
         """
         try:
-            self.cursor.execute(
-                "DELETE FROM {} WHERE {}".format(
-                    table_name,
-                    condition))
+            sql_query = "DELETE FROM {} WHERE {}".format(table_name, condition)
+            self.cursor.execute(sql_query)
             self.connection.commit()
             print("Data deleted successfully")
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-    
-    
-    '''def drop_table(self, table_name):
-        """
-        Drop a table from the database
-        """
-        try:
-            self.cursor.execute(
-                "DROP TABLE IF EXISTS {}".format(
-                    table_name))
-            self.connection.commit()
-            print("Table {} dropped successfully".format(table_name))
-        except (Exception, psycopg2.DatabaseError) as error:
-            print(error)'''
+
 
     def count_data(self, table_name, condition):
         """
         Count data from the database
         """
         try:
-            self.cursor.execute(
-                "SELECT COUNT(*) FROM {} WHERE {}".format(
-                    table_name,
-                    condition))
+            sql_query = "SELECT COUNT(*) FROM {} WHERE {}".format(table_name, condition)
+            self.cursor.execute(sql_query)
             return self.cursor.fetchall()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)

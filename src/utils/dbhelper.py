@@ -23,6 +23,7 @@ class DBHelper:
     def __init__(self) -> None:
         pass
 
+
     def create_report(self, *args):
         """ Create a user report in the database 
         
@@ -55,3 +56,12 @@ class DBHelper:
         """
         counts = db.count_data("report_status", condition)
         return counts[0][0]
+
+
+    def delete_user_report(self, condition):
+        """ Delete a user report from the database 
+        
+        Arguments:
+            condition {str} -- condition to be applied
+        """
+        db.delete_data("report_status", condition)

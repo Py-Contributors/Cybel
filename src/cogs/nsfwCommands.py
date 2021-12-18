@@ -48,7 +48,7 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 			embed.add_field(name="Reported By", value=reported_by.mention)
 			embed.add_field(name="Reported to", value=reported_to.mention)
 			embed.add_field(name="Reason", value=reason, inline=False)
-			embed.set_author(name=reported_by, icon_url=reported_by.avatar_url)
+			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 
 			reported_by = str(self.bot.get_user(reported_by.id))

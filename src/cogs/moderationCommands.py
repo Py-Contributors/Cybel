@@ -8,11 +8,12 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
-
+import os
 from discord.ext import commands
 import discord
 
-from src.utils.utils import sponsors
+from src.utils.dbhelper import DBHelper
+from src.utils.utils import sponsors, root_dir
 
 class ModerationCommands(commands.Cog, name="commands for server moderators: Moderation Commands"):
 	"""
@@ -29,6 +30,7 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 
 	def __init__(self, bot):
 		self.bot = bot
+		self.db = DBHelper()
 	
 
 	@commands.command(aliases=["kick_member"], help="Kick a user from the server.")
@@ -168,6 +170,123 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			await ctx.send(f"Unban {member_id}")
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
+
+
+	@commands.command(help="get the user's report csv")
+	@commands.has_permissions(administrator=True)
+	async def get_user_report(self, ctx, member: discord.Member):
+		""" Get report of member
+
+		command: !get_report <member_name>
+
+		**Usage**:
+			get report of member in csv
+			Cybel Need administrator permission for get report.
+		"""
+		try:
+		
+			member = str(self.bot.get_user(member.id))
+			
+			df = self.db.get_report_csv("reported_user='{}'".format(member)) # db function to get report
+			temp_file = os.path.join(root_dir, "logs", "temp.csv")  # temp file to save report
+			df.to_csv(temp_file)
+			await ctx.send(file=discord.File(temp_file))
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+
+	@commands.command(help="get the all reports from the server in csv")
+	@commands.has_permissions(administrator=True)
+	async def get_all_report(self, ctx):
+		""" get all the reports from the server.
+
+		command: !get_report <member_name>
+
+		**Usage**:
+			get report of member in csv
+			Cybel Need administrator permission for get report.
+		"""
+		try:
+		
+			channel_id = ctx.guild.id
+			df = self.db.get_report_csv("channel_id='{}'".format(channel_id)) # db function to get report
+			temp_file = os.path.join(root_dir, "logs", "temp.csv")  # temp file to save report
+			df.to_csv(temp_file)
+			await ctx.send(file=discord.File(temp_file))
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+	
+
+	@commands.command(help="count the total number of report for single user")
+	@commands.has_permissions(administrator=True)
+	async def count_report(self, ctx, member: discord.Member):
+		""" count number of report on user
+		
+		command: !count_report <member_name>
+
+		**Usage**:
+			count number of report on user
+			Cybel Need administrator permission for count report.
+		"""
+		try:
+			member = str(self.bot.get_user(member.id))
+			count = self.db.get_report_count("reported_user='{}'".format(member))
+			embed = discord.Embed(title="Report count", description="{} has {} reports".format(member, count), color=0x00ff00)
+			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			await ctx.send(embed=embed)
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+
+	@commands.command(help="count the total numbers of reports in guild")
+	@commands.has_permissions(administrator=True)
+	async def count_reports(self, ctx):
+		""" count number of report on user
+		
+		command: !count_report <member_name>
+
+		**Usage**:
+			count number of report on user
+			Cybel Need administrator permission for count report.
+		"""
+		try:
+			channel_id = ctx.guild.id
+			channel_name = ctx.guild.name
+			count = self.db.get_report_count("channel_id='{}'".format(channel_id))
+	
+
+			embed = discord.Embed(title="Report count", color=0x00ff00)
+			embed.add_field(name="Channel Name", value=channel_name, inline=False)
+			embed.add_field(name="status", value="{} has total {} reports in server.".format(channel_name, count))
+			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			await ctx.send(embed=embed)
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
+
+
+	@commands.command(help="delete user's report")	
+	@commands.has_permissions(administrator=True)
+	async def delete_report(self, ctx, member: discord.Member):
+		""" Delete report of member
+
+		command: !delete_report <member_name>
+
+		**Usage**:
+			delete report of member
+			Cybel Need administrator permission for delete report.
+		"""
+		try:
+			member = str(self.bot.get_user(member.id))
+			channel_id = ctx.guild.id
+			self.db.delete_user_report("reported_user='{}' AND channel_id={}".format(member, channel_id))
+			embed = discord.Embed(title="Report deleted", description="{}'s report has been deleted.".format(member), color=0x00ff00)
+			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			await ctx.send(embed=embed)
+		except Exception as e:
+			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
 def setup(bot: commands.Bot):

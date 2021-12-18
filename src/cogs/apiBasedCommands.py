@@ -130,7 +130,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
                 embed.set_image(url=user_data['avatar_url'])
-                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception:
@@ -174,7 +174,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                     name="OpenWeatherAPI", url="https://openweathermap.org/")
                 embed.set_image(
                     url=random.choice(weather_image_list))
-                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
@@ -200,7 +200,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_image(url=dog_picture_url)
                 embed.set_author(
                     name="Dog API", url='https://dog.ceo/dog-api/')
-                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
@@ -225,7 +225,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_image(url=fox_picture_url)
                 embed.set_author(
                     name="foxAPI", url='https://randomfox.ca/')
-                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
@@ -250,7 +250,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_image(url=cat_picture_url)
                 embed.set_author(
                     name='catAPI', url='https://thatcopy.pw/catapi/')
-                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
