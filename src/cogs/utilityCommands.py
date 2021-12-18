@@ -13,8 +13,7 @@ import discord
 import datetime
 
 
-from src.utils.utils import bot_version
-
+from src.utils.utils import bot_version, sponsors
 
 class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Commands"):
 	""" Utility Commands 
@@ -79,7 +78,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed = discord.Embed(title="Server Icon", color=discord.Color.blue())
 			embed.set_image(url=ctx.guild.icon_url)
 			embed.add_field(name="Server Icon URL", value=ctx.guild.icon_url, inline=False)
-			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -97,7 +97,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 		try:
 			embed = discord.Embed(title="Server Information", color=discord.Color.blue())
 			embed.add_field(name="Server Name", value=ctx.guild.name, inline=False)
-			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -115,7 +116,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 		try:
 			embed = discord.Embed(title="Server Information", color=discord.Color.blue())
 			embed.add_field(name="Server Owner", value=ctx.guild.owner.mention, inline=False)
-			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -133,7 +135,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 		try:
 			embed = discord.Embed(title="Server Information", color=discord.Color.blue())
 			embed.add_field(name="Server ID", value=ctx.guild.id, inline=False)
-			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -159,7 +162,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed.add_field(name="Bot Presense", value=f"{len(self.bot.guilds)} Servers")
 			embed.set_thumbnail(
 				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -180,7 +184,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 		embed.add_field(name="Status", value=member.status, inline=True)
 		embed.add_field(name="Joined at", value=member.joined_at, inline=True)
 		embed.add_field(name="Roles", value=len(member.roles), inline=True)
-		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -200,7 +205,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 		embed.add_field(name="Bot Invite", value="https://top.gg/bot/832137823309004800/invite", inline=False)
 		embed.add_field(name="Bot Support Server", value="https://discord.gg/5JxjZB", inline=False)
 		embed.add_field(name="Bot Source Code", value="https://github.com/codePerfectPlus/cybel", inline=False)
-		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -209,7 +215,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 		""" Get the member count of the server """
 		embed = discord.Embed(title="Server Status", color=discord.Color.blue())
 		embed.add_field(name="Member Count", value=ctx.guild.member_count, inline=False)
-		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -228,7 +235,8 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 			embed = discord.Embed(title="Avatar", color=discord.Color.blue())
 			embed.set_image(url=member.avatar_url)
 			embed.add_field(name="Avatar URL", value=member.avatar_url, inline=False)
-			embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 
 		except Exception as e:
@@ -244,7 +252,10 @@ class UtilityCommands(commands.Cog, name="Useful Commands for Users : Utility Co
 		**Usage**:
 			`bot_version`: Get the version of the bot
 		"""
-		await ctx.send(embed=discord.Embed(title="Bot Version", description=bot_version))
+		embed = discord.Embed(title="Bot Version", description="Bot Version", color=discord.Color.blue())
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+		await ctx.send(embed)
 
 
 def setup(bot: commands.Bot):

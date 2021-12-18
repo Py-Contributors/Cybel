@@ -12,6 +12,7 @@ https://top.gg/bot/832137823309004800/invite
 from discord.ext import commands
 import discord
 
+from src.utils.utils import sponsors
 
 class OtherCommands(commands.Cog, name="Other Commands for Users : Other Commands"):
 	"""
@@ -26,7 +27,7 @@ class OtherCommands(commands.Cog, name="Other Commands for Users : Other Command
 		self.bot = bot
 
 
-	@commands.command(aliases=["test", "hi", "hello", "pong"], help="Get the ping of the bot")
+	@commands.command(aliases=["hi", "hello", "pong"], help="Get the ping of the bot")
 	async def ping(self, ctx):
 		"""
 			Get the ping of the bot

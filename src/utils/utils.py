@@ -44,6 +44,15 @@ def get_environment_variable(key: str):
 	except Exception:
 		logging.critical('{} is not found in environment variable.'.format(key))
 
+sponsor_name = 'sponsorship available' # get the variable from env 
+sponsor_url = "https://cdn.discordapp.com/attachments/832610122755997746/921693734503088148/6a00e550056244883301b7c8d2343d970b-pi.png"
+
+
+sponsors ={
+	'name': sponsor_name,
+	'icon': sponsor_url
+}
+
 DISCORD_TOKEN = get_environment_variable('DISCORD_TOKEN')
 WEATHER_API_KEY = get_environment_variable('WEATHER_API_KEY')
 DATABASE_URL = get_environment_variable('DATABASE_URL')

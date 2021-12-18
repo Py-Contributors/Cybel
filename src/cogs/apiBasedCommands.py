@@ -16,6 +16,7 @@ import aiohttp
 
 from src.utils import _fetch
 from src.utils import weather_image_list, WEATHER_API_KEY
+from src.utils.utils import sponsors
 
 class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands Using aiohttp"):
     """ Collection of External API Based Commands 
@@ -129,7 +130,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
                 embed.set_image(url=user_data['avatar_url'])
-                embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception:
                 await ctx.send('```{} is not a GitHub user.```'.format(username))
@@ -172,7 +174,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                     name="OpenWeatherAPI", url="https://openweathermap.org/")
                 embed.set_image(
                     url=random.choice(weather_image_list))
-                embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('```I am not able to find the {}.```'.format(city_name))
@@ -197,7 +200,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_image(url=dog_picture_url)
                 embed.set_author(
                     name="Dog API", url='https://dog.ceo/dog-api/')
-                embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -221,7 +225,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_image(url=fox_picture_url)
                 embed.set_author(
                     name="foxAPI", url='https://randomfox.ca/')
-                embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -245,7 +250,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_image(url=cat_picture_url)
                 embed.set_author(
                     name='catAPI', url='https://thatcopy.pw/catapi/')
-                embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+                embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))

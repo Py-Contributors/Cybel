@@ -13,7 +13,7 @@ import discord
 from discord.ext import commands
 
 from src.utils import logging
-
+from src.utils.utils import sponsors
 
 class AutoCommands(commands.Cog, name="Auto Commands"):
     """ These commands will fire automatically.

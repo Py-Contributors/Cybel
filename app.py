@@ -9,7 +9,7 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 '''
-
+import discord
 from discord import Intents
 from discord.ext import commands
 
@@ -21,8 +21,10 @@ intents.members = True
 
 bot = commands.Bot(command_prefix='!',
                    intents=intents,
-                   case_insensitive=True)
+                   case_insensitive=True,
+                   description='Cybel - A Discord Bot')
 
+        
 cog_dict = {
     'Auto Commands': 'src.cogs.autoCommands',
     'Admin Commands': 'src.cogs.adminCommands',
@@ -34,9 +36,7 @@ cog_dict = {
     'Fun Commands': 'src.cogs.funCommands',
     'Utility Commands': 'src.cogs.utilityCommands',
     'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
-    
-
-    }
+}
 
 def load_cogs(cog_dict: dict):
     """ Function for loading cogs using dictionary """

@@ -11,7 +11,8 @@ https://top.gg/bot/832137823309004800/invite
 import discord
 from discord.ext import commands
 
-from src.utils.help import DBHelper
+from src.utils.dbhelper import DBHelper
+from src.utils.utils import sponsors
 
 
 class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Commands"):
@@ -62,7 +63,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Created by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 	@commands.command(help="delete category in server")
@@ -84,7 +86,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 	@commands.command(help="create text channel in server")
@@ -109,7 +112,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.guild.create_text_channel(channel, category=category)
 		embed = discord.Embed(
 			description=f'{channel} got created by {ctx.author.mention}', color=discord.Color.blue())
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 	@commands.command(help="delete text channel in server")
@@ -131,7 +135,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted By", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 	@commands.command(help="create voice channel in server")
@@ -176,7 +181,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted By", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 	@commands.command(help="create a role in server")
@@ -199,7 +205,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Approved by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 	@commands.command(help="delete a role in server")
@@ -221,7 +228,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Deleted by", value=ctx.author.mention)
 		embed.set_thumbnail(
 			url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 	@commands.command(aliases=["assign_role"], help="assign role to user")
@@ -246,7 +254,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			name="Assigned by", value=ctx.author.mention)
 		embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-		embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 

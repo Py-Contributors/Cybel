@@ -14,6 +14,8 @@ import discord
 
 import random
 
+from src.utils.utils import sponsors
+
 class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 	""" Fun Commands 
 	
@@ -44,12 +46,13 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 
 		embed = discord.Embed(title="Slot Machine", color=discord.Color.blue())
 		embed.add_field(name="**Result**", value=f"{a} {b} {c}", inline=False)
-		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
 	@commands.command(help="reverse the text")
-	async def reverse(self, ctx, *, text: discord.Message):
+	async def reverse(self, ctx, *text):
 		""" Reverse the text
 
 		command: !reverse <text>
@@ -57,6 +60,7 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 		**Usage**:
 			`reverse`: Reverse the text
 		"""
+		text = " ".join(text)
 		try:
 			await ctx.send(text[::-1])
 		except Exception as e:
@@ -96,7 +100,8 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
 		embed = discord.Embed(title="Dice Rolled", description=f"{ctx.author.mention} rolled dice(1 -{limit}) {rolls} times", color=0x00ff00)
 		embed.add_field(name="Result", value=result, inline=False)
-		embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 

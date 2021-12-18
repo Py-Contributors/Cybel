@@ -12,6 +12,7 @@ https://top.gg/bot/832137823309004800/invite
 from discord.ext import commands
 import discord
 
+from src.utils.utils import sponsors
 
 class ModerationCommands(commands.Cog, name="commands for server moderators: Moderation Commands"):
 	"""
@@ -53,7 +54,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 				name="Reason for kick", value=reason)
 			embed.set_thumbnail(
 				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -86,7 +88,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 				name="Muted By", value=ctx.author.mention)
 			embed.set_thumbnail(
 				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -112,7 +115,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 				name="Unmuted By", value=ctx.author.mention)
 			embed.set_thumbnail(
 				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -141,7 +145,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 				name="Reason for Ban", value=reason)
 			embed.set_thumbnail(
 				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_footer(text=f"{ctx.author}", icon_url=ctx.author.avatar_url)
+			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
