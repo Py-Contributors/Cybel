@@ -42,6 +42,6 @@ class DBHelper:
         results = db.select_data("report_status", columns, condition)
         df = pd.DataFrame(results, columns=['timestamp_UTC', 'channel_id', 'reported_user', 'reported_by', 'reported_to', 'reason'])
         df["timestamp_UTC"] = df["timestamp_UTC"].apply(lambda x: datetime.datetime.fromtimestamp(x))
-        #df = df[['timestamp_UTC', 'reason']]
-        return df
+        return_df = df[['timestamp_UTC', 'reported_user', 'reported_by', 'reported_to', 'reason']]
+        return return_df
 
