@@ -1,10 +1,11 @@
 """ helper function to Database """
-
-from src.utils.db import DataBase, create_connection
 import pandas as pd
 import datetime
 
-connection, cursor = create_connection()
+from src.utils.db import DataBase, create_connection
+from src.utils.utils import DATABASE_URL
+
+connection, cursor = create_connection(DATABASE_URL)
 db = DataBase(connection, cursor)
 
 
@@ -41,6 +42,6 @@ class DBHelper:
         results = db.select_data("report_status", columns, condition)
         df = pd.DataFrame(results, columns=['timestamp_UTC', 'channel_id', 'reported_user', 'reported_by', 'reported_to', 'reason'])
         df["timestamp_UTC"] = df["timestamp_UTC"].apply(lambda x: datetime.datetime.fromtimestamp(x))
-        df = df[['timestamp_UTC', 'reason']]
+        #df = df[['timestamp_UTC', 'reason']]
         return df
 

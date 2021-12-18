@@ -1,12 +1,11 @@
 """ 
 python class for database CRUD operations
+
+    
 """
-import os
 import psycopg2
 
-from src.utils.utils import DATABASE_URL
-
-def create_connection():
+def create_connection(DATABASE_URL):
     """
     Create a connection to the database
     """
@@ -21,7 +20,16 @@ def create_connection():
         return connection, cursor
     
 class DataBase:
-    """ Postgresql Database class """
+    """ Postgresql Database class 
+    
+    methods:
+        - create_table - create a table in the database
+        - insert_data - insert data into a table in the database
+        - select_data - select data from a table in the database
+        - update_data - update data in a table in the database
+        - delete_data - delete data from a table in the database
+        - drop_table - drop a table in the database
+    """
     
     def __init__(self, connection, cursor):
         self.connection = connection

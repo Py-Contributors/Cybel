@@ -1,4 +1,1 @@
-,timestamp,reason
-0,2021-12-17 12:15:00,reporting user for testing.
-1,2021-12-17 12:59:11,testing report
-2,2021-12-17 07:34:34,
+,timestamp_UTC,channel_id,reported_user,reported_by,reported_to,reason
