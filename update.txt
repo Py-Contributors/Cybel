@@ -1,0 +1,42 @@
+What's New
+
+### v2.0.2 Release (19/12/2021)
+
+- More control over bot's behavior(change bot's avatar, name, nickname, status, etc): (added in v2.0.2)
+- Bot notifications if user edit or delete the message in the server: (added in v2.0.2)
+- Bot can change the nickname of the user in the server: (added in v2.0.2)
+- postgresql database support: (added in v2.0.2)
+- Admin can access the misconduct/spam behaviour report status of the member from db: (added in v2.0.2)
+- Bot can have record of the user's report status in db: (added in v2.0.2)
+- Optimize code for performance & bug fix: (added in v2.0.2)
+- more...
+
+### V2.0.1 Release (14/12/2021)
+
+- `AutoMod`: Curse word deletion improved (added: v2.0.1)
+- get bot latency : (added: v2.0.1)
+- slot machine : (added: v2.0.1)
+- change username of self(admin) : (added: v2.0.1)
+- source code command : (added: v2.0.1)
+- Bot can send message to user in DM: (added: v2.0.1)
+- Optimize code for performance : (added: v2.0.1)
+- Bug fixes
+- more...
+
+### v2.0.0 Release (12/12/2021)
+
+- member can report someone to admin: like for bullying, bad behaviour : (added: v2.0.0)
+- Create server Instant Invite : (added: v2.0.0)
+- create bot invite : (added: v2.0.0)
+- Kick/Ban User: (added: v2.0.0)
+- Get user avatar : (added: v2.0.0)
+- delete role : (added: v2.0.0)
+- Server(Id, Name, Owner, Icon) : (added: v2.0.0)
+- Get Member Avatar : (added: v2.0.0)
+- Bug fix: (added: v2.0.0)
+- optimize code for performance : (added: v2.0.0)
+
+## Under Review Features
+
+- one command role assignment to all members: (under review)
+- send dm message to all member in server: (under review)

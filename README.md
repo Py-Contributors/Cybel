@@ -11,7 +11,7 @@
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
 - [Added Features](#added-features)
-  - [v2.0.2 Release](#v202-release)
+  - [v2.0.2 Release (19/12/2021)](#v202-release-19122021)
   - [V2.0.1 Release (14/12/2021)](#v201-release-14122021)
   - [v2.0.0 Release (12/12/2021)](#v200-release-12122021)
 - [Under Review Features](#under-review-features)
@@ -68,7 +68,7 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 ## Added Features
 
-### v2.0.2 Release
+### v2.0.2 Release (19/12/2021)
 
 - More control over bot's behavior(change bot's avatar, name, nickname, status, etc): (added in v2.0.2)
 - Bot notifications if user edit or delete the message in the server: (added in v2.0.2)

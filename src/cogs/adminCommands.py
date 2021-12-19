@@ -42,7 +42,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 	def __init__(self, bot):
 		self.bot = bot
 
-	
+
 	@commands.command(help="create category in server")
 	@commands.has_permissions(administrator=True)
 	async def create_category(self, ctx, category: str):
@@ -63,6 +63,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
+
 	@commands.command(help="delete category in server")
 	@commands.has_permissions(administrator=True)
 	async def delete_category(self, ctx, category: discord.CategoryChannel):
@@ -82,6 +83,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
+
 
 	@commands.command(help="create text channel in server")
 	@commands.has_permissions(administrator=True)
@@ -109,6 +111,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
+
 	@commands.command(help="delete text channel in server")
 	@commands.has_permissions(administrator=True)
 	async def delete_text_channel(self, ctx, channel: discord.TextChannel):
@@ -128,6 +131,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
+
 
 	@commands.command(help="create voice channel in server")
 	@commands.has_permissions(administrator=True)
@@ -152,6 +156,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		voice_channel = f'{channel} got created by {ctx.author.mention}'
 		await ctx.send(voice_channel)
 
+
 	@commands.command(help="delete voice channel in server")
 	@commands.has_permissions(administrator=True)
 	async def delete_voice_channel(self, ctx, channel: discord.VoiceChannel):
@@ -171,6 +176,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
+
 
 	@commands.command(help="create a role in server")
 	@commands.has_permissions(manage_roles=True)
@@ -192,6 +198,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
+
 	@commands.command(help="delete a role in server")
 	@commands.has_permissions(manage_roles=True)
 	async def delete_role(self, ctx, role: discord.Role):
@@ -211,6 +218,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
+
 
 	@commands.command(aliases=["assign_role"], help="assign role to user")
 	@commands.has_permissions(manage_roles=True)
@@ -253,6 +261,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
+
 	@commands.command(help="send message to user dm")
 	@commands.has_permissions(administrator=True)
 	async def dm(self, ctx, member: discord.Member, *, message: str):
@@ -288,6 +297,6 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
-	
+
 def setup(bot: commands.Cog):
 	bot.add_cog(AdminCommands(bot))
