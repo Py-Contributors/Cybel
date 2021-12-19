@@ -1,4 +1,5 @@
 """ helper function to Database """
+from numpy import delete
 import pandas as pd
 import datetime
 
@@ -8,8 +9,9 @@ from src.utils.utils import DATABASE_URL
 connection, cursor = create_connection(DATABASE_URL)
 db = DataBase(connection, cursor)
 
+report_status_table = "report_status"
 
-# FIX: create class here
+
 class DBHelper:
 
     """
@@ -30,7 +32,7 @@ class DBHelper:
         Arguments:
             args {list} -- list of columns to be inserted
         """
-        db.insert_data("report_status", *args)
+        db.insert_data(report_status_table, *args)
 
 
     def get_report_csv(self, condition):
@@ -40,11 +42,13 @@ class DBHelper:
             columns {list} -- list of columns to be selected
             condition {str} -- condition to be applied
         """
-        results = db.select_data("report_status", condition)
+        try:
+            results = db.select_data("report_status", condition)
 
-        df = pd.DataFrame(results, columns=['timestamp_UTC', 'channel_id', 'reported_user', 'reported_by', 'reported_to', 'reason'])
-        df["timestamp_UTC"] = df["timestamp_UTC"].apply(lambda x: datetime.datetime.fromtimestamp(x))
-        return_df = df[['timestamp_UTC', 'reported_user', 'reported_by', 'reason']]
+            df = pd.DataFrame(results, columns=['timestamp_UTC', 'channel_id', 'reported_user', 'reported_by', 'reported_to', 'reason'])
+            return_df = df[['timestamp_UTC', 'reported_user', 'reported_by', 'reason']]
+        except Exception as e:
+            print(e)
         return return_df
 
     
@@ -54,7 +58,7 @@ class DBHelper:
         Arguments:
             condition {str} -- condition to be applied
         """
-        counts = db.count_data("report_status", condition)
+        counts = db.count_data(report_status_table, condition)
         return counts[0][0]
 
 
@@ -64,4 +68,4 @@ class DBHelper:
         Arguments:
             condition {str} -- condition to be applied
         """
-        db.delete_data("report_status", condition)
+        db.delete_data(report_status_table, condition)

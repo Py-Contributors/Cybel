@@ -22,7 +22,7 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 	async def change_bot_username(self, ctx, new_username: str):
 		""" Change username
 
-		command: !username <new_username>
+		command: !change_bot_username <new_username>
 
 		**Usage**:
 			change username of server.
@@ -35,9 +35,9 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command(help="change the avatar of bot")
+	@commands.command(help="change the avatar of bot") #FIXME: change avatar is not working
 	@commands.is_owner()
-	async def change_bot_avatar(self, ctx, new_avatar: str):
+	async def change_bot_avatar(self, ctx, *, new_avatar: str):
 		""" Change avatar of bot
 
 		command: !avatar <new_avatar>
@@ -46,7 +46,7 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 			change avatar of server.
 			Cybel Need administrator permission for change avatar.
 		"""
-		try:
+		try: # update bot avatar
 			await ctx.bot.user.edit(avatar=new_avatar)
 			await ctx.send(f"Avatar changed to {new_avatar}")
 		except Exception as e:
@@ -55,7 +55,7 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 
 	@commands.command(help="change the bot status")
 	@commands.is_owner()
-	async def change_bot_game(self, ctx, new_game: str): # FIXME: Update dynamically from some api or something
+	async def change_bot_game(self, ctx, new_game: str):
 		""" Change game
 
 		command: !game <new_game>

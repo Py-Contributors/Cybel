@@ -8,11 +8,13 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 '''
-from dis import disco
+from dataclasses import dataclass
+from datetime import datetime
 from discord.ext import commands
 import discord
 
 from src.utils.utils import bot_version, sponsors
+from src.utils.dbhelper import DBHelper
 
 class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Commands'):
 	''' Utility Commands 
@@ -35,6 +37,8 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 
 	def __init__(self, bot):
 		self.bot = bot
+		self.db = DBHelper()
+
 
 	@commands.command(aliases=['server_link'], help='Create an invite link for the server')
 	async def server_invite(self, ctx):

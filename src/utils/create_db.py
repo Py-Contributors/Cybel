@@ -11,10 +11,14 @@ db = DataBase(connection, cursor)
 
 # report_status table
 db.create_table("report_status", """
-                                datetime numeric NOT NULL,
+                                datetime timestamp NOT NULL,
                                 channel_id numeric NOT NULL,
                                 reported_user varchar(100) NOT NULL,
                                 reported_by varchar(100) NOT NULL,
                                 reported_to varchar(100) NOT NULL,
                                 reason varchar(255) NOT NULL""")
 
+
+
+# remind_me_table
+# notes_table 

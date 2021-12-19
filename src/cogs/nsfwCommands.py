@@ -55,7 +55,7 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 			reported_to = str(self.bot.get_user(reported_to.id))
 			reported_member = str(self.bot.get_user(reported_member.id))
 
-			self.db.create_report(datetime.datetime.utcnow().timestamp(),  # db function to create report
+			self.db.create_report(str(datetime.datetime.utcnow()),  # db function to create report
 				ctx.guild.id, reported_member, reported_by, reported_to, reason)
 
 			await ctx.send(embed=embed)
