@@ -45,7 +45,7 @@ class DBHelper:
         try:
             results = db.select_data("report_status", condition)
 
-            df = pd.DataFrame(results, columns=['timestamp_UTC', 'channel_id', 'reported_user', 'reported_by', 'reported_to', 'reason'])
+            df = pd.DataFrame(results, columns=['timestamp_UTC', 'guild_id', 'reported_user', 'reported_by', 'reported_to', 'reason'])
             return_df = df[['timestamp_UTC', 'reported_user', 'reported_by', 'reason']]
         except Exception as e:
             print(e)

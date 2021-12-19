@@ -208,8 +208,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 		"""
 		try:
 		
-			channel_id = ctx.guild.id
-			df = self.db.get_report_csv("channel_id='{}'".format(channel_id)) # db function to get report
+			guild_id = ctx.guild.id
+			df = self.db.get_report_csv("guild_id='{}'".format(guild_id)) # db function to get report
 			temp_file = os.path.join(root_dir, "logs", "temp.csv")  # temp file to save report
 			df.to_csv(temp_file)
 			await ctx.send(file=discord.File(temp_file))
@@ -251,9 +251,9 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			Cybel Need administrator permission for count report.
 		"""
 		try:
-			channel_id = ctx.guild.id
+			guild_id = ctx.guild.id
 			channel_name = ctx.guild.name
-			count = self.db.get_report_count("channel_id='{}'".format(channel_id))
+			count = self.db.get_report_count("guild_id='{}'".format(guild_id))
 	
 
 			embed = discord.Embed(title="Report count", color=0x00ff00)
@@ -279,8 +279,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 		"""
 		try:
 			member = str(self.bot.get_user(member.id))
-			channel_id = ctx.guild.id
-			self.db.delete_user_report("reported_user='{}' AND channel_id={}".format(member, channel_id))
+			guild_id = ctx.guild.id
+			self.db.delete_user_report("reported_user='{}' AND guild_id={}".format(member, guild_id))
 			embed = discord.Embed(title="Report deleted", description="{}'s report has been deleted.".format(member), color=0x00ff00)
 			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
 			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
