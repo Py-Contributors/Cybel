@@ -16,7 +16,7 @@ class TestingCommands(commands.Cog, name="testing command for server: Testing Co
 
 	def __init__(self, bot):
 		self.bot = bot
-	
+
 
 def setup(bot: commands.Bot):
 	bot.add_cog(TestingCommands(bot))
