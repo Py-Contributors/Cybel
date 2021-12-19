@@ -22,7 +22,7 @@ intents.members = True
 bot = commands.Bot(command_prefix='!',
                    intents=intents,
                    case_insensitive=True,
-                   description='Cybel - A Discord Bot')
+                   description='''Cybel - A Powerfull, Advanced, and Open Source Discord Bot.\nGithub:-  [CodePerfectPlus](https://github.com/codeperfectoplus)\nDeveloper:  [Deepak Raj](https://www.linkedin.com/in/deepak-raj-35887386/)''')
 
         
 cog_dict = {
@@ -31,11 +31,13 @@ cog_dict = {
     'API Based Commands': 'src.cogs.apiBasedCommands',
     'Other Commands': 'src.cogs.otherCommands',
     'Moderation Commands': 'src.cogs.moderationCommands',
-    'Testing Commands': 'src.cogs.testingCommands',
     'NSFW Commands': 'src.cogs.nsfwCommands',
     'Fun Commands': 'src.cogs.funCommands',
     'Utility Commands': 'src.cogs.utilityCommands',
     'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
+    'Owner Commands': 'src.cogs.ownerCommands',
+    'Testing Commands': 'src.cogs.testingCommands',
+
 }
 
 def load_cogs(cog_dict: dict):

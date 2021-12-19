@@ -167,13 +167,9 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.add_field(name="Pressure", value=pressure)
                 embed.add_field(name='Humidity', value=humidity)
                 embed.add_field(name='Sea Level', value=sea_level)
-
-                embed.set_thumbnail(
-                    url=f"http://openweathermap.org/img/w/{weather_data['list'][0]['weather'][0]['icon']}.png")
-                embed.set_author(
-                    name="OpenWeatherAPI", url="https://openweathermap.org/")
-                embed.set_image(
-                    url=random.choice(weather_image_list))
+                icon_url = f"http://openweathermap.org/img/w/{weather_data['list'][0]['weather'][0]['icon']}.png"
+                embed.set_thumbnail(url=icon_url)
+                embed.set_image(url=random.choice(weather_image_list))
                 embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
@@ -198,8 +194,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 dog_picture_url = result["message"]
                 embed = discord.Embed(title="bow! bow!", color=discord.Color.dark_gold())
                 embed.set_image(url=dog_picture_url)
-                embed.set_author(
-                    name="Dog API", url='https://dog.ceo/dog-api/')
                 embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
@@ -223,8 +217,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 fox_picture_url = result["image"]
                 embed = discord.Embed(title="howls!", color=discord.Color.dark_gold())
                 embed.set_image(url=fox_picture_url)
-                embed.set_author(
-                    name="foxAPI", url='https://randomfox.ca/')
                 embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
@@ -248,8 +240,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 cat_picture_url = result["url"]
                 embed = discord.Embed(title="Meow! Meow!", color=discord.Color.dark_gold())
                 embed.set_image(url=cat_picture_url)
-                embed.set_author(
-                    name='catAPI', url='https://thatcopy.pw/catapi/')
                 embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
                 embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
