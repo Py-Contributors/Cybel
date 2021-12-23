@@ -66,7 +66,9 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - More features coming soon...
 - please use [discussion](https://github.com/codePerfectPlus/cybel/discussions) to suggest new features
 
-## Added Features
+## Changelog
+
+check changelog.txt for full information
 
 ### v2.0.2 Release (19/12/2021)
 
@@ -90,19 +92,6 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 - Optimize code for performance : (added: v2.0.1)
 - Bug fixes
 - more...
-
-### v2.0.0 Release (12/12/2021)
-
-- member can report someone to admin: like for bullying, bad behaviour : (added: v2.0.0)
-- Create server Instant Invite : (added: v2.0.0)
-- create bot invite : (added: v2.0.0)
-- Kick/Ban User: (added: v2.0.0)
-- Get user avatar : (added: v2.0.0)
-- delete role : (added: v2.0.0)
-- Server(Id, Name, Owner, Icon) : (added: v2.0.0)
-- Get Member Avatar : (added: v2.0.0)
-- Bug fix: (added: v2.0.0)
-- optimize code for performance : (added: v2.0.0)
 
 ## Under Review Features
 
