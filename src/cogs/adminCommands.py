@@ -12,7 +12,7 @@ import os
 import discord
 from discord.ext import commands
 
-from src.utils.utils import sponsors
+from src.utils.utils import create_embed
 
 
 class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Commands"):
@@ -55,12 +55,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need administrator access for create category.
 		"""
 		await ctx.guild.create_category(category)
-		embed = discord.Embed(title="New Category Created", color=discord.Color.blue())
+		embed = create_embed(ctx, title="New Category Created", color=discord.Color.blue())
 		embed.add_field(name="Created Category", value=category)
 		embed.add_field(name="Created by", value=ctx.author.mention)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -76,12 +73,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need administrator access for delete category.
 		"""
 		await category.delete()
-		embed = discord.Embed(title="Category Deleted", color=discord.Color.blue())
+		embed = create_embed(ctx, title="Category Deleted", color=discord.Color.blue())
 		embed.add_field(name="Deleted Category", value=category)
 		embed.add_field(name="Deleted by", value=ctx.author.mention)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -105,10 +99,8 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.guild.create_text_channel(channel)
 		else:
 			await ctx.guild.create_text_channel(channel, category=category)
-		embed = discord.Embed(
+		embed = create_embed(ctx, 
 			description=f'{channel} got created by {ctx.author.mention}', color=discord.Color.blue())
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -124,12 +116,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need administrator access for delete text channel.
 		"""
 		await channel.delete()
-		embed = discord.Embed(title="Text Channel Deleted", color=discord.Color.blue())
+		embed = create_embed(ctx, title="Text Channel Deleted", color=discord.Color.blue())
 		embed.add_field(name="Deleted Text Channel", value=channel)
 		embed.add_field(name="Deleted By", value=ctx.author.mention)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -169,12 +158,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need administrator access for delete voice channel.
 		"""
 		await channel.delete()
-		embed = discord.Embed(title= "Voice Channel Deleted", color=discord.Color.blue())
+		embed = create_embed(ctx, title= "Voice Channel Deleted", color=discord.Color.blue())
 		embed.add_field(name="Deleted Voice Channel", value=channel)
 		embed.add_field(name="Deleted By", value=ctx.author.mention)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -190,12 +176,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need manage_roles permission for create new role.
 		"""
 		await ctx.guild.create_role(name=new_role_name)
-		embed = discord.Embed(title="New Role Created", color=discord.Color.blue())
+		embed = create_embed(ctx, title="New Role Created", color=discord.Color.blue())
 		embed.add_field(name="Role", value=new_role_name)
 		embed.add_field(name="Approved by", value=ctx.author.mention)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -211,12 +194,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need manage_roles permission for delete role.
 		"""
 		await role.delete()
-		embed = discord.Embed(title="Role Deleted", color=discord.Color.blue())
+		embed = create_embed(ctx, title="Role Deleted", color=discord.Color.blue())
 		embed.add_field(name="Deleted Role", value=role)
 		embed.add_field(name="Deleted by", value=ctx.author.mention)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -232,13 +212,10 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			Cybel Need manage_roles permission for give role.
 		"""
 		await member.add_roles(role)
-		embed = discord.Embed(title="New Role Assigned", color=discord.Color.blue())
+		embed = create_embed(ctx, title="New Role Assigned", color=discord.Color.blue())
 		embed.add_field(name="Member", value=member.mention)
 		embed.add_field(name="New Role", value=role.name)
 		embed.add_field(name="Assigned by", value=ctx.author.mention)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 

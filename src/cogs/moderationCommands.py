@@ -9,11 +9,12 @@ Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
 import os
+from zipapp import create_archive
 from discord.ext import commands
 import discord
 
 from src.utils.dbhelper import DBHelper
-from src.utils.utils import sponsors, root_dir
+from src.utils.utils import create_embed, root_dir
 
 class ModerationCommands(commands.Cog, name="commands for server moderators: Moderation Commands"):
 	"""
@@ -47,17 +48,10 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 		await ctx.message.delete()
 		try:
 			await member.kick(reason=reason)
-			embed = discord.Embed(title=f"Kicked {member.name}!", color=discord.Color.blue())
-			embed.add_field(
-				name="Kicked Member :boot:", value=member.name)
-			embed.add_field(
-				name="Kicked By", value=ctx.author.mention)
-			embed.add_field(
-				name="Reason for kick", value=reason)
-			embed.set_thumbnail(
-				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			embed = create_embed(ctx, title=f"Kicked {member.name}!", color=discord.Color.blue())
+			embed.add_field(name="Kicked Member :boot:", value=member.name)
+			embed.add_field(name="Kicked By", value=ctx.author.mention)
+			embed.add_field(name="Reason for kick", value=reason)
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -83,15 +77,12 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 		await ctx.message.delete()
 		try:
 			await member.edit(mute=True)
-			embed = discord.Embed(title=f"Muted {member.name}", color=discord.Color.blue())
+			embed = create_embed(ctx, title=f"Muted {member.name}", color=discord.Color.blue())
 			embed.add_field(
 				name="Muted Member :mute:", value=member.mention)
 			embed.add_field(
 				name="Muted By", value=ctx.author.mention)
-			embed.set_thumbnail(
-				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -110,15 +101,12 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 		await ctx.message.delete()
 		try:
 			await member.edit(unmute=True)
-			embed = discord.Embed(title=f"Unuted {member.name}", color=discord.Color.blue())
+			embed = create_embed(ctx, title=f"Unuted {member.name}", color=discord.Color.blue())
 			embed.add_field(
 				name="Unmuted Member :loud_sound:", value=member.mention)
 			embed.add_field(
 				name="Unmuted By", value=ctx.author.mention)
-			embed.set_thumbnail(
-				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+		
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -138,17 +126,14 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 		await ctx.message.delete()
 		try:
 			await member.ban(reason=reason)
-			embed = discord.Embed(title=f"Banned {member.name}!", color=discord.Color.blue())
+			embed = create_embed(ctx, title=f"Banned {member.name}!", color=discord.Color.blue())
 			embed.add_field(
 				name="Banned Member :boom:", value=member.name)
 			embed.add_field(
 				name="Banned By", value=ctx.author.mention)
 			embed.add_field(
 				name="Reason for Ban", value=reason)
-			embed.set_thumbnail(
-				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
-			embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -231,9 +216,7 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 		try:
 			member = str(self.bot.get_user(member.id))
 			count = self.db.get_report_count("reported_user='{}'".format(member))
-			embed = discord.Embed(title="Report count", description="{} has {} reports".format(member, count), color=0x00ff00)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			embed = create_embed(ctx, title="Report count", description="{} has {} reports".format(member, count), color=0x00ff00)			
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
@@ -256,11 +239,10 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			count = self.db.get_report_count("guild_id='{}'".format(guild_id))
 	
 
-			embed = discord.Embed(title="Report count", color=0x00ff00)
+			embed = create_embed(ctx, title="Report count", color=0x00ff00)
 			embed.add_field(name="Channel Name", value=channel_name, inline=False)
 			embed.add_field(name="status", value="{} has total {} reports in server.".format(channel_name, count))
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
@@ -281,9 +263,8 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			member = str(self.bot.get_user(member.id))
 			guild_id = ctx.guild.id
 			self.db.delete_user_report("reported_user='{}' AND guild_id={}".format(member, guild_id))
-			embed = discord.Embed(title="Report deleted", description="{}'s report has been deleted.".format(member), color=0x00ff00)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+			embed = create_embed(ctx, title="Report deleted", description="{}'s report has been deleted.".format(member), color=0x00ff00)
+			
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')

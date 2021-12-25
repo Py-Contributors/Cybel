@@ -13,7 +13,7 @@ import discord
 from discord.ext import commands
 
 from src.utils import logging
-from src.utils.utils import sponsors
+from src.utils.utils import sponsors, create_embed
 
 class AutoCommands(commands.Cog, name="Auto Commands"):
 	""" These commands will fire automatically.
@@ -48,8 +48,7 @@ class AutoCommands(commands.Cog, name="Auto Commands"):
 		""" This will fire when a new member joins the server."""
 		channel = member.guild.system_channel
 		if channel is not None:
-			embed = discord.Embed(title="Welcome", description=f"welcome {member.mention}, Introduce yourself to community.")
-			embed.set_thumbnail(url=member.avatar_url)
+			embed = create_embed(ctx=None, title="Welcome", description=f"welcome {member.mention}, Introduce yourself to community.")
 			await channel.send(embed=embed)
 			await member.send("welcome to the Server! introduce yourself in server.\nOfficial Server for Cybel help: https://discord.gg/JfbK3bS\nUse `!help` command to get started.")
 
@@ -59,9 +58,7 @@ class AutoCommands(commands.Cog, name="Auto Commands"):
 		""" This event triggers when a member leaves the server."""
 		channel = member.guild.system_channel
 		if channel is not None:
-			embed = discord.Embed(title="Good Bye", description=f"{member} has left the server.")
-			embed.set_thumbnail(url=member.avatar_url)
-			embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
+			embed = create_embed(ctx=None, title="Good Bye", description=f"{member} has left the server.")
 			await channel.send(embed=embed)
 	
 

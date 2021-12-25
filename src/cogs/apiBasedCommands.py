@@ -16,7 +16,7 @@ import aiohttp
 
 from src.utils import _fetch
 from src.utils import weather_image_list, WEATHER_API_KEY
-from src.utils.utils import sponsors
+from src.utils.utils import create_embed
 
 class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands Using aiohttp"):
     """ Collection of External API Based Commands 
@@ -52,7 +52,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             try:
                 result = await _fetch(joke_api)
                 random_joke = result["joke"]
-                embed = discord.Embed(title="Random Joke", description=random_joke, color=discord.Color.dark_gold())
+                embed = create_embed(ctx, title="Random Joke", description=random_joke, color=discord.Color.dark_gold())
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -71,7 +71,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             try:
                 result = await _fetch(fact_api)
                 radnom_fact = result['text']
-                embed = discord.Embed(title="Random Fact", description=radnom_fact, color=discord.Color.dark_gold())
+                embed = create_embed(ctx, title="Random Fact", description=radnom_fact, color=discord.Color.dark_gold())
                 await ctx.send(embed=embed) 
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -94,7 +94,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 try:
                     random_quote = data[0]['q']
                     author = data[0]['a']
-                    embed = discord.Embed(title="Random Quote", description=random_quote, color=discord.Color.dark_gold())
+                    embed = create_embed(ctx, title="Random Quote", description=random_quote, color=discord.Color.dark_gold())
                     embed.add_field(name="Author", value=author, inline=False)
                     await ctx.send(embed=embed)
                 except Exception as e:
@@ -113,7 +113,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
         async with ctx.typing():
             try:
                 user_data = await _fetch(git_api)
-                embed = discord.Embed(
+                embed = create_embed(ctx, 
                     title=user_data['name'], description=user_data["company"], color=discord.Color.dark_gold())
                 embed.add_field(
 					name='Public Repos', value=user_data['public_repos'])
@@ -130,8 +130,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
                 embed.set_image(url=user_data['avatar_url'])
-                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception:
                 await ctx.send('```{} is not a GitHub user.```'.format(username))
@@ -158,7 +156,7 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 humidity = weather_data["list"][0]["main"]["humidity"]
                 sea_level = weather_data["list"][0]["main"]["sea_level"]
 
-                embed = discord.Embed(
+                embed = create_embed(ctx, 
                     title=f'{weather_data["city"]["name"]}- {weather_data["city"]["country"]}', color=discord.Color.dark_gold())
                 embed.add_field(
                     name="Weather", value=weather_data['list'][0]['weather'][0]['description'])
@@ -170,8 +168,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 icon_url = f"http://openweathermap.org/img/w/{weather_data['list'][0]['weather'][0]['icon']}.png"
                 embed.set_thumbnail(url=icon_url)
                 embed.set_image(url=random.choice(weather_image_list))
-                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('```I am not able to find the {}.```'.format(city_name))
@@ -192,10 +188,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 result = await _fetch(dog_api)
 
                 dog_picture_url = result["message"]
-                embed = discord.Embed(title="bow! bow!", color=discord.Color.dark_gold())
+                embed = create_embed(ctx, title="bow! bow!", color=discord.Color.dark_gold())
                 embed.set_image(url=dog_picture_url)
-                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -215,10 +209,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 result = await _fetch(fox_api)
 
                 fox_picture_url = result["image"]
-                embed = discord.Embed(title="howls!", color=discord.Color.dark_gold())
+                embed = create_embed(ctx, title="howls!", color=discord.Color.dark_gold())
                 embed.set_image(url=fox_picture_url)
-                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -238,10 +230,8 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 result = await _fetch(cat_api)
 
                 cat_picture_url = result["url"]
-                embed = discord.Embed(title="Meow! Meow!", color=discord.Color.dark_gold())
+                embed = create_embed(ctx, title="Meow! Meow!", color=discord.Color.dark_gold())
                 embed.set_image(url=cat_picture_url)
-                embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-                embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))

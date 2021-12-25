@@ -14,7 +14,7 @@ import datetime
 from better_profanity import profanity
 
 from src.utils.dbhelper import DBHelper
-from src.utils.utils import sponsors
+from src.utils.utils import create_embed
 
 class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 	""" NSFW commands 
@@ -43,14 +43,11 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 			reason = ' '.join(reason)
 
 
-			embed = discord.Embed(title="Report Status", color=discord.Color.red())
+			embed = create_embed(ctx, title="Report Status", color=discord.Color.red())
 			embed.add_field(name="Reported User", value=reported_member.mention, inline=False)
 			embed.add_field(name="Reported By", value=reported_by.mention)
 			embed.add_field(name="Reported to", value=reported_to.mention)
 			embed.add_field(name="Reason", value=reason, inline=False)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
-
 			reported_by = str(self.bot.get_user(reported_by.id))
 			reported_to = str(self.bot.get_user(reported_to.id))
 			reported_member = str(self.bot.get_user(reported_member.id))

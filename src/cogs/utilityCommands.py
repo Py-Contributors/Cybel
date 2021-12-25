@@ -13,7 +13,7 @@ from datetime import datetime
 from discord.ext import commands
 import discord
 
-from src.utils.utils import bot_version, sponsors
+from src.utils.utils import bot_version, create_embed
 from src.utils.dbhelper import DBHelper
 
 class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Commands'):
@@ -51,11 +51,8 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 
 		'''
 		link = await ctx.channel.create_invite(unique=True)
-		embed = discord.Embed(title="Invite Link", description="🔗", color=discord.Color.green())
+		embed = create_embed(ctx, title="Invite Link", description="🔗", color=discord.Color.green())
 		embed.add_field(name="Invite Link", value=link)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -70,11 +67,8 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 		'''
 		# FIXME: generate bot invite dynamically
 		link = 'https://top.gg/bot/832137823309004800/invite'
-		embed = discord.Embed(title="Invite Link", description="🔗", color=discord.Color.green())
+		embed = create_embed(ctx, title="Invite Link", description="🔗", color=discord.Color.green())
 		embed.add_field(name="Invite Link", value=link)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -88,12 +82,9 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 			`server_icon`: Get the server icon
 		'''
 		try:
-			embed = discord.Embed(title='Server Icon', color=discord.Color.blue())
+			embed = create_embed(ctx, title='Server Icon', color=discord.Color.blue())
 			embed.set_image(url=ctx.guild.icon_url)
-			embed.set_thumbnail(url=self.bot.user.avatar_url)
 			embed.add_field(name='Server Icon URL', value=ctx.guild.icon_url, inline=False)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -109,11 +100,11 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 			`server_name`: Get the server name
 		'''
 		try:
-			embed = discord.Embed(title='Server Information', color=discord.Color.blue())
-			embed.set_thumbnail(url=self.bot.user.avatar_url)
+			embed = create_embed(title='Server Information', color=discord.Color.blue())
+			
 			embed.add_field(name='Server Name', value=ctx.guild.name, inline=False)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
+			
+			
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -129,11 +120,8 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 			`server_owner`: Get the server owner
 		'''
 		try:
-			embed = discord.Embed(title='Server Information', color=discord.Color.blue())
-			embed.set_thumbnail(url=self.bot.user.avatar_url)
+			embed = create_embed(ctx, title='Server Information', color=discord.Color.blue())
 			embed.add_field(name='Server Owner', value=ctx.guild.owner.mention, inline=False)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -149,11 +137,8 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 			`server_id`: Get the server id
 		'''
 		try:
-			embed = discord.Embed(title='Server Information', color=discord.Color.blue())
-			embed.set_thumbnail(url=self.bot.user.avatar_url)
+			embed = create_embed(ctx, title='Server Information', color=discord.Color.blue())
 			embed.add_field(name='Server ID', value=ctx.guild.id, inline=False)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -168,18 +153,15 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 			`server_info`: Get information about the discord server
 		'''
 		try:
-			embed = discord.Embed()
-			embed.set_thumbnail(url=self.bot.user.avatar_url)
-			embed.add_field(name='Server created at',
+			embed = create_embed()
+			
+			embed.add_field(ctx, name='Server created at',
 							value=ctx.guild.created_at, inline=False)
 			embed.add_field(name='Server Owner', value=ctx.guild.owner.name, inline=False)
 			embed.add_field(name='Server ID', value=ctx.guild.id, inline=False)
 			embed.add_field(name='Server Name', value=ctx.guild.name, inline=False)
 			embed.add_field(name='Total Member', value=f'{ctx.guild.member_count} members')
-			embed.add_field(name='Bot Presense', value=f'{len(self.bot.guilds)} Servers')
-			embed.set_thumbnail(url=self.bot.user.avatar_url)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
+			embed.add_field(name='Bot Presense', value=f'{len(self.bot.guilds)} Servers')	
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
@@ -194,15 +176,12 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 		**Usage**:
 			`member_info`: Get information about the discord member
 		'''
-		embed = discord.Embed(title=f'{member}', description=f'Here is some info about {member}', color=0x00ff00)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
+		embed = create_embed(ctx, title=f'{member}', description=f'Here is some info about {member}', color=0x00ff00)
 		embed.set_thumbnail(url=member.avatar_url)
 		embed.add_field(name='Nickname', value=member.nick, inline=True)
 		embed.add_field(name='Status', value=member.status, inline=True)
 		embed.add_field(name='Joined at', value=member.joined_at, inline=True)
 		embed.add_field(name='Roles', value=len(member.roles), inline=True)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
 		await ctx.send(embed=embed)
 
 
@@ -215,27 +194,22 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 		**Usage**:
 			`bot_info`: Get information about the bot
 		'''
-		embed = discord.Embed(title='Bot Information', description='Bot Information', color=discord.Color.blue())
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
+		embed = create_embed(ctx, title='Bot Information', description='Bot Information', color=discord.Color.blue())
 		embed.add_field(name='Bot Name', value='Cybel', inline=False)
 		embed.add_field(name='Bot Version', value=bot_version, inline=False)
 		embed.add_field(name='Bot Author', value='CodePerfectPlus', inline=False)
 		embed.add_field(name='Bot Invite', value='https://top.gg/bot/832137823309004800/invite', inline=False)
 		embed.add_field(name='Bot Support Server', value='https://discord.gg/5JxjZB', inline=False)
 		embed.add_field(name='Bot Source Code', value='https://github.com/codePerfectPlus/cybel', inline=False)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
+	
 		await ctx.send(embed=embed)
 
 
 	@commands.command(aliases=['member_count_server'], help='Get the member count of the server')
 	async def member_count(self, ctx): # REVIEW: add online/offline status
 		''' Get the member count of the server '''
-		embed = discord.Embed(title='Server Status', color=discord.Color.blue())
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
+		embed = create_embed(ctx, title='Server Status', color=discord.Color.blue())
 		embed.add_field(name='Member Count', value=ctx.guild.member_count, inline=False)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
 		await ctx.send(embed=embed)
 
 
@@ -251,12 +225,9 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 		try:
 			if member is None:
 				member = ctx.author
-			embed = discord.Embed(title='Avatar', color=discord.Color.blue())
+			embed = create_embed(ctx, title='Avatar', color=discord.Color.blue())
 			embed.set_image(url=member.avatar_url)
 			embed.add_field(name='Avatar URL', value=member.avatar_url, inline=False)
-			embed.set_thumbnail(url=self.bot.user.avatar_url)
-			embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-			embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
 			await ctx.send(embed=embed)
 
 		except Exception as e:
@@ -272,10 +243,7 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 		**Usage**:
 			`bot_version`: Get the version of the bot
 		'''
-		embed = discord.Embed(title='Bot Version', description=bot_version, color=discord.Color.blue())
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_thumbnail(url=self.bot.user.avatar_url)
-		embed.set_footer(text='Sponsor by  {}'.format(sponsors['name']), icon_url=sponsors['icon'])
+		embed = create_embed(ctx, title='Bot Version', description=bot_version, color=discord.Color.blue())
 		await ctx.send(embed=embed)
 
 

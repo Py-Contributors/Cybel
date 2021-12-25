@@ -12,7 +12,7 @@ https://top.gg/bot/832137823309004800/invite
 from discord.ext import commands
 import discord
 
-from src.utils.utils import sponsors
+from src.utils.utils import create_embed
 
 class OtherCommands(commands.Cog, name="Other Commands for Users : Other Commands"):
 	"""
@@ -37,10 +37,9 @@ class OtherCommands(commands.Cog, name="Other Commands for Users : Other Command
 		**Usage**
 			get the latency of the bot
 		"""
-		embed = discord.Embed(title="Pong", description="🏓", color=discord.Color.green())
+		embed = create_embed(ctx, title="Pong", description="🏓", color=discord.Color.green())
 		embed.add_field(name="Ping", value="{} ms".format(round(self.bot.latency * 1000)))
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+	
 		await ctx.send(embed=embed)
 
 

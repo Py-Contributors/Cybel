@@ -14,7 +14,8 @@ import discord
 
 import random
 
-from src.utils.utils import sponsors
+from src.utils.utils import create_embed
+
 
 class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 	""" Fun Commands 
@@ -29,6 +30,7 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 	def __init__(self, bot):
 		self.bot = bot
 	
+
 	@commands.command(aliases=["slots", "bet"], help="play slots")
 	@commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
 	async def slot(self, ctx):
@@ -44,10 +46,9 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 		b = random.choice(emojis)
 		c = random.choice(emojis)
 
-		embed = discord.Embed(title="Slot Machine", color=discord.Color.blue())
+		#embed = discord.Embed(title="Slot Machine", color=discord.Color.blue())
+		embed = create_embed(ctx, title="Slot Machine", color=discord.Color.blue())
 		embed.add_field(name="**Result**", value=f"{a} {b} {c}", inline=False)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 
@@ -98,10 +99,8 @@ class FunCommands(commands.Cog, name="Fun Commands for Users : Fun Commands"):
 			return 'Format has to be in NdN!'
 
 		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-		embed = discord.Embed(title="Dice Rolled", description=f"{ctx.author.mention} rolled dice(1 -{limit}) {rolls} times", color=0x00ff00)
+		embed = create_embed(ctx, title="Dice Rolled", description=f"{ctx.author.mention} rolled dice(1 -{limit}) {rolls} times", color=0x00ff00)
 		embed.add_field(name="Result", value=result, inline=False)
-		embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-		embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 		await ctx.send(embed=embed)
 
 

@@ -10,10 +10,9 @@
   - [Report a Bug](#report-a-bug)
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
-- [Added Features](#added-features)
+- [Changelog](#changelog)
   - [v2.0.2 Release (19/12/2021)](#v202-release-19122021)
   - [V2.0.1 Release (14/12/2021)](#v201-release-14122021)
-  - [v2.0.0 Release (12/12/2021)](#v200-release-12122021)
 - [Under Review Features](#under-review-features)
 - [Support Here](#support-here)
 - [Author](#author)
@@ -68,7 +67,7 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 ## Changelog
 
-check changelog.txt for full information
+check [changelog.txt](/changelog.txt) for full information
 
 ### v2.0.2 Release (19/12/2021)
 

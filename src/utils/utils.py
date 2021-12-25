@@ -72,3 +72,22 @@ weather_image_list = [
 	'https://cdn.discordapp.com/attachments/831943037936467985/834166848202735657/image_2.jpg',
 	'https://cdn.discordapp.com/attachments/831943037936467985/834166848404324379/image_1.jpg',
 	'https://cdn.discordapp.com/attachments/831943037936467985/834166851226304552/image_3.jpg']
+
+
+def create_embed(ctx=None, title=None, description="", color=None): # FIXME: create function to create embeds
+	""" Create an embed with the given title, description and color 
+	
+	Args:
+		title (str): The title of the embed
+		description (str): The description of the embed
+		color (int): The color of the embed
+	
+	Returns:
+		embed (discord.Embed): The embed created
+	"""
+	embed = discord.Embed(title=title, description=description, color=color)
+	embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
+	embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
+	if ctx is not None:
+		embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+	return embed
