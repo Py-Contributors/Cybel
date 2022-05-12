@@ -153,9 +153,9 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 			`server_info`: Get information about the discord server
 		'''
 		try:
-			embed = create_embed()
+			embed = create_embed(ctx, title='Server Info', color=discord.Color.blue())
 			
-			embed.add_field(ctx, name='Server created at',
+			embed.add_field(name='Server created at',
 							value=ctx.guild.created_at, inline=False)
 			embed.add_field(name='Server Owner', value=ctx.guild.owner.name, inline=False)
 			embed.add_field(name='Server ID', value=ctx.guild.id, inline=False)
