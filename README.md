@@ -8,6 +8,10 @@
 
 - [Features](#features)
   - [Report a Bug](#report-a-bug)
+  - [How to use/test](#how-to-usetest)
+    - [Server testing](#server-testing)
+    - [Run with Docker](#run-with-docker)
+    - [Run locally](#run-locally)
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
 - [Changelog](#changelog)
@@ -17,6 +21,8 @@
 - [Support Here](#support-here)
 - [Author](#author)
 - [Suggestion/Feedbacks](#suggestionfeedbacks)
+- [Maintainers 😎](#maintainers-)
+- [Social Channel 💻 - Connect with like minded people](#social-channel----connect-with-like-minded-people)
 
 ## Features
 
@@ -48,6 +54,40 @@ Invite **Cybel** into your server
 
 - [Report a Bug](https://github.com/codePerfectPlus/cybel/discussions)
 
+### How to use/test
+
+#### Server testing
+
+- if you want to test it in server please Use the Invite link [here](https://top.gg/bot/832137823309004800/invite)
+
+#### Run with Docker
+
+Documentation is in progress
+
+#### Run locally 
+1. Create .evn file in root directory and add the following variables. Sample Env file is [here](/.env.sample)
+
+```bash
+DISCORD_TOKEN: Discord bot token [get it from here](https://discord.com/developers/applications)
+WEATHER_API_KEY= OpenWeatherMap API key [get it from here](https://openweathermap.org/api)
+DATABASE_URL=postgres://username:password@localhost:5432/database_name
+SPONSOR_NAME=Codeperfectplus
+SPONSOR_ICON=https://cdn.discordapp.com/avatars/832137823309004800/890d78333bd8c91665e416bb889e24f8.webp
+```
+
+2. Create a virtual environment and install the dependencies
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+3. Run the bot
+
+```bash
+python3 bot.py
+```
 
 ### Beta Version
 
