@@ -26,17 +26,17 @@ bot = commands.Bot(command_prefix='!',
 
         
 cog_dict = {
-    'Auto Commands': 'src.cogs.autoCommands',
-    'Admin Commands': 'src.cogs.adminCommands',
-    'API Based Commands': 'src.cogs.apiBasedCommands',
-    'Other Commands': 'src.cogs.otherCommands',
-    'Moderation Commands': 'src.cogs.moderationCommands',
-    'NSFW Commands': 'src.cogs.nsfwCommands',
-    'Fun Commands': 'src.cogs.funCommands',
-    'Utility Commands': 'src.cogs.utilityCommands',
+    'Auto Commands': 'src.cogs.autoCommands',# FIXME: add music commands in future update
+    'Admin Commands': 'src.cogs.adminCommands',# FIXME: add music commands in future update
+    'API Based Commands': 'src.cogs.apiBasedCommands',# FIXME: add music commands in future update
+    'Other Commands': 'src.cogs.otherCommands',# FIXME: add music commands in future update
+    'Moderation Commands': 'src.cogs.moderationCommands',# FIXME: add music commands in future update
+    'NSFW Commands': 'src.cogs.nsfwCommands',# FIXME: add music commands in future update
+    'Fun Commands': 'src.cogs.funCommands',# FIXME: add music commands in future update
+    'Utility Commands': 'src.cogs.utilityCommands', # FIXME: add music commands in future update
     'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
-    'Owner Commands': 'src.cogs.ownerCommands',
-    'Testing Commands': 'src.cogs.testingCommands',
+    'Owner Commands': 'src.cogs.ownerCommands',# FIXME: add music commands in future update
+    'Testing Commands': 'src.cogs.testingCommands',# FIXME: add music commands in future update
 
 }
 
