@@ -23,6 +23,7 @@
 - [Suggestion/Feedbacks](#suggestionfeedbacks)
 - [Maintainers 😎](#maintainers-)
 - [Social Channel 💻 - Connect with like minded people](#social-channel----connect-with-like-minded-people)
+- [License](#license) 
 
 ## Features
 
@@ -161,6 +162,10 @@ check [changelog.txt](/changelog.txt) for full information
 ## Social Channel 💻 - Connect with like minded people
 
 - [Discord/PyContributors](https://discord.gg/FXyh2S3)
+
+## License 
+
+- [MIT](https://github.com/Py-Contributors/cybel-discord.py/blob/main/LICENSE)
 
 <p align="center">
 <a href="https://api.github.com/repos/py-contributors/awesomescripts/contributors"><img src="http://ForTheBadge.com/images/badges/built-by-developers.svg" alt="Built by Developers"></a>
