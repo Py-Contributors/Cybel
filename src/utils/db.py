@@ -48,7 +48,7 @@ class DataBase:
         Create a table in the database
         """
         try:
-            sql_query = "CREATE TABLE IF NOT EXISTS {} ({})".format(table_name, table_columns)
+            sql_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({table_columns})"
             self.cursor.execute(sql_query)
             self.connection.commit()
             print("Table {} created successfully".format(table_name))
@@ -61,7 +61,7 @@ class DataBase:
         Insert data into the database
         """
         try:
-            sql_query = "INSERT INTO {} VALUES {}".format(table_name, args)
+            sql_query = f"INSERT INTO {table_name} VALUES {args}"
             self.cursor.execute(sql_query)
             self.connection.commit()
             print("Data inserted successfully")
@@ -74,7 +74,7 @@ class DataBase:
         Select data from the database
         """
         try:
-            sql_query = "SELECT * FROM {} WHERE {}".format(table_name, condition)
+            sql_query = f"SELECT * FROM {table_name} WHERE {condition}"
             self.cursor.execute(sql_query)
             return self.cursor.fetchall()
         except (Exception, psycopg2.DatabaseError) as error:
@@ -86,7 +86,7 @@ class DataBase:
         Update data in the database
         """
         try:
-            sql_query = "UPDATE {} SET {} WHERE {}".format(table_name, data, condition)
+            sql_query = f"UPDATE {table_name} SET {data} WHERE {condition}"
             self.cursor.execute(sql_query)
             self.connection.commit()
             print("Data updated successfully")
@@ -99,7 +99,7 @@ class DataBase:
         Delete data from the database
         """
         try:
-            sql_query = "DELETE FROM {} WHERE {}".format(table_name, condition)
+            sql_query = f"DELETE FROM {table_name} WHERE {condition}"
             self.cursor.execute(sql_query)
             self.connection.commit()
             print("Data deleted successfully")
@@ -112,7 +112,7 @@ class DataBase:
         Count data from the database
         """
         try:
-            sql_query = "SELECT COUNT(*) FROM {} WHERE {}".format(table_name, condition)
+            sql_query = f"SELECT COUNT(*) FROM {table_name} WHERE {condition}"
             self.cursor.execute(sql_query)
             return self.cursor.fetchall()
         except (Exception, psycopg2.DatabaseError) as error:
