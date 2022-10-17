@@ -11,7 +11,6 @@ https://top.gg/bot/832137823309004800/invite
 from discord.ext import commands
 import discord
 import datetime
-from better_profanity import profanity
 
 from src.utils.dbhelper import DBHelper
 from src.utils.utils import create_embed
@@ -58,25 +57,6 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 			await ctx.send(embed=embed)
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
-
-
-	@commands.Cog.listener()
-	async def on_message(self, message: discord.Message):
-		''' 
-		on_message event will fire when a message is sent.
-
-		Arguments:
-			message {discord.Message} -- The message object.
-
-		'''
-
-		if message.author.bot:
-			return
-		elif message.author.id == self.bot.user.id:
-			return
-		elif profanity.contains_profanity(message.content): # delete the message if it contains profanity
-			await message.delete()
-			await message.channel.send(f"**{message.author.mention}**, **Please do not use bad words!**")
 
 		
 def setup(bot: commands.Bot):
