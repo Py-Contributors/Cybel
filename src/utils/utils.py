@@ -89,5 +89,5 @@ def create_embed(ctx=None, title=None, description="", color=None): # FIXME: cre
 	embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
 	embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
 	if ctx is not None:
-		embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+		embed.set_author(name=ctx.author.name)
 	return embed

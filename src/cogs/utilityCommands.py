@@ -247,5 +247,5 @@ class UtilityCommands(commands.Cog, name='Useful Commands for Users : Utility Co
 		await ctx.send(embed=embed)
 
 
-def setup(bot: commands.Bot):
-	bot.add_cog(UtilityCommands(bot))
+async def setup(bot: commands.Bot):
+	await bot.add_cog(UtilityCommands(bot))

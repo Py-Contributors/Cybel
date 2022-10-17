@@ -275,5 +275,5 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-def setup(bot: commands.Cog):
-	bot.add_cog(AdminCommands(bot))
+async def setup(bot: commands.Cog):
+	await bot.add_cog(AdminCommands(bot))

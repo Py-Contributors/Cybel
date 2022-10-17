@@ -79,5 +79,5 @@ class AutoCommands(commands.Cog, name="Auto Commands"):
 			await ctx.send("**An error occurred while executing this command.**")
 
 	
-def setup(bot: commands.Cog):
-	bot.add_cog(AutoCommands(bot))
+async def setup(bot: commands.Cog):
+	await bot.add_cog(AutoCommands(bot))

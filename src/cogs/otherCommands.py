@@ -59,5 +59,5 @@ class OtherCommands(commands.Cog, name="Other Commands for Users : Other Command
 			await ctx.send('```{} - {}```'.format(type(e).__name__, e))
 
 
-def setup(bot: commands.Cog):
-	bot.add_cog(OtherCommands(bot))
+async def setup(bot: commands.Cog):
+	await bot.add_cog(OtherCommands(bot))

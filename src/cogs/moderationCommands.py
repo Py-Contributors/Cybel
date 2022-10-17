@@ -270,5 +270,5 @@ class ModerationCommands(commands.Cog, name="commands for server moderators: Mod
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-def setup(bot: commands.Bot):
-	bot.add_cog(ModerationCommands(bot))
+async def setup(bot: commands.Bot):
+	await bot.add_cog(ModerationCommands(bot))

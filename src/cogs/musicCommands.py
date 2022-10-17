@@ -43,5 +43,5 @@ class MusicCommands(commands.Cog, name="Commands for music activity."):
         self.bot = bot
 
         
-def setup(bot: commands.Cog):
-    bot.add_cog(MusicCommands(bot))
+async def setup(bot: commands.Cog):
+    await bot.add_cog(MusicCommands(bot))

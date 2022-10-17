@@ -237,5 +237,5 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
-def setup(bot: commands.Cog):
-    bot.add_cog(APIBaseUserCommands(bot))
+async def setup(bot: commands.Cog):
+    await bot.add_cog(APIBaseUserCommands(bot))
