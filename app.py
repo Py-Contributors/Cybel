@@ -37,7 +37,7 @@ cog_dict = {
     'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
     'Owner Commands': 'src.cogs.ownerCommands',
     'Testing Commands': 'src.cogs.testingCommands',
-
+    'Error Handler': 'src.cogs.errorHandler',
 }
 
 def load_cogs(cog_dict: dict):
