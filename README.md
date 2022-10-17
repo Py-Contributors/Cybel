@@ -15,6 +15,7 @@
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
 - [Changelog](#changelog)
+- [Supported Versions](#supported-versions)
 - [Under Review Features](#under-review-features)
 - [Support Here](#support-here)
 - [Author](#author)
@@ -108,6 +109,15 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 check [changelog.txt](/changelog.md) for full information
 
+## Supported Versions
+
+Use this section to tell people about which versions of your project are
+currently being supported with security updates.
+
+| Version | Supported          |   Based on        | Status       |      
+| ------- | ------------------ | ----------        | -------      |
+| 2.0.0   | :white_check_mark: | Discord.py v2.0.0 |  Not Stable  |
+| 1.0.2   | :white_check_mark: | Discord.py v1.7.3 |  Stable      |
 
 ## Under Review Features
 
