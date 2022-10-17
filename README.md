@@ -15,15 +15,13 @@
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
 - [Changelog](#changelog)
-  - [v2.0.2 Release (19/12/2021)](#v202-release-19122021)
-  - [V2.0.1 Release (14/12/2021)](#v201-release-14122021)
 - [Under Review Features](#under-review-features)
 - [Support Here](#support-here)
 - [Author](#author)
 - [Suggestion/Feedbacks](#suggestionfeedbacks)
 - [Maintainers 😎](#maintainers-)
 - [Social Channel 💻 - Connect with like minded people](#social-channel----connect-with-like-minded-people)
-- [License](#license) 
+- [License](#license)
 
 ## Features
 
@@ -108,30 +106,8 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 ## Changelog
 
-check [changelog.txt](/changelog.txt) for full information
+check [changelog.txt](/changelog.md) for full information
 
-### v2.0.2 Release (19/12/2021)
-
-- More control over bot's behavior(change bot's avatar, name, nickname, status, etc): (added in v2.0.2)
-- Bot notifications if user edit or delete the message in the server: (added in v2.0.2)
-- Bot can change the nickname of the user in the server: (added in v2.0.2)
-- postgresql database support: (added in v2.0.2)
-- Admin can access the misconduct/spam behaviour report status of the member from db: (added in v2.0.2)
-- Bot can have record of the user's report status in db: (added in v2.0.2)
-- Optimize code for performance & bug fix: (added in v2.0.2)
-- more...
-
-### V2.0.1 Release (14/12/2021)
-
-- `AutoMod`: Curse word deletion improved (added: v2.0.1)
-- get bot latency : (added: v2.0.1)
-- slot machine : (added: v2.0.1)
-- change username of self(admin) : (added: v2.0.1)
-- source code command : (added: v2.0.1)
-- Bot can send message to user in DM: (added: v2.0.1)
-- Optimize code for performance : (added: v2.0.1)
-- Bug fixes
-- more...
 
 ## Under Review Features
 
