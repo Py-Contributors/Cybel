@@ -59,5 +59,5 @@ class NsfwCommands(commands.Cog, name="command for NSFW: NSFW Commands"):
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 		
-def setup(bot: commands.Bot):
-	bot.add_cog(NsfwCommands(bot))
+async def setup(bot: commands.Bot):
+	await bot.add_cog(NsfwCommands(bot))

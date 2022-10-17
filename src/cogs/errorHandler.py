@@ -80,4 +80,4 @@ class CommandErrorHandler(commands.Cog):
             await ctx.send(embed=e)
 
 async def setup(bot: commands.Bot):
-	bot.add_cog(CommandErrorHandler(bot))
+	await bot.add_cog(CommandErrorHandler(bot))

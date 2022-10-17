@@ -60,5 +60,5 @@ class TestingCommands(commands.Cog, name="testing command for server: Testing Co
 				await message.delete()
 				break
 				# ending the loop if user doesn't react after x seconds
-def setup(bot: commands.Bot):
-	bot.add_cog(TestingCommands(bot))
+async def setup(bot: commands.Bot):
+	await bot.add_cog(TestingCommands(bot))
