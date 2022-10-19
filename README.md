@@ -12,6 +12,7 @@
     - [Server testing](#server-testing)
     - [Run with Docker](#run-with-docker)
     - [Run locally](#run-locally)
+  - [Run in Debug Mode](#run-in-debug-mode)
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
 - [Changelog](#changelog)
@@ -89,9 +90,15 @@ pip install -r requirements.txt
 python3 bot.py
 ```
 
+### Run in Debug Mode
+
+```bash
+python app.py -d
+```
+
 ### Beta Version
 
-beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
+beta version deprecated in 1.0.0 release. It will be removed in v1.0.2 release.
 
 ## Upcoming Feature
 

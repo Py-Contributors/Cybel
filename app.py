@@ -10,12 +10,18 @@ Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 '''
 import asyncio
+from termcolor import colored
 import discord
-from discord import Intents
 from discord.ext import commands
+import argparse
+
+arg = argparse.ArgumentParser()
+arg.add_argument("-d", "--debug", help="Debug mode", action="store_true")
+args = arg.parse_args()
 
 from src.utils import logging
 from src.utils import DISCORD_TOKEN
+
 
 intents = discord.Intents.all()
 intents.members = True
@@ -45,12 +51,13 @@ async def load_cogs(cog_dict: dict):
     """ Function for loading cogs using dictionary """
     try:
         for key, value in cog_dict.items():
-            logging.info('Loading... {}'.format(key))
+            print(colored(f"Loading {key}...", "green"))
             await bot.load_extension(value)
     except Exception as e:
+        print(colored(f"Error while loading cogs: {e}", "red"))
         logging.error('{} - {}'.format(type(e).__name__, e))
 
 
 if __name__ == '__main__':
     asyncio.run(load_cogs(cog_dict=cog_dict))
-    bot.run(DISCORD_TOKEN)
+    bot.run(DISCORD_TOKEN, log_level=logging.DEBUG if args.debug else logging.INFO)
