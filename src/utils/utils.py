@@ -16,16 +16,17 @@ from dotenv import load_dotenv
 import logging
 from pathlib import Path
 
-bot_version = '2.0.2'
+bot_version = '2.0.0'
+
 root_dir = Path(__file__).parent.parent.parent
 
 load_dotenv()
 logging.basicConfig(format="%(levelname)s - %(asctime)s - %(name)s - %(message)s",
+                    encoding="utf-8",
 					datefmt='%d/%m/%Y %I:%M:%S %p',
-					level=logging.INFO,
 					handlers=[
         				logging.FileHandler(os.path.join(root_dir, 'logs', 'bot.log')),
-        				logging.StreamHandler()]
+        				logging.StreamHandler(),]
 						)
 
 logging.info(f'Discord Version : {discord.__version__}')

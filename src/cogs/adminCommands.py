@@ -8,7 +8,6 @@ Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
 https://top.gg/bot/832137823309004800/invite
 """
-import os
 import discord
 from discord.ext import commands
 
