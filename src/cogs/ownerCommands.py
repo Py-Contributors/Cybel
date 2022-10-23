@@ -57,7 +57,7 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
 
-	@commands.command(help="change the bot status") 
+	@commands.command(help="change the bot status")
 	@commands.is_owner()
 	async def change_bot_game(self, ctx, new_game: str):
 		""" Change game
@@ -73,7 +73,7 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 			await ctx.send(f"Game changed to {new_game}")
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
-	
+
 
 	@commands.command(help="change the bot status") # REVIEW: have to review this command
 	@commands.is_owner()
@@ -100,8 +100,8 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 			await ctx.send(f"Status changed to {new_status}")
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
-		
-	
+
+
 	@commands.command(help="change the bot status")  # REVIEW:- have to review this command
 	@commands.is_owner()
 	async def change_bot_activity(self, ctx, new_activity: str):
@@ -119,7 +119,7 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
- 
+
 	@commands.command(name='load', hidden=True)
 	@commands.is_owner()
 	async def load_cog(self, ctx, *, cog: str):
