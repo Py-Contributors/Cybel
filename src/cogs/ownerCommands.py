@@ -119,6 +119,41 @@ class OwnerCommands(commands.Cog, name="Commands for Bot Owner only (Developer)"
 		except Exception as e:
 			await ctx.send(f'```{type(e).__name__} - {e}```')
 
+ 
+	@commands.command(name='load', hidden=True)
+	@commands.is_owner()
+	async def load_cog(self, ctx, *, cog: str):
+		"""Loads a module"""
+		try:
+			self.bot.load_extension(cog)
+		except Exception as e:
+			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+		else:
+			await ctx.send('**`SUCCESS`**')
+
+	@commands.command(name='unload', hidden=True)
+	@commands.is_owner()
+	async def unload_cog(self, ctx, *, cog: str):
+		"""Unloads a Module."""
+		try:
+			self.bot.unload_extension(cog)
+		except Exception as e:
+			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+		else:
+			await ctx.send('**`SUCCESS`**')
+
+	@commands.command(name='reload', hidden=True)
+	@commands.is_owner()
+	async def reload_cog(self, ctx, *, cog: str):
+		"""Reloads a Module"""
+		try:
+			self.bot.unload_extension(cog)
+			self.bot.load_extension(cog)
+		except Exception as e:
+			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+		else:
+			await ctx.send('**`SUCCESS`**')
+
 
 async def setup(bot: commands.Bot):
 	await bot.add_cog(OwnerCommands(bot))
