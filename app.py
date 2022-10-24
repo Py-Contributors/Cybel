@@ -15,13 +15,12 @@ import discord
 from discord.ext import commands
 import argparse
 
-arg = argparse.ArgumentParser()
-arg.add_argument("-d", "--debug", help="Debug mode", action="store_true")
-args = arg.parse_args()
-
 from src.utils import logging
 from src.utils import DISCORD_TOKEN
 
+arg = argparse.ArgumentParser()
+arg.add_argument("-d", "--debug", help="Debug mode", action="store_true")
+args = arg.parse_args()
 
 intents = discord.Intents.all()
 intents.members = True
@@ -31,7 +30,7 @@ bot = commands.Bot(command_prefix='!',
                    case_insensitive=True,
                    description='''Cybel - A Powerfull, Advanced, and Open Source Discord Bot.\nGithub:-  [CodePerfectPlus](https://github.com/codeperfectoplus)\nDeveloper:  [Deepak Raj](https://www.linkedin.com/in/deepak-raj-35887386/)\nContact Email:- botcybel@gmail.com''')
 
-        
+
 cog_dict = {
     'Other Commands': 'src.cogs.otherCommands',
     'Auto Commands': 'src.cogs.autoCommands',
@@ -41,11 +40,12 @@ cog_dict = {
     'NSFW Commands': 'src.cogs.nsfwCommands',
     'Fun Commands': 'src.cogs.funCommands',
     'Utility Commands': 'src.cogs.utilityCommands',
-    'Music Commands': 'src.cogs.musicCommands', # FIXME: add music commands in future update
+    'Music Commands': 'src.cogs.musicCommands',  # FIXME: add music commands in future update
     'Owner Commands': 'src.cogs.ownerCommands',
     'Testing Commands': 'src.cogs.testingCommands',
     'Error Handler': 'src.cogs.errorHandler',
 }
+
 
 async def load_cogs(cog_dict: dict):
     """ Function for loading cogs using dictionary """
