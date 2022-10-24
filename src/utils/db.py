@@ -1,10 +1,10 @@
-""" 
+"""
 python class for database CRUD operations
 
-    
+
 """
-import sqlite3
 import psycopg2
+
 
 def create_connection(DATABASE_URL):
     """
@@ -12,23 +12,24 @@ def create_connection(DATABASE_URL):
 
     args:
         DATABASE_URL: database url
-    
+
     returns:
         connection: connection to the database
         cursor: cursor to the database
     """
     connection = None
     cursor = None
-    try: # get the database connection from postgres ur
+    try:
         connection = psycopg2.connect(DATABASE_URL)
         cursor = connection.cursor()
         return connection, cursor
-    except (Exception, psycopg2.DatabaseError) as error:
+    except (Exception, psycopg2.DatabaseError):
         return connection, cursor
-    
+
+
 class DataBase:
-    """ Postgresql Database class 
-    
+    """ Postgresql Database class
+
     methods:
         - create_table - create a table in the database
         - insert_data - insert data into a table in the database
@@ -37,11 +38,10 @@ class DataBase:
         - delete_data - delete data from a table in the database
         - drop_table - drop a table in the database
     """
-    
+
     def __init__(self, connection, cursor):
         self.connection = connection
         self.cursor = cursor
-    
 
     def create_table(self, table_name, table_columns):
         """
@@ -54,7 +54,6 @@ class DataBase:
             print("Table {} created successfully".format(table_name))
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-    
 
     def insert_data(self, table_name, *args):
         """
@@ -67,8 +66,7 @@ class DataBase:
             print("Data inserted successfully")
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-    
-    
+
     def select_data(self, table_name, condition):
         """
         Select data from the database
@@ -79,7 +77,6 @@ class DataBase:
             return self.cursor.fetchall()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-    
 
     def update_data(self, table_name, data, condition):
         """
@@ -92,7 +89,6 @@ class DataBase:
             print("Data updated successfully")
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-    
 
     def delete_data(self, table_name, condition):
         """
@@ -106,7 +102,6 @@ class DataBase:
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
 
-
     def count_data(self, table_name, condition):
         """
         Count data from the database
@@ -117,4 +112,3 @@ class DataBase:
             return self.cursor.fetchall()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-

@@ -17,6 +17,10 @@
 - [Upcoming Feature](#upcoming-feature)
 - [Changelog](#changelog)
 - [Supported Versions](#supported-versions)
+  - [V2.0.0 Release](#v200-release)
+  - [v1.0.2 Release (19/12/2021)](#v102-release-19122021)
+  - [V1.0.1 Release (14/12/2021)](#v101-release-14122021)
+  - [v1.0.0 Release (12/12/2021)](#v100-release-12122021)
 - [Under Review Features](#under-review-features)
 - [Support Here](#support-here)
 - [Author](#author)
@@ -65,7 +69,7 @@ Invite **Cybel** into your server
 
 Documentation is in progress
 
-#### Run locally 
+#### Run locally
 1. Create .evn file in root directory and add the following variables. Sample Env file is [here](/.env.sample)
 
 ```bash
@@ -121,10 +125,17 @@ check [changelog](/changelog.md) for full information
 Use this section to tell people about which versions of your project are
 currently being supported with security updates.
 
-| Version | Supported          |   Based on        | Status       |      
+| Version | Supported          |   Based on        | Status       |
 | ------- | ------------------ | ----------        | -------      |
 | 2.0.0   | :white_check_mark: | Discord.py v2.0.0 |  Not Stable  |
 | 1.0.2   | :white_check_mark: | Discord.py v1.7.3 |  Stable      |
+
+### V2.0.0 Release
+
+- [x] Upgrading code base for Discord.py 2.0.0 documentation
+- [x] Better code structure
+- [x] Better Error commands handling
+- [x] Under devlopment
 
 ### v1.0.2 Release (19/12/2021)
 
@@ -193,7 +204,7 @@ currently being supported with security updates.
 
 - [Discord/PyContributors](https://discord.gg/FXyh2S3)
 
-## License 
+## License
 
 - [MIT](https://github.com/Py-Contributors/cybel-discord.py/blob/main/LICENSE)
 

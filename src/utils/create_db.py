@@ -1,4 +1,4 @@
-""" script to create the database tables 
+""" script to create the database tables
 
 this script is used to create the database tables for the bot
 
@@ -17,8 +17,3 @@ db.create_table("report_status", """
                                 reported_by varchar(100) NOT NULL,
                                 reported_to varchar(100) NOT NULL,
                                 reason varchar(255) NOT NULL""")
-
-
-
-# remind_me_table
-# notes_table 
