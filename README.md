@@ -66,7 +66,7 @@ Invite **Cybel** into your server
 Documentation is in progress
 
 #### Run locally 
-1. Create .evn file in root directory and add the following variables. Sample Env file is [here](/.env.sample)
+1. Create .env file in root directory and add the following variables. Sample Env file is [here](/.env.sample)
 
 ```bash
 DISCORD_TOKEN: Discord bot token [get it from here](https://discord.com/developers/applications)
