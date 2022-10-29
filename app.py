@@ -12,17 +12,18 @@ import asyncio
 import discord
 from discord import Intents
 from discord.ext import commands
+
 from src.utils import logging
 from src.utils import DISCORD_TOKEN
 
-intents = Intents.default()
+intents = Intents.all()
 intents.members = True
 
 arg = argparse.ArgumentParser()
 arg.add_argument("-d", "--debug", help="Debug mode", action="store_true")
 args = arg.parse_args()
 
-bot = commands.Bot(command_prefix='/',
+bot = commands.Bot(command_prefix='!',
                    intents=intents,
                    case_insensitive=True,
                    description='''Cybel - A Powerfull, Advanced, and Open Source Discord Bot.\nGithub:-  [CodePerfectPlus](https://github.com/codeperfectoplus)\nDeveloper:  [Deepak Raj](https://www.linkedin.com/in/deepak-raj-35887386/)\nContact Email:- botcybel@gmail.com''')
@@ -43,16 +44,16 @@ cog_dict = {
 }
 
 
-def load_cogs(cog_dict: dict):
+async def load_cogs(cog_dict: dict):
     """ Function for loading cogs using dictionary """
     try:
         for key, value in cog_dict.items():
             logging.info('Loading... {}'.format(key))
-            await bot.load_extension(value)
+            bot.load_extension(value)
     except Exception as e:
         logging.error('{} - {}'.format(type(e).__name__, e))
 
 
 if __name__ == '__main__':
     asyncio.run(load_cogs(cog_dict=cog_dict))
-    bot.run(DISCORD_TOKEN, log_level=logging.DEBUG if args.debug else logging.INFO)
+    bot.run(DISCORD_TOKEN)
