@@ -50,6 +50,7 @@ DISCORD_TOKEN = get_environment_variable('DISCORD_TOKEN')
 WEATHER_API_KEY = get_environment_variable('WEATHER_API_KEY')
 DATABASE_URL = get_environment_variable('DATABASE_URL')
 
+
 async def _fetch(url: str):
     """ function to fetch data from api in asynchronous way """
     async with aiohttp.ClientSession() as session:
