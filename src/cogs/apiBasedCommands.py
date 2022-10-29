@@ -18,9 +18,10 @@ from src.utils import _fetch
 from src.utils import weather_image_list, WEATHER_API_KEY
 from src.utils.utils import create_embed
 
+
 class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands Using aiohttp"):
-    """ Collection of External API Based Commands 
-    
+    """ Collection of External API Based Commands
+
     Commands:
         - get_random_joke - Get a random joke from the API
         - get_random_fact - Get a random fact from the API
@@ -30,13 +31,10 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
         - get_random_dog_picture - Get a random dog picture from the API
         - get_random_cat_picture - Get a random cat picture from the API
         - get_random_fox_picture - Get a random fox picture from the API
-        
+
     """
-
-
     def __init__(self, bot):
         self.bot = bot
-
 
     @commands.command(aliases=['joke', 'jokes'], help="Get a random joke")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
@@ -57,7 +55,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
-
     @commands.command(aliases=['fact', 'facts'], help="Get a random fact")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_fact(self, ctx):
@@ -72,12 +69,10 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 result = await _fetch(fact_api)
                 radnom_fact = result['text']
                 embed = create_embed(ctx, title="Random Fact", description=radnom_fact, color=discord.Color.dark_gold())
-                await ctx.send(embed=embed) 
+                await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
-
-    # not using the _fetch function because of content_type=None
     @commands.command(aliases=['quote', 'quotes'], help="Get a random quote")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_quote(self, ctx):
@@ -100,7 +95,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 except Exception as e:
                     await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
-
     @commands.command(aliases=['github_user'], help="Get the github user data from the API")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_github_userdata(self, ctx, username: str):
@@ -113,10 +107,12 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
         async with ctx.typing():
             try:
                 user_data = await _fetch(git_api)
-                embed = create_embed(ctx, 
-                    title=user_data['name'], description=user_data["company"], color=discord.Color.dark_gold())
+                embed = create_embed(ctx,
+                                     title=user_data['name'],
+                                     description=user_data["company"],
+                                     color=discord.Color.dark_gold())
                 embed.add_field(
-					name='Public Repos', value=user_data['public_repos'])
+                    name='Public Repos', value=user_data['public_repos'])
                 embed.add_field(
                     name='Followers', value=user_data['followers'])
                 embed.add_field(
@@ -133,7 +129,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(embed=embed)
             except Exception:
                 await ctx.send('```{} is not a GitHub user.```'.format(username))
-
 
     @commands.command(aliases=['weather', 'w'], help="Get the weather data from the API")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
@@ -156,8 +151,9 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 humidity = weather_data["list"][0]["main"]["humidity"]
                 sea_level = weather_data["list"][0]["main"]["sea_level"]
 
-                embed = create_embed(ctx, 
-                    title=f'{weather_data["city"]["name"]}- {weather_data["city"]["country"]}', color=discord.Color.dark_gold())
+                embed = create_embed(ctx,
+                                     title=f'{weather_data["city"]["name"]}- {weather_data["city"]["country"]}',
+                                     color=discord.Color.dark_gold())
                 embed.add_field(
                     name="Weather", value=weather_data['list'][0]['weather'][0]['description'])
                 embed.add_field(name='Feels Like', value=feels_like)
@@ -169,14 +165,13 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 embed.set_thumbnail(url=icon_url)
                 embed.set_image(url=random.choice(weather_image_list))
                 await ctx.send(embed=embed)
-            except Exception as e:
+            except Exception:
                 await ctx.send('```I am not able to find the {}.```'.format(city_name))
-
 
     @commands.command(aliases=['dog', 'dogs'], help="Get a random dog image")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
     async def get_random_dog_picture(self, ctx):
-        
+
         """ Get Random Pictures Of Dogs
 
         command: !dog
@@ -193,7 +188,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
-
 
     @commands.command(aliases=['fox', 'foxes'], help="Get a random fox image")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
@@ -214,7 +208,6 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send(embed=embed)
             except Exception as e:
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
-
 
     @commands.command(aliases=['cat', 'cats'], help="Get a random cat image")
     @commands.cooldown(rate=1, per=5.0, type=commands.BucketType.user)
@@ -237,5 +230,5 @@ class APIBaseUserCommands(commands.Cog, name="External API Based User: Commands 
                 await ctx.send('**`ERROR:`** {} - {}'.format(type(e).__name__, e))
 
 
-def setup(bot: commands.Cog):
-    bot.add_cog(APIBaseUserCommands(bot))
+async def setup(bot: commands.Cog):
+    await bot.add_cog(APIBaseUserCommands(bot))

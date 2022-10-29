@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://py-contributors.github.io/awesomeScripts/"><img src="https://capsule-render.vercel.app/api?type=rect&color=ffdd00&height=100&section=header&text=Cybel%201.O&fontSize=80%&fontColor=ffffff" alt="website title image"></a>
+  <a href="https://py-contributors.github.io/awesomeScripts/"><img src="https://capsule-render.vercel.app/api?type=rect&color=ffdd00&height=100&section=header&text=Cybel%201.0.2&fontSize=80%&fontColor=ffffff" alt="website title image"></a>
 
   <h2 align="center">👉 Discord Bot implemented in Python 👈</h2>
 </p>
@@ -15,15 +15,16 @@
   - [Beta Version](#beta-version)
 - [Upcoming Feature](#upcoming-feature)
 - [Changelog](#changelog)
-  - [v2.0.2 Release (19/12/2021)](#v202-release-19122021)
-  - [V2.0.1 Release (14/12/2021)](#v201-release-14122021)
+- [V2.0.0](#v200)
+  - [v1.0.2 Release (19/12/2021)](#v102-release-19122021)
+  - [V1.0.1 Release (14/12/2021)](#v101-release-14122021)
+  - [v1.0.0 Release (12/12/2021)](#v100-release-12122021)
 - [Under Review Features](#under-review-features)
 - [Support Here](#support-here)
-- [Author](#author)
 - [Suggestion/Feedbacks](#suggestionfeedbacks)
 - [Maintainers 😎](#maintainers-)
 - [Social Channel 💻 - Connect with like minded people](#social-channel----connect-with-like-minded-people)
-- [License](#license) 
+- [License](#license)
 
 ## Features
 
@@ -110,6 +111,10 @@ beta version deprecated in 1.0.0 release. It will be removed in v2.0.0 release.
 
 check [changelog.txt](/changelog.txt) for full information
 
+## V2.0.0
+
+- [x] Check V2 Branch for V2.0.0 release
+
 ### v1.0.2 Release (19/12/2021)
 
 - [x]  More control over bot's behavior(change bot's avatar, name, nickname, status, etc): (added in v1.0.2)
@@ -155,15 +160,6 @@ check [changelog.txt](/changelog.txt) for full information
 
 <a href="https://www.buymeacoffee.com/codeperfectplus"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a book&emoji=📖&slug=codeperfectplus&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
 
-## Author
-
-- Project: Cybel[Discord Bot]
-- Author: CodePerfectPlus
-- Language: Python
-- Github: [GitHub](https://github.com/codePerfectPlus)
-- Website: [CodePerfectPlus](http://codeperfectplus.herokuapp.com/)
-- Email: [Email Me](mailto:codeperfectplus@gmail.com)
-
 ## Suggestion/Feedbacks
 
 - Official Discord Server: [PyContributors](https://discord.gg/JfbK3bS)
@@ -184,4 +180,3 @@ check [changelog.txt](/changelog.txt) for full information
 <a href="https://api.github.com/repos/py-contributors/awesomescripts/contributors"><img src="http://ForTheBadge.com/images/badges/built-by-developers.svg" alt="Built by Developers"></a>
 <a href="https://github.com/codePerfectPlus"><img src="http://ForTheBadge.com/images/badges/built-with-love.svg" alt="built with love"></a>
 </p>
-
