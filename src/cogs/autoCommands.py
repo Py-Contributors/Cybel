@@ -13,7 +13,7 @@ import discord
 from discord.ext import commands
 
 from src.utils import logging
-from src.utils.utils import sponsors, create_embed
+from src.utils.utils import create_embed
 
 
 class AutoCommands(commands.Cog, name="Auto Commands"):

@@ -1,14 +1,16 @@
-What's New
+# Changelog
 
-### V2.0.0 Release Notes
+All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-- [x] Files Updated for v2.0.0 release
+## [V2.0.0] - In Development
+
 - [x] Asyncio Event Loop Changes 
 - [x] Intents Are Now Required
 - [x] Abstract Base Classes Changes
+- [x] Removed Sponsors from Embeds 
 - [x] More Changes available in [Discord 2 Migration](https://discordpy.readthedocs.io/en/stable/migrating.html) 
 
-### v1.0.2 Release (19/12/2021)
+## [v1.0.2] - In Development
 
 - [x]  More control over bot's behavior(change bot's avatar, name, nickname, status, etc): (added in v1.0.2)
 - [x]  Bot notifications if user edit or delete the message in the server: (added in v1.0.2)
@@ -17,9 +19,11 @@ What's New
 - [x]  Admin can access the misconduct/spam behaviour report status of the member from db: (added in v1.0.2)
 - [x]  Bot can have record of the user's report status in db: (added in v1.0.2)
 - [x]  Optimize code for performance & bug fix: (added in v1.0.2)
-- [x]  more...
+- [x]  `AutoMod`: Curse word deletion removed from bot as it was not working properly
+- [x]  Removed Sponsors from Embeds 
+- [x]  Asyncio Support added 
 
-### V1.0.1 Release (14/12/2021)
+## [V1.0.1] - Release (14/12/2021)
 
 - [x]  `AutoMod`: Curse word deletion improved (added: v1.0.1)
 - [x]  get bot latency : (added: v1.0.1)
@@ -31,7 +35,7 @@ What's New
 - [x]  Bug fixes
 - [x]  more...
 
-### v1.0.0 Release (12/12/2021)
+## [v1.0.0] - Release (12/12/2021)
 
 - [x]  member can report someone to admin: like for bullying, bad behaviour : (added: v1.0.0)
 - [x]  Create server Instant Invite : (added: v1.0.0)
@@ -43,8 +47,3 @@ What's New
 - [x]  Get Member Avatar : (added: v1.0.0)
 - [x]  Bug fix: (added: v1.0.0)
 - [x]  optimize code for performance : (added: v1.0.0)
-
-## Under Review Features
-
-- [x]  one command role assignment to all members: (under review)
-- [x]  send dm message to all member in server: (under review)

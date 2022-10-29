@@ -1,7 +1,5 @@
 """ helper function to Database """
-from numpy import delete
 import pandas as pd
-import datetime
 
 from src.utils.db import DataBase, create_connection
 from src.utils.utils import DATABASE_URL
