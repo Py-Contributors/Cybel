@@ -53,10 +53,9 @@ Invite **Cybel** into your server
 - [Cybel Stable](https://top.gg/bot/832137823309004800/invite)
 - [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot) # deprecated/removed
 
-
 ### Report a Bug
 
-- [Report a Bug](https://github.com/codePerfectPlus/cybel/discussions)
+- [Report a Bug](https://github.com/orgs/Py-Contributors/discussions)
 
 ### How to use/test
 
@@ -116,7 +115,7 @@ beta version deprecated in 1.0.0 release. It will be removed in v1.0.2 release.
 
 ## Changelog
 
-check [changelog](/changelog.md) for full information
+check [changelog](/CHANGELOG.md) for full information
 
 ## Supported Versions
 
@@ -125,7 +124,7 @@ currently being supported with security updates.
 
 | Version | Supported          |   Based on        | Status       |
 | ------- | ------------------ | ----------        | -------      |
-| 2.0.0   | :white_check_mark: | Discord.py v2.0.0 |  Not Stable  |
+| 2.0.0   | :white_check_mark: | Discord.py v2.0.1 |  Not Stable  |
 | 1.0.2   | :white_check_mark: | Discord.py v1.7.3 |  Stable      |
 
 ### V2.0.0 Release
