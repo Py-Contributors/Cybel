@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://py-contributors.github.io/awesomeScripts/"><img src="https://capsule-render.vercel.app/api?type=rect&color=ffdd00&height=100&section=header&text=Cybel%201.O&fontSize=80%&fontColor=ffffff" alt="website title image"></a>
+  <a href="https://py-contributors.github.io/awesomeScripts/"><img src="https://capsule-render.vercel.app/api?type=rect&color=ffdd00&height=100&section=header&text=Cybel%202.0.0&fontSize=80%&fontColor=ffffff" alt="website title image"></a>
 
   <h2 align="center">👉 Discord Bot implemented in Python 👈</h2>
 </p>
@@ -56,7 +56,6 @@ Invite **Cybel** into your server
 
 ### Report a Bug
 
-
 - [Report a Bug](https://github.com/codePerfectPlus/cybel/discussions)
 
 ### How to use/test
@@ -70,14 +69,13 @@ Invite **Cybel** into your server
 Documentation is in progress
 
 #### Run locally
+
 1. Create .evn file in root directory and add the following variables. Sample Env file is [here](/.env.sample)
 
 ```bash
 DISCORD_TOKEN: Discord bot token [get it from here](https://discord.com/developers/applications)
 WEATHER_API_KEY= OpenWeatherMap API key [get it from here](https://openweathermap.org/api)
 DATABASE_URL=postgres://username:password@localhost:5432/database_name
-SPONSOR_NAME=Codeperfectplus
-SPONSOR_ICON=https://cdn.discordapp.com/avatars/832137823309004800/890d78333bd8c91665e416bb889e24f8.webp
 ```
 
 2. Create a virtual environment and install the dependencies

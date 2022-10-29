@@ -46,8 +46,6 @@ def get_environment_variable(key: str):
         logging.critical('{} is not found in environment variable.'.format(key))
 
 
-sponsor_name = get_environment_variable('SPONSOR_NAME')
-sponsor_icon = get_environment_variable('SPONSOR_ICON')
 DISCORD_TOKEN = get_environment_variable('DISCORD_TOKEN')
 WEATHER_API_KEY = get_environment_variable('WEATHER_API_KEY')
 DATABASE_URL = get_environment_variable('DATABASE_URL')
@@ -88,7 +86,6 @@ def create_embed(ctx=None, title=None, description="", color=None):
         embed (discord.Embed): The embed created
     """
     embed = discord.Embed(title=title, description=description, color=color)
-    embed.set_footer(text="Sponsor by  {}".format(sponsors["name"]), icon_url=sponsors["icon"])
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
     if ctx is not None:
         embed.set_author(name=ctx.author.name)
