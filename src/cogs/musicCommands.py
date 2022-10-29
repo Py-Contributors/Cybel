@@ -1,8 +1,6 @@
 """
 MIT License
-
 Copyright (c) 2021 Deepak Raj
-
 Bot-Name:- Cybel
 Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
@@ -13,10 +11,8 @@ from discord.ext import commands
 
 class MusicCommands(commands.Cog, name="Commands for music activity."):
     ''' Music Commands
-
     Args:
         bot (discord.Client): The bot instance.
-    
     Methods:
         play (discord.ext.commands.command): Plays a song.
         pause (discord.ext.commands.command): Pauses the song.
@@ -36,12 +32,11 @@ class MusicCommands(commands.Cog, name="Commands for music activity."):
         play_repeat_one (discord.ext.commands.command): Plays a repeated song.
         play_shuffle_one (discord.ext.commands.command): Plays a shuffled song.
         play_shuffle_all (discord.ext.commands.command): Plays a shuffled song.
-        
     '''
     def __init__(self, bot):
         ''' Initializing the cog and passing the bot instance. '''
         self.bot = bot
 
-        
-def setup(bot: commands.Cog):
-    bot.add_cog(MusicCommands(bot))
+
+async def setup(bot: commands.Cog):
+    await bot.add_cog(MusicCommands(bot))
