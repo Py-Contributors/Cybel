@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. The format 
 - [x] Asyncio Event Loop Changes 
 - [x] Intents Are Now Required
 - [x] Abstract Base Classes Changes
+- [x] Removed Sponsors from Embeds 
 - [x] More Changes available in [Discord 2 Migration](https://discordpy.readthedocs.io/en/stable/migrating.html) 
 
 ## [v1.0.2] - In Development
@@ -19,6 +20,7 @@ All notable changes to this project will be documented in this file. The format 
 - [x]  Bot can have record of the user's report status in db: (added in v1.0.2)
 - [x]  Optimize code for performance & bug fix: (added in v1.0.2)
 - [x]  `AutoMod`: Curse word deletion removed from bot as it was not working properly
+- [x]  Removed Sponsors from Embeds 
 - [x]  Asyncio Support added 
 
 ## [V1.0.1] - Release (14/12/2021)
