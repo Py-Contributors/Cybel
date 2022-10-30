@@ -42,8 +42,10 @@ def get_environment_variable(key: str):
         if value is not None:
             logging.info('Loading... {}'.format(key))
             return value
-    except Exception:
-        logging.critical('{} is not found in environment variable.'.format(key))
+        else:
+            logging.error('{} is not found in environment variable.'.format(key))
+    except Exception as e:
+        logging.critical('Error while reading environment variables: {}'.format(e))
 
 
 DISCORD_TOKEN = get_environment_variable('DISCORD_TOKEN')

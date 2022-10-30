@@ -59,5 +59,8 @@ async def load_cogs(cog_dict: dict):
 
 
 if __name__ == '__main__':
-    asyncio.run(load_cogs(cog_dict=cog_dict))
-    bot.run(DISCORD_TOKEN, log_level=logging.DEBUG if args.debug else logging.INFO)
+    try:
+        asyncio.run(load_cogs(cog_dict=cog_dict))
+        bot.run(DISCORD_TOKEN, log_level=logging.DEBUG if args.debug else logging.INFO)
+    except Exception as e:
+        logging.error('Error while running bot: {}'.format(e))
