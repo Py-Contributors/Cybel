@@ -25,7 +25,8 @@ logging.basicConfig(format="%(levelname)s - %(asctime)s - %(name)s - %(message)s
                     encoding="utf-8",
                     datefmt='%d/%m/%Y %I:%M:%S %p',
                     handlers=[
-                        logging.FileHandler(os.path.join(root_dir, 'logs', 'bot.log')),
+                        logging.FileHandler(os.path.join(
+                            root_dir, 'logs', 'bot.log')),
                         logging.StreamHandler()])
 
 logging.info(f'Discord Version : {discord.__version__}')
@@ -42,8 +43,12 @@ def get_environment_variable(key: str):
         if value is not None:
             logging.info('Loading... {}'.format(key))
             return value
-    except Exception:
-        logging.critical('{} is not found in environment variable.'.format(key))
+        else:
+            logging.error(
+                '{} is not found in environment variable.'.format(key))
+    except Exception as e:
+        logging.critical(
+            'Error while reading environment variables: {}'.format(e))
 
 
 DISCORD_TOKEN = get_environment_variable('DISCORD_TOKEN')
@@ -81,7 +86,8 @@ def create_embed(ctx=None, title=None, description="", color=None):
         embed (discord.Embed): The embed created
     """
     embed = discord.Embed(title=title, description=description, color=color)
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
+    embed.set_thumbnail(
+        url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
     if ctx is not None:
         embed.set_author(name=ctx.author.name)
     return embed

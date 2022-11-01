@@ -40,7 +40,8 @@ cog_dict = {
     'NSFW Commands': 'src.cogs.nsfwCommands',
     'Fun Commands': 'src.cogs.funCommands',
     'Utility Commands': 'src.cogs.utilityCommands',
-    'Music Commands': 'src.cogs.musicCommands',  # FIXME: add music commands in future update
+    # FIXME: add music commands in future update
+    'Music Commands': 'src.cogs.musicCommands',
     'Owner Commands': 'src.cogs.ownerCommands',
     'Testing Commands': 'src.cogs.testingCommands',
     'Error Handler': 'src.cogs.errorHandler',
@@ -59,5 +60,9 @@ async def load_cogs(cog_dict: dict):
 
 
 if __name__ == '__main__':
-    asyncio.run(load_cogs(cog_dict=cog_dict))
-    bot.run(DISCORD_TOKEN, log_level=logging.DEBUG if args.debug else logging.INFO)
+    try:
+        asyncio.run(load_cogs(cog_dict=cog_dict))
+        bot.run(DISCORD_TOKEN,
+                log_level=logging.DEBUG if args.debug else logging.INFO)
+    except Exception as e:
+        logging.error('Error while running bot: {}'.format(e))

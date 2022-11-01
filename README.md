@@ -65,14 +65,33 @@ Invite **Cybel** into your server
 
 #### Run with Docker
 
-Documentation is in progress
+1. Create .env file in root directory and add the following variables. Sample env file is [here](/.env.sample)
+
+```bash
+DISCORD_TOKEN=Discord bot token [get it from here](https://discord.com/developers/applications)
+WEATHER_API_KEY=OpenWeatherMap API key [get it from here](https://openweathermap.org/api)
+DATABASE_URL=postgres://username:password@localhost:5432/database_name
+```
+
+2. Run the docker-compose command to run the bot
+
+```bash
+docker compose up -d
+``` 
+
+3. See the docker logs
+
+```bash
+docker compose logs -f
+```
+
 
 #### Run locally
 
-1. Create .evn file in root directory and add the following variables. Sample Env file is [here](/.env.sample)
+1. Create .env file in root directory and add the following variables. Sample env file is [here](/.env.sample)
 
 ```bash
-DISCORD_TOKEN: Discord bot token [get it from here](https://discord.com/developers/applications)
+DISCORD_TOKEN=Discord bot token [get it from here](https://discord.com/developers/applications)
 WEATHER_API_KEY= OpenWeatherMap API key [get it from here](https://openweathermap.org/api)
 DATABASE_URL=postgres://username:password@localhost:5432/database_name
 ```
