@@ -7,4 +7,4 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 COPY . /app
 
-CMD bahs start_server.sh
+RUN bash start_server.sh

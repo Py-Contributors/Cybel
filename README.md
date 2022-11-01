@@ -76,8 +76,14 @@ DATABASE_URL=postgres://username:password@localhost:5432/database_name
 2. Run the docker-compose command to run the bot
 
 ```bash
-docker compose up
+docker compose up -d
 ``` 
+
+3. See the docker logs
+
+```bash
+docker compose logs -f
+```
 
 
 #### Run locally
