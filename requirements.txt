@@ -19,6 +19,6 @@ python-dotenv==0.17.0
 pytz==2021.3
 six==1.15.0
 typing-extensions==3.7.4.3
-urllib3==1.26.5
+urllib3==1.26.17
 yarl==1.6.3
 termcolor==2.0.1
